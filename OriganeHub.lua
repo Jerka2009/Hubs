@@ -183,6 +183,7 @@ local startPos
 ScreenGui.Parent = game.Players.LocalPlayer:WaitForChild("PlayerGui")
 ScreenGui.ZIndexBehavior = Enum.ZIndexBehavior.Sibling
 SoundTrack.Parent = ScreenGui
+SoundTrack.Looped = true
 Frame.Parent = ScreenGui
 Frame.BackgroundColor3 = Color3.fromRGB(105, 106, 96)
 Frame.BackgroundTransparency = 0.250
