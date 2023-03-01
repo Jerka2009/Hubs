@@ -13,6 +13,13 @@ local Players = game.Players:GetPlayers()
 local TeleportService = game:GetService("TeleportService")
 local Noclip = nil
 local Clip = nil
+local themes = {
+    SchemeColor = Color3.fromRGB(74, 99, 135),
+    Background = Color3.fromRGB(36, 37, 43),
+    Header = Color3.fromRGB(28, 29, 34),
+    TextColor = Color3.fromRGB(255,255,255),
+    ElementColor = Color3.fromRGB(32, 32, 38)
+}
 -- Functions
 function noclip()
 	Clip = false
@@ -86,6 +93,20 @@ end)
 MoreSection:NewKeybind("Toggle Gui", "Show / Hide Gui", Enum.KeyCode.LeftAlt, function()
 	Library:ToggleUI()
 end)
+MoreSection:NewDropdown("DropdownText", "DropdownInf", {"Option 1", "Option 2", "Option 3"}, function(currentOption)
+    print(currentOption)
+end)
+-- Color Picker
+local PickerTheme = More:NewSection("Custom Theme")
+for theme, color in pairs(themes) do
+    PickerTheme:NewColorPicker(theme, "Change your "..theme, color, function(color3)
+        Library:ChangeColor(theme, color3)
+    end)
+end
 -- Credits
-CreditSection:NewLabel("Created by : ��������#7777")
-CreditSection:NewLabel("Idea by : LA_???#1000")
+CreditSection:NewButton("Created by : Настюшка#7777", "Click to copy", function()
+	setclipboard("Настюшка#7777")
+end)
+CreditSection:NewButton("Idea by : LA_???#1000", "Click to copy", function()
+	setclipboard("LA_???#1000")
+end)
