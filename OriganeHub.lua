@@ -11,6 +11,7 @@ local ToolsSection = Tools:NewSection("Tools")
 -- Variables
 local Players = game.Players:GetPlayers()
 local TeleportService = game:GetService("TeleportService")
+local infjumpenabled = false
 local Noclip = nil
 local Clip = nil
 local themes = {
@@ -21,6 +22,14 @@ local themes = {
     ElementColor = Color3.fromRGB(32, 32, 38)
 }
 -- Functions
+function randomString()
+	local length = math.random(10,20)
+	local array = {}
+	for i = 1, length do
+		array[i] = string.char(math.random(32, 126))
+	end
+	return table.concat(array)
+end
 function noclip()
 	Clip = false
 	local function Nocl()
@@ -36,11 +45,34 @@ function noclip()
 	Noclip = game:GetService('RunService').Stepped:Connect(Nocl)
 end
 
+game:GetService("UserInputService").JumpRequest:Connect(function()
+	if infjumpenabled == true then
+		game.Players.LocalPlayer.Character:FindFirstChild("Humanoid"):ChangeState("Jumping")
+	end
+end)
+
+function infJumpOn()
+	infjumpenabled = true
+end
+
+function infJumpOff()
+	infjumpenabled = false
+end
+
 function clip()
 	if Noclip then Noclip:Disconnect() end
 	Clip = true
 end
 -- Player Tab
+
+PlayerSection:NewSlider("Walkspeed", "Changes the walkspeed", 250, 16, function(v)
+    game.Players.LocalPlayer.Character.Humanoid.WalkSpeed = v
+end)
+ 
+PlayerSection:NewSlider("Jumppower", "Changes the jumppower", 250, 50, function(v)
+    game.Players.LocalPlayer.Character.Humanoid.JumpPower = v
+end)
+
 PlayerSection:NewButton("Reset", "RespawnCaracter", function()
 	local char = game.Players.LocalPlayer.Character
 	if char:FindFirstChildOfClass("Humanoid") then char:FindFirstChildOfClass("Humanoid"):ChangeState(15) end
@@ -54,12 +86,14 @@ PlayerSection:NewButton("Reset", "RespawnCaracter", function()
     print("Clicked")
 end)
 
-PlayerSection:NewSlider("Walkspeed", "Changes the walkspeed", 250, 16, function(v)
-    game.Players.LocalPlayer.Character.Humanoid.WalkSpeed = v
-end)
- 
-PlayerSection:NewSlider("Jumppower", "Changes the jumppower", 250, 50, function(v)
-    game.Players.LocalPlayer.Character.Humanoid.JumpPower = v
+PlayerSection:NewToggle("InfJump", "On / Off", function(state)
+    if state then
+		infJumpOn()
+        print("Toggle On")
+    else
+		infJumpOff()
+        print("Toggle Off")
+    end
 end)
 
 PlayerSection:NewToggle("Noclip", "On / Off", function(state)
@@ -84,6 +118,14 @@ ToolsSection:NewButton("TpTool", "Teleport Tool", function()
 	end)
 	tool.Parent = game.Players.LocalPlayer.Backpack
 end)
+ToolsSection:NewButton("Btools", "Btools [Visual]", function()
+	for i = 1, 4 do
+		local Tool = Instance.new("HopperBin")
+		Tool.BinType = i
+		Tool.Name = randomString()
+		Tool.Parent = speaker:FindFirstChildOfClass("Backpack")
+	end
+end)
 -- More Tab
 MoreSection:NewButton("ReJoin", "Rejoin On the Server", function()
 	TeleportService:Teleport(game.PlaceId, LocalPlayer)
@@ -92,9 +134,6 @@ end)
 -- KeyBind GUI
 MoreSection:NewKeybind("Toggle Gui", "Show / Hide Gui", Enum.KeyCode.LeftAlt, function()
 	Library:ToggleUI()
-end)
-MoreSection:NewDropdown("DropdownText", "DropdownInf", {"Option 1", "Option 2", "Option 3"}, function(currentOption)
-    print(currentOption)
 end)
 -- Color Picker
 local PickerTheme = More:NewSection("Custom Theme")
