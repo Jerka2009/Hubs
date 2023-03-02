@@ -11,8 +11,5 @@ for ids, url in next, games do
     if table.find(ids, game.PlaceId) then
         loadstring(game:HttpGet(url))()
         break
-    else
-        loadstring(game:HttpGet("https://raw.githubusercontent.com/vova999000333/Hubs/main/OriganeHub.lua"))()
-        break
     end
 end
