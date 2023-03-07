@@ -18,3 +18,5 @@ end
 if not selectid then
     loadstring(game:HttpGet("https://raw.githubusercontent.com/vova999000333/Hubs/main/OriganeHub.lua"))()
 end
+
+print("Loaded by OriganeLoader")
