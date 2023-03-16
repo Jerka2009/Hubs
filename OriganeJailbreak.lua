@@ -18,21 +18,17 @@ local h = game:GetService("ReplicatedStorage").Game.GunShop.GunShopUI
 local UserInputService = game:GetService("UserInputService")
 local runservice = game:GetService("RunService")
 local TeleportService = game:GetService("TeleportService")
-local Typing = false
+--//Toggle\\--
+getgenv().Toggle = false -- This toggles the esp, turning it to false will turn it off
+getgenv().TC = true -- This toggles team check, turning it on will turn on team check
+local PlayerName = "DisplayName" -- You can decide if you want the Player's name to be a display name which is "DisplayName", or username which is "Name"
 
-_G.SendNotifications = false   -- If set to true then the script would notify you frequently on any changes applied and when loaded / errored. (If a game can detect this, it is recommended to set it to false)
-_G.DefaultSettings = false   -- If set to true then the ESP script would run with default settings regardless of any changes you made.
+--//Variables\\--
+local P = game:GetService("Players")
+local LP = P.LocalPlayer
 
-_G.TeamCheck = true   -- If set to true then the script would create ESP only for the enemy team members.
-
-_G.ESPVisible = true   -- If set to true then the ESP will be visible and vice versa.
-_G.TextColor = Color3.fromRGB(255, 80, 10)   -- The color that the boxes would appear as.
-_G.TextSize = 25   -- The size of the text.
-_G.Center = true   -- If set to true then the script would be located at the center of the label.
-_G.Outline = true   -- If set to true then the text would have an outline.
-_G.OutlineColor = Color3.fromRGB(0, 0, 0)   -- The outline color of the text.
-_G.TextTransparency = 0.7   -- The transparency of the text.
-_G.TextFont = Drawing.Fonts.UI   -- The font of the text. (UI, System, Plex, Monospace) 
+--//Debounce\\--
+local DB = false
 local infjumpenabled = false
 local Noclip = nil
 local Clip = nil
@@ -80,97 +76,63 @@ else
  require(game:GetService("ReplicatedStorage").Module.RayCast).RayIgnoreNonCollideWithIgnoreList = getgenv().old
 end
 end
-local function CreateESP()
-    for _, v in next, Players:GetPlayers() do
-        if v.Name ~= Players.LocalPlayer.Name then
-            local ESP = Drawing.new("Text")
+--//Function\\--
+local ESP = function(PLR)
+	local ESP = Instance.new("Highlight")
 
-            RunService.RenderStepped:Connect(function()
-                if workspace:FindFirstChild(v.Name) ~= nil and workspace[v.Name]:FindFirstChild("HumanoidRootPart") ~= nil then
-                    local Vector, OnScreen = Camera:WorldToViewportPoint(workspace[v.Name]:WaitForChild("Head", math.huge).Position)
+	ESP.Parent = PLR.Character
+	ESP.Name = "Totally NOT Esp"
+	ESP.Adornee = PLR.Character
+	ESP.Archivable = true
+	ESP.Enabled = true
+	ESP.DepthMode = Enum.HighlightDepthMode.AlwaysOnTop
+	ESP.FillColor = PLR.TeamColor.Color
+	ESP.FillTransparency = 0.5
+	ESP.OutlineColor = Color3.fromRGB(255, 255, 255)
+	ESP.OutlineTransparency = 0
+end
 
-                    ESP.Size = _G.TextSize
-                    ESP.Center = _G.Center
-                    ESP.Outline = _G.Outline
-                    ESP.OutlineColor = _G.OutlineColor
-                    ESP.Color = _G.TextColor
-                    ESP.Transparency = _G.TextTransparency
-                    ESP.Font = _G.TextFont
+local ESPT = function(PLR)
+	--//ESP-Text\\--
+	local Icon = Instance.new("BillboardGui")
+	local ESPText = Instance.new("TextLabel")
 
-                    if OnScreen == true then
-                        local Part1 = workspace:WaitForChild(v.Name, math.huge):WaitForChild("HumanoidRootPart", math.huge).Position
-                        local Part2 = workspace:WaitForChild(Players.LocalPlayer.Name, math.huge):WaitForChild("HumanoidRootPart", math.huge).Position or 0
-                        local Dist = (Part1 - Part2).Magnitude
-                        ESP.Position = Vector2.new(Vector.X, Vector.Y - 25)
-                        ESP.Text = ("("..tostring(math.floor(tonumber(Dist)))..") "..v.Name.." ["..workspace[v.Name].Humanoid.Health.."]")
-                        if _G.TeamCheck == true then 
-                            if Players.LocalPlayer.Team ~= v.Team then
-                                ESP.Visible = _G.ESPVisible
-                            else
-                                ESP.Visible = false
-                            end
-                        else
-                            ESP.Visible = _G.ESPVisible
-                        end
-                    else
-                        ESP.Visible = false
-                    end
-                else
-                    ESP.Visible = false
-                end
-            end)
+	Icon.Parent = PLR.Character
+	Icon.Name = "Icon"
+	Icon.ZIndexBehavior = Enum.ZIndexBehavior.Sibling
+	Icon.Active = true
+	Icon.AlwaysOnTop = true
+	Icon.ExtentsOffset = Vector3.new(0, 1, 0)
+	Icon.LightInfluence = 1.000
+	Icon.Size = UDim2.new(0, 800, 0, 50)
 
-            Players.PlayerRemoving:Connect(function()
-                ESP.Visible = false
-            end)
-        end
-    end
+	ESPText.Name = "ESP Text"
+	ESPText.Parent = Icon
+	ESPText.BackgroundColor3 = PLR.TeamColor.Color
+	ESPText.BackgroundTransparency = 1.000
+	ESPText.Size = UDim2.new(0, 800, 0, 50)
+	ESPText.Font = Enum.Font.SciFi
+	--ESPText.Text = "Name: "..PLR[PlayerName].." | Health: "..PLR.Character:FindFirstChildOfClass("Humanoid").Health
+	ESPText.Text = "NIL"
+	ESPText.TextColor3 = PLR.TeamColor.Color
+	ESPText.TextSize = 18.000
+	ESPText.TextWrapped = true
+end
 
-    Players.PlayerAdded:Connect(function(Player)
-        Player.CharacterAdded:Connect(function(v)
-            if v.Name ~= Players.LocalPlayer.Name then 
-                local ESP = Drawing.new("Text")
-    
-                RunService.RenderStepped:Connect(function()
-                    if workspace:FindFirstChild(v.Name) ~= nil and workspace[v.Name]:FindFirstChild("HumanoidRootPart") ~= nil then
-                        local Vector, OnScreen = Camera:WorldToViewportPoint(workspace[v.Name]:WaitForChild("Head", math.huge).Position)
-    
-                        ESP.Size = _G.TextSize
-                        ESP.Center = _G.Center
-                        ESP.Outline = _G.Outline
-                        ESP.OutlineColor = _G.OutlineColor
-                        ESP.Color = _G.TextColor
-                        ESP.Transparency = _G.TextTransparency
-    
-                        if OnScreen == true then
-                            local Part1 = workspace:WaitForChild(v.Name, math.huge):WaitForChild("HumanoidRootPart", math.huge).Position
-                        local Part2 = workspace:WaitForChild(Players.LocalPlayer.Name, math.huge):WaitForChild("HumanoidRootPart", math.huge).Position or 0
-                            local Dist = (Part1 - Part2).Magnitude
-                            ESP.Position = Vector2.new(Vector.X, Vector.Y - 25)
-                            ESP.Text = ("("..tostring(math.floor(tonumber(Dist)))..") "..v.Name.." ["..workspace[v.Name].Humanoid.Health.."]")
-                            if _G.TeamCheck == true then 
-                                if Players.LocalPlayer.Team ~= Player.Team then
-                                    ESP.Visible = _G.ESPVisible
-                                else
-                                    ESP.Visible = false
-                                end
-                            else
-                                ESP.Visible = _G.ESPVisible
-                            end
-                        else
-                            ESP.Visible = false
-                        end
-                    else
-                        ESP.Visible = false
-                    end
-                end)
-    
-                Players.PlayerRemoving:Connect(function()
-                    ESP.Visible = false
-                end)
-            end
-        end)
-    end)
+local ESPTF = function(PLR, ICON)
+	local ESPText = Instance.new("TextLabel")
+
+	ESPText.Name = "ESP Text"
+	ESPText.Parent = ICON
+	ESPText.BackgroundColor3 = PLR.TeamColor.Color
+	ESPText.BackgroundTransparency = 1.000
+	ESPText.Size = UDim2.new(0, 800, 0, 50)
+	ESPText.Font = Enum.Font.SciFi
+	--ESPText.Text = "Name: "..PLR[PlayerName].." | Health: "..PLR.Character:FindFirstChildOfClass("Humanoid").Health
+	ESPText.Text = "NIL"
+	ESPText.TextColor3 = PLR.TeamColor.Color
+	ESPText.TextSize = 18.000
+	ESPText.TextWrapped = true
 end
 function noclip()
 	Clip = false
@@ -374,9 +336,9 @@ end)
 -- Esp Tab
 ESPsection:NewToggle("Esp Enabled", "On / Off", function(state)
     if state then 
-        _G.ESPVisible = true
+        getgenv().Toggle = true
     else
-        _G.ESPVisible = false
+        getgenv().Toggle = false
     end
 end)
 ESPsection:NewToggle("Team Check", "On / Off", function(state)
@@ -549,8 +511,8 @@ for theme, color in pairs(themes) do
     end)
 end
 -- Credits
-CreditSection:NewButton("Created by : Õ‡ÒÚ˛¯Í‡#0067", "Click to copy", function()
-	setclipboard("Õ‡ÒÚ˛¯Í‡#0067")
+CreditSection:NewButton("Created by : –ù–∞—Å—Ç—é—à–∫–∞#0067", "Click to copy", function()
+	setclipboard("–ù–∞—Å—Ç—é—à–∫–∞#0067")
 end)
 CreditSection:NewButton("Idea by : LA_???#8974", "Click to copy", function()
 	setclipboard("LA_???#8974")
@@ -607,6 +569,81 @@ runservice.RenderStepped:connect(function()
 		end
 	end
 end)
+-- Esp Loop --
+while task.wait() do
+	if not getgenv().Toggle then
+		break
+	end
+	if DB then 
+		return 
+	end
+	DB = true
+
+	pcall(function()
+		for i,v in pairs(P:GetChildren()) do
+			if v:IsA("Player") then
+				if v ~= game.Players.LocalPlayer then
+					if v.Character ~= nil then
+
+						if getgenv().TC == false and v.Character:FindFirstChild("Totally NOT Esp") == nil then
+							ESP(v)
+						else
+							if getgenv().TC == false and v.Character:FindFirstChild("Icon") == nil then
+								ESPT(v)
+							else
+								if getgenv().TC == false and v.Character.Icon:FindFirstChild("ESP Text") == nil then
+									ESPTF(v, v.Character.Icon)
+								else
+									if v.Character:FindFirstChild("Totally NOT Esp").Enabled == false then
+										v.Character:FindFirstChild("Totally NOT Esp").Enabled = true
+									else
+										if v.Character:FindFirstChild("Icon").Enabled == false then
+											v.Character:FindFirstChild("Icon").Enabled = true
+										else
+											if v.Character:FindFirstChild("Icon") and game.Players.LocalPlayer.Character:FindFirstChild("HumanoidRootPart") ~= nil then
+												local pos = math.floor(((game.Players.LocalPlayer.Character:FindFirstChild("HumanoidRootPart")).Position - (v.Character:FindFirstChild("HumanoidRootPart")).Position).magnitude)
+												-- Credits to Infinite Yield for this part (pos) ^^^^^^
+												v.Character.Icon["ESP Text"].Text = "Name: "..v[PlayerName].." | Health: "..v.Character:FindFirstChildOfClass("Humanoid").Health.." | Distance: "..pos
+											else
+												if v.Character:FindFirstChild("Icon") and game.Players.LocalPlayer.Character:FindFirstChild("HumanoidRootPart") == nil then
+													v.Character.Icon["ESP Text"].Text = "Name: "..v[PlayerName].." | Health: "..v.Character:FindFirstChildOfClass("Humanoid").Health
+												else
+													if getgenv().TC == true and v.TeamColor ~= game.Players.LocalPlayer.TeamColor and v.Character:FindFirstChild("Totally NOT Esp") == nil then
+														ESP(v)
+													else
+														if getgenv().TC == true and v.TeamColor ~= game.Players.LocalPlayer.TeamColor and v.Character:FindFirstChild("Icon") == nil then
+															ESPT(v)
+														else
+															if getgenv().TC == true and v.TeamColor ~= game.Players.LocalPlayer.TeamColor and v.Character.Icon:FindFirstChild("ESP Text") == nil then
+																ESPTF(v, v.Character.Icon)
+															else
+																if getgenv().TC == true and v.Character:FindFirstChild("Totally NOT Esp").FillColor ~= v.TeamColor.Color then
+																	v.Character:FindFirstChild("Totally NOT Esp").FillColor = v.TeamColor.Color
+																else
+																	if getgenv().TC == true and v.Character.Icon:FindFirstChild("ESP Text").TextColor3 ~= v.TeamColor.Color then
+																		v.Character.Icon["ESP Text"].TextColor3 = v.TeamColor.Color
+																	end
+																end
+															end
+														end
+													end
+												end
+											end
+										end
+									end
+								end
+							end
+						end
+					end
+				end
+			end
+		end
+	end)
+
+	wait()
+
+	DB = false
+end
 
 --[[local function API_Check()
     if Drawing == nil then
