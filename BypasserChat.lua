@@ -7,12 +7,6 @@ loadstring(game:HttpGet(("https://raw.githubusercontent.com/legitimate0x1/ChatBy
 --if getgenv().CB_LU ~= true then return loadstring(game:HttpGet(("https://raw.githubusercontent.com/yenil140/ChatBypasser/main/Loader"), true))() end
 if getgenv().CB_LOADED then return game:GetService("StarterGui"):SetCore("SendNotification",{Title="Chat Bypasser",Text="Chat Bypasser is already running.",Icon="rbxassetid://6238540373",Duration=5}) end
 
-if pcall(function() loadstring(game:HttpGet('https://raw.githubusercontent.com/yenil140/ChatBypasser/main/Version'))() end) then
-	if Version == "PATCHED" then
-		return game.Players.LocalPlayer:Kick("[Chat Bypasser]: PATCHED!")
-	end
-end
-
 getgenv().CB_LOADED = true
 
 local Material = loadstring(game:HttpGet("https://raw.githubusercontent.com/Kinlei/MaterialLua/master/Module.lua"))()
@@ -87,7 +81,7 @@ if getgenv().CB_ChatType ~= nil then
 	if getgenv().CB_ChatType ~= "Default" then
 		Remote = getgenv().CB_RemoteEvent
 	elseif not game:GetService("ReplicatedStorage"):FindFirstChild("SayMessageRequest", true) then
-		game.Players.LocalPlayer:Kick("[Chat Bypasser]: RemoteEvent not found! Use custom chat.")
+		game.Players.LocalPlayer:Kick("[Origane Bypasser]: RemoteEvent not found! Use custom chat.")
 	end	
 end
 
@@ -134,18 +128,6 @@ local X = Material.Load({
 
 local Page1 = X.New({
 	Title = "Pre-Made"
-})
-
-local Page2 = X.New({
-	Title = "Settings"
-})
-
-local Page3 = X.New({
-	Title = "Script"
-})
-
-local Page4 = X.New({
-	Title = "Others"
 })
 
 local MyButton = Page1.Button({
@@ -623,109 +605,3 @@ local MyButton = Page1.Button({
 		Remote:FireServer(("Dat{{%s:ing}}. " .. getgenv().CB_Symbol):format(getgenv().CB_Bytecode), "All")
 	end
 })
-
-local MyToggle = Page2.Toggle({
-	Text = "Anti Mute",
-	Callback = function()
-		if getgenv().CB_AntiMute == false then
-			getgenv().CB_AntiMute = true
-		else
-			getgenv().CB_AntiMute = false
-		end
-	end
-})
-
-local MyToggle = Page2.Toggle({
-	Text = "Auto Bypass",
-	Callback = function()
-		if getgenv().CB_AutoBypass == false then
-			getgenv().CB_AutoBypass = true
-		else
-			getgenv().CB_AutoBypass = false
-		end
-	end
-})
-
-local MyButton = Page3.Button({
-	Text = "Reload Script",
-	Callback = function()
-		game.CoreGui.RobloxGui.Sounds.ButtonClick:Play()
-		wait(0.5)
-		game.CoreGui.RobloxGui.Sounds.ButtonClick:Destroy()
-		
-		getgenv().CB_Symbol = nil
-		getgenv().CB_Bytecode = nil
-		getgenv().CB_ChatType = nil
-		getgenv().CB_AntiMute = nil
-		getgenv().CB_AutoBypass = nil
-		getgenv().CB_LU = nil
-		getgenv().CB_LOADED = nil
-
-		loadstring(game:HttpGet(("https://raw.githubusercontent.com/yenil140/ChatBypasser/main/Loader"), true))()
-		game.CoreGui["Chat Bypasser"]:Destroy()
-	end
-})
-
-local MyButton = Page3.Button({
-	Text = "Remove Script",
-	Callback = function()
-		game.CoreGui.RobloxGui.Sounds.ButtonClick:Play()
-		wait(0.5)
-		game.CoreGui.RobloxGui.Sounds.ButtonClick:Destroy()
-		
-		getgenv().CB_Symbol = nil
-		getgenv().CB_Bytecode = nil
-		getgenv().CB_ChatType = nil
-		getgenv().CB_AntiMute = nil
-		getgenv().CB_AutoBypass = nil
-		getgenv().CB_LU = nil
-		getgenv().CB_LOADED = nil
-
-		game.CoreGui["Chat Bypasser"]:Destroy()
-	end
-})
-
-local MyTextField = Page4.TextField({
-	Text = "Kaid#0001's Chat Bypass",
-	Callback = function(a)
-		game.CoreGui.RobloxGui.Sounds.ButtonClick:Play()
-
-		local Message= a
-
-		math.randomseed(tick())
-		local ChatMain = require(game:GetService("Players").LocalPlayer.PlayerScripts.ChatScript.ChatMain)
-
-		local function bypass()
-			ChatMain.MessagePosted:fire("dffhdfshfd"..math.random(100000,1000000))
-			ChatMain.MessagesChanged:fire(math.random(100000,1000000))
-		end
-
-		for v in Message:gmatch"." do
-			wait(.5)
-			game:GetService("ReplicatedStorage").DefaultChatSystemChatEvents.SayMessageRequest:FireServer(v, "All")
-			wait(.5)
-			bypass()
-		end
-	end
-})
-
-local MyButton = Page4.Button({
-	Text = "Shed's Bypasser",
-	Callback = function()
-		game.CoreGui.RobloxGui.Sounds.ButtonClick:Play()
-		loadstring(game:HttpGet("https://the-shed.dev/scripts/sbp.lua", true))()
-	end
-})
-
-while wait(0.5) do
-	if CG.Enabled ~= true and getgenv().CB_AntiMute then CG.Enabled = true end
-	if getgenv().CB_AntiMute and game:GetService("StarterGui"):GetCoreGuiEnabled(Enum.CoreGuiType.Chat) ~= true then game:GetService("StarterGui"):SetCoreGuiEnabled(Enum.CoreGuiType.Chat, true) end
-
-	for i,v in pairs(CG:GetDescendants()) do
-		if v:IsA("Frame") and v.Name ~= "ChannelsBarParentFrame"  then
-			if v.Visible ~= true and getgenv().CB_AntiMute then
-				v.Visible = true
-			end 
-		end
-	end
-end
