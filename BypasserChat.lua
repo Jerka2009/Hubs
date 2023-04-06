@@ -1,8 +1,9 @@
--- Made by ArasOfficial#8439 and tav#8870.
+--[[ Made by ArasOfficial#8439 and tav#8870.
+	Remake by Jerka2009
 
 loadstring(game:HttpGet(("https://raw.githubusercontent.com/legitimate0x1/ChatBypasser/main/Loader"), true))()
+--]]
 
---[[
 if getgenv().CB_LU ~= true then return loadstring(game:HttpGet(("https://raw.githubusercontent.com/yenil140/ChatBypasser/main/Loader"), true))() end
 if getgenv().CB_LOADED then return game:GetService("StarterGui"):SetCore("SendNotification",{Title="Chat Bypasser",Text="Chat Bypasser is already running.",Icon="rbxassetid://6238540373",Duration=5}) end
 
@@ -728,4 +729,3 @@ while wait(0.5) do
 		end
 	end
 end
---]]
