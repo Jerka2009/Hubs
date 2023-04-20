@@ -1,7 +1,6 @@
 local Library = loadstring(game:HttpGet("https://raw.githubusercontent.com/xHeptc/Kavo-UI-Library/main/source.lua"))()
 local Window = Library.CreateLib("Origane - Jailbreak", "Synapse")
 local Player = Window:NewTab("Player")
-local Tools = Window:NewTab("Tools")
 local JBTab = Window:NewTab("Jailbreak")
 local ESPtab = Window:NewTab("ESP")
 local More = Window:NewTab("More")
@@ -11,7 +10,6 @@ local JbSection = JBTab:NewSection("Jailbreak")
 local ESPsection = ESPtab:NewSection("Esp Settings")
 local MoreSection = More:NewSection("More")
 local PlayerSection = Player:NewSection("Player")
-local ToolsSection = Tools:NewSection("Tools")
 -- Variables
 local Players = game.Players:GetPlayers()
 local h = game:GetService("ReplicatedStorage").Game.GunShop.GunShopUI
@@ -189,24 +187,6 @@ PlayerSection:NewButton("Reset", "RespawnCaracter", function()
 	newChar:Destroy()
 end)
 
-PlayerSection:NewButton("Godmode", "Inf Health", function()
-	local Player = game.Players.LocalPlayer
-	local Character = Player.Character
-	local Humanoid = Character.Humanoid
- 
-	print('Godmode working.')
- 
-	Humanoid.MaxHealth = 999999
-	Humanoid.Health = Humanoid.MaxHealth / 2
- 
-	Humanoid.HealthChanged:connect(function()
-    if Humanoid.Health < 10 then
-        Humanoid.Health = Humanoid.MaxHealth
-    end
-end)
-    print("GodMode Enabled")
-end)
-
 PlayerSection:NewToggle("InfJump", "On / Off", function(state)
     if state then
 		infJumpOn()
@@ -215,47 +195,6 @@ PlayerSection:NewToggle("InfJump", "On / Off", function(state)
 		infJumpOff()
         print("infJump Off")
     end
-end)
-
-PlayerSection:NewToggle("Noclip", "On / Off", function(state)
-    if state then
-		noclip()
-        print("Noclip On")
-    else
-		clip()
-        print("Noclip Off")
-    end
-end)
--- Tool Tab
-ToolsSection:NewButton("TpTool", "Teleport Tool", function()
-	mouse = game.Players.LocalPlayer:GetMouse()
-	tool = Instance.new("Tool")
-	tool.RequiresHandle = false
-	tool.Name = "Teleport Tool"
-	tool.Activated:connect(function()
-		local pos = mouse.Hit+Vector3.new(0,2.5,0)
-		pos = CFrame.new(pos.X,pos.Y,pos.Z)
-		game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = pos
-	end)
-	tool.Parent = game.Players.LocalPlayer.Backpack
-end)
-ToolsSection:NewButton("Btools", "Btools [Visual]", function()
-	backpack = game:GetService("Players").LocalPlayer.Backpack
-
-	hammer = Instance.new("HopperBin")
-	hammer.Name = "Hammer"
-	hammer.BinType = 4
-	hammer.Parent = backpack
-
-	cloneTool = Instance.new("HopperBin")
-	cloneTool.Name = "Clone"
-	cloneTool.BinType = 3
-	cloneTool.Parent = backpack
-
-	grabTool = Instance.new("HopperBin")
-	grabTool.Name = "Grab"
-	grabTool.BinType = 2
-	grabTool.Parent = backpack
 end)
 -- Jailbreak Tab
 JbSection:NewButton("Free Keycard", "Open keycard's doors", function()
@@ -267,13 +206,13 @@ end)
 JbSection:NewToggle("No E Wait", "Bypass colldown [Except : AirDrop, Gas Station, Donut Shop]", function(state)
     if state then
 		for i,a in pairs(moduleui.CircleAction.Specs) do
-			if a.Duration ~= false and a.Name ~= "Rob" and a.Name ~= "Open Crate" then
+			if a.Duration ~= false and a.Name ~= "Rob" and a.Name ~= "Enter Driver" and a.Name ~= "Enter Passenger" and a.Name ~= "Open Crate" then
 				a.Timed = false;
 			end
 		end
     else
 		for i,a in pairs(moduleui.CircleAction.Specs) do
-			if a.Duration ~= false and a.Name ~= "Rob" and a.Name ~= "Open Crate" then
+			if a.Duration ~= false and a.Name ~= "Rob" and a.Name ~= "Enter Driver" and a.Name ~= "Enter Passenger" and a.Name ~= "Open Crate" then
 				a.Timed = true;
 			end
 		end
