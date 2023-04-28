@@ -1,8 +1,21 @@
+--[[
+                               /$$                  /$$$$$$   /$$$$$$   /$$$$$$   /$$$$$$ 
+                              | $$                 /$$__  $$ /$$$_  $$ /$$$_  $$ /$$__  $$
+       /$$  /$$$$$$   /$$$$$$ | $$   /$$  /$$$$$$ |__/  \ $$| $$$$\ $$| $$$$\ $$| $$  \ $$
+      |__/ /$$__  $$ /$$__  $$| $$  /$$/ |____  $$  /$$$$$$/| $$ $$ $$| $$ $$ $$|  $$$$$$$
+       /$$| $$$$$$$$| $$  \__/| $$$$$$/   /$$$$$$$ /$$____/ | $$\ $$$$| $$\ $$$$ \____  $$
+      | $$| $$_____/| $$      | $$_  $$  /$$__  $$| $$      | $$ \ $$$| $$ \ $$$ /$$  \ $$
+      | $$|  $$$$$$$| $$      | $$ \  $$|  $$$$$$$| $$$$$$$$|  $$$$$$/|  $$$$$$/|  $$$$$$/
+      | $$ \_______/|__/      |__/  \__/ \_______/|________/ \______/  \______/  \______/ 
+ /$$  | $$                                                                                
+|  $$$$$$/                                                                                
+ \______/                                                                                 
+
+]]
 local selectid = false
 local games = {
     [{9848789324}] = "https://raw.githubusercontent.com/i4mitty/InfernoHub/main/InfernoHub.lua",
     [{606849621}] = "https://raw.githubusercontent.com/vova999000333/Hubs/main/OriganeJailbreak.lua",
-    [{142823291}] = "https://raw.githubusercontent.com/vova999000333/Hubs/main/OriganeHub.lua",
     [{621129760}] = "https://raw.githubusercontent.com/vova999000333/Hubs/main/KATLoader.lua",
     [{142823291}] = "https://raw.githubusercontent.com/Ethanoj1/EclipseMM2/master/Script",
     [{155615604}] = "https://raw.githubusercontent.com/RegularVynixu/Vynixius/main/Prison%20Life/Script.lua",
