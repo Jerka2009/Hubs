@@ -24,7 +24,7 @@ local PlayerName = "DisplayName" -- You can decide if you want the Player's name
 --//Variables\\--
 local P = game:GetService("Players")
 local LP = P.LocalPlayer
-
+local BlackListPrompt = ["Rob","Collect","Enter Driver", "Duck", "Enter Passenger", "Open Crate"]
 --//Debounce\\--
 local DB = false
 local infjumpenabled = false
@@ -206,13 +206,13 @@ end)
 JbSection:NewToggle("No E Wait", "Bypass colldown [Except : AirDrop, Gas Station, Donut Shop]", function(state)
     if state then
 		for i,a in pairs(moduleui.CircleAction.Specs) do
-			if a.Duration ~= false and a.Name ~= "Rob" and a.Name ~= "Enter Driver" and a.Name ~= "Enter Passenger" and a.Name ~= "Open Crate" then
+			if a.Duration ~= false and BlackListPrompt[a.Name] == false then
 				a.Timed = false;
 			end
 		end
     else
 		for i,a in pairs(moduleui.CircleAction.Specs) do
-			if a.Duration ~= false and a.Name ~= "Rob" and a.Name ~= "Enter Driver" and a.Name ~= "Enter Passenger" and a.Name ~= "Open Crate" then
+			if a.Duration ~= false and BlackListPrompt[a.Name] == false then
 				a.Timed = true;
 			end
 		end
