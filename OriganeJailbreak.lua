@@ -24,7 +24,7 @@ local PlayerName = "DisplayName" -- You can decide if you want the Player's name
 --//Variables\\--
 local P = game:GetService("Players")
 local LP = P.LocalPlayer
-local BlackListPrompt = ["Rob","Collect","Enter Driver", "Duck", "Enter Passenger", "Open Crate"]
+local BlackListPrompt = {"Rob","Collect","Enter Driver", "Duck", "Enter Passenger", "Open Crate"}
 --//Debounce\\--
 local DB = false
 local infjumpenabled = false
