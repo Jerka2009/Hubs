@@ -161,6 +161,31 @@ JbSection:NewToggle("No E Wait", "Bypass colldown [Except : AirDrop, Gas Station
 		end
     end
 end)
+JbSection:NewToggle("Anti Ragdoll", "Bypass ragdoll", function(state)
+    if state then
+			local tagUtils = require(game:GetService("ReplicatedStorage").Tag.TagUtils)
+
+local oldIsPointInTag
+tagUtils.isPointInTag = function(point, tag)
+    if tag == "NoRagdoll" or tag == "NoFallDamage" then 
+        return true
+    end
+    
+    return oldIsPointInTag(point, tag)
+end
+    else
+		local tagUtils = require(game:GetService("ReplicatedStorage").Tag.TagUtils)
+
+local oldIsPointInTag
+tagUtils.isPointInTag = function(point, tag)
+    if tag == "NoRagdoll" or tag == "NoFallDamage" then 
+        return false
+    end
+    
+    return oldIsPointInTag(point, tag)
+end
+    end
+end)
 JbSection:NewButton("Get All weapons [Only Owned]", "Get owned weapons", function()
     for i,v in pairs(workspace:GetDescendants()) do
         if v:IsA("ClickDetector") then
@@ -411,78 +436,3 @@ end)
 CreditSection:NewButton("Idea by : LA_???#8974", "Click to copy", function()
 	setclipboard("LA_???#8974")
 end)
--- Esp Loop --
-while task.wait() do
-	if not getgenv().Toggle then
-		break
-	end
-	if DB then 
-		return 
-	end
-	DB = true
-
-	pcall(function()
-		for i,v in pairs(P:GetChildren()) do
-			if v:IsA("Player") then
-				if v ~= game:GetService("Players").LocalPlayer then
-					if v.Character ~= nil then
-
-						if getgenv().TC == false and v.Character:FindFirstChild("Totally NOT Esp") == nil then
-							ESP(v)
-						else
-							if getgenv().TC == false and v.Character:FindFirstChild("Icon") == nil then
-								ESPT(v)
-							else
-								if getgenv().TC == false and v.Character.Icon:FindFirstChild("ESP Text") == nil then
-									ESPTF(v, v.Character.Icon)
-								else
-									if v.Character:FindFirstChild("Totally NOT Esp").Enabled == false then
-										v.Character:FindFirstChild("Totally NOT Esp").Enabled = true
-									else
-										if v.Character:FindFirstChild("Icon").Enabled == false then
-											v.Character:FindFirstChild("Icon").Enabled = true
-										else
-											if v.Character:FindFirstChild("Icon") and game.Players.LocalPlayer.Character:FindFirstChild("HumanoidRootPart") ~= nil then
-												local pos = math.floor(((game.Players.LocalPlayer.Character:FindFirstChild("HumanoidRootPart")).Position - (v.Character:FindFirstChild("HumanoidRootPart")).Position).magnitude)
-												-- Credits to Infinite Yield for this part (pos) ^^^^^^
-												v.Character.Icon["ESP Text"].Text = "Name: "..v[PlayerName].." | Health: "..v.Character:FindFirstChildOfClass("Humanoid").Health.." | Distance: "..pos
-											else
-												if v.Character:FindFirstChild("Icon") and game.Players.LocalPlayer.Character:FindFirstChild("HumanoidRootPart") == nil then
-													v.Character.Icon["ESP Text"].Text = "Name: "..v[PlayerName].." | Health: "..v.Character:FindFirstChildOfClass("Humanoid").Health
-												else
-													if getgenv().TC == true and v.TeamColor ~= game.Players.LocalPlayer.TeamColor and v.Character:FindFirstChild("Totally NOT Esp") == nil then
-														ESP(v)
-													else
-														if getgenv().TC == true and v.TeamColor ~= game.Players.LocalPlayer.TeamColor and v.Character:FindFirstChild("Icon") == nil then
-															ESPT(v)
-														else
-															if getgenv().TC == true and v.TeamColor ~= game.Players.LocalPlayer.TeamColor and v.Character.Icon:FindFirstChild("ESP Text") == nil then
-																ESPTF(v, v.Character.Icon)
-															else
-																if getgenv().TC == true and v.Character:FindFirstChild("Totally NOT Esp").FillColor ~= v.TeamColor.Color then
-																	v.Character:FindFirstChild("Totally NOT Esp").FillColor = v.TeamColor.Color
-																else
-																	if getgenv().TC == true and v.Character.Icon:FindFirstChild("ESP Text").TextColor3 ~= v.TeamColor.Color then
-																		v.Character.Icon["ESP Text"].TextColor3 = v.TeamColor.Color
-																	end
-																end
-															end
-														end
-													end
-												end
-											end
-										end
-									end
-								end
-							end
-						end
-					end
-				end
-			end
-		end
-	end)
-
-	wait()
-
-	DB = false
-end
