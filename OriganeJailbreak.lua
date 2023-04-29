@@ -1,5 +1,5 @@
 local Library = loadstring(game:HttpGet("https://raw.githubusercontent.com/xHeptc/Kavo-UI-Library/main/source.lua"))()
-local Window = Library.CreateLib("Origane - Jailbreak", "Synapse")
+local Window = Library.CreateLib("Organic - Jailbreak", "Synapse")
 local Player = Window:NewTab("Player")
 local JBTab = Window:NewTab("Jailbreak")
 local ESPtab = Window:NewTab("ESP")
