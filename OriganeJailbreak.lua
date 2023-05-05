@@ -186,6 +186,13 @@ tagUtils.isPointInTag = function(point, tag)
 end
     end
 end)
+JbSection:NewToggle("Anti Taze", "Bypass Taze", function(state)
+	if state then
+	     require(game:GetService("ReplicatedStorage").Resource.Settings).Time.Stunned = 0
+	else
+	     require(game:GetService("ReplicatedStorage").Resource.Settings).Time.Stunned = 2.5
+	end
+end)
 JbSection:NewButton("Get All weapons [Only Owned]", "Get owned weapons", function()
     for i,v in pairs(workspace:GetDescendants()) do
         if v:IsA("ClickDetector") then
