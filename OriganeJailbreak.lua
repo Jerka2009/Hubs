@@ -427,6 +427,10 @@ UserInputService.InputChanged:Connect(function(input)
 		update(input)
 	end
 end)
+require(game:GetService("ReplicatedStorage").Game.Notification).new({
+            Text = "Organic Jb is loaded!",
+            Duration = 3
+})
 print("Loaded Gui")
 end)
 -- Color Picker
