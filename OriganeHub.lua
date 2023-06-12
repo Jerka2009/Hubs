@@ -377,9 +377,9 @@ for theme, color in pairs(themes) do
     end)
 end
 -- Credits
-CreditSection:NewButton("Created by : Настюшка#7777", "Click to copy", function()
-	setclipboard("Настюшка#7777")
+CreditSection:NewButton("Created by : YTim_Jerka2009#0067", "Click to copy", function()
+	setclipboard("YTim_Jerka2009#0067")
 end)
-CreditSection:NewButton("Idea by : LA_???#1000", "Click to copy", function()
-	setclipboard("LA_???#1000")
+CreditSection:NewButton("Idea by : Niky#8422", "Click to copy", function()
+	setclipboard("Niky#8422")
 end)
