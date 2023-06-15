@@ -285,7 +285,7 @@ MoreSection:NewButton("ReJoin", "Rejoin On the Server", function()
 	TeleportService:Teleport(game.PlaceId, LocalPlayer)
 end)
 -- KeyBind GUI
-MoreSection:NewKeybind("Toggle Gui", "Show / Hide Gui", Enum.KeyCode.LeftAlt, function()
+MoreSection:NewKeybind("Toggle Gui", "Show / Hide Gui", Enum.KeyCode.X, function()
 	Library:ToggleUI()
 end)
 MoreSection:NewButton("Radio Gui", "Play your own sounds [Visual]", function()
@@ -441,9 +441,9 @@ for theme, color in pairs(themes) do
     end)
 end
 -- Credits
-CreditSection:NewButton("Created by : LA_Jere2009#0067", "Click to copy", function()
-	setclipboard("LA_Jere2009#0067")
+CreditSection:NewButton("Created by : YTim_Jerka2009#0067", "Click to copy", function()
+	setclipboard("YTim_Jerka2009#0067")
 end)
-CreditSection:NewButton("Idea by : LA_???#8974", "Click to copy", function()
-	setclipboard("LA_???#8974")
+CreditSection:NewButton("Idea by : Niky#8422", "Click to copy", function()
+	setclipboard("Niky#8422")
 end)
