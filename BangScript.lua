@@ -10,6 +10,7 @@ local FGUI = Instance.new("Frame")
 local Tittle = Instance.new("TextLabel")
 local UICorner = Instance.new("UICorner")
 local btnSex = Instance.new("TextButton")
+local G = Instance.new("TextButton")
 local UICorner_2 = Instance.new("UICorner")
 local tbxVictim = Instance.new("TextBox")
 local UICorner_3 = Instance.new("UICorner")
@@ -44,8 +45,20 @@ Tittle.TextScaled = true
 Tittle.TextSize = 14.000
 Tittle.TextWrapped = true
 
+G.Name = "Exit"
+G.Parent = FGUI
+G.BackgroundColor3 = Color3.fromRGB(255, 0, 0)
+G.BorderSizePixel = 0
+G.Size = UDim2.new(0, 35, 0, 35)
+G.Font = Enum.Font.FredokaOne
+G.Text = "X"
+G.TextColor3 = Color3.fromRGB(0, 0, 0)
+G.TextScaled = true
+G.TextSize = 14.000
+G.TextWrapped = true
+
 UICorner.CornerRadius = UDim.new(0.200000003, 0)
-UICorner.Parent = Tittle
+UICorner.Parent = G
 
 btnSex.Name = "NbtJoke"
 btnSex.Parent = FGUI
@@ -78,7 +91,10 @@ tbxVictim.TextWrapped = true
 UICorner_3.CornerRadius = UDim.new(0.200000003, 0)
 UICorner_3.Parent = FGUI
 --Scripts
- 
+
+G.MouseButton1Click:Connect(function()
+  ScreenGui:Destroy()
+end)
  
 btnSex.MouseButton1Click:Connect(function()
  
