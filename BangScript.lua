@@ -49,6 +49,7 @@ btnSex.BackgroundColor3 = Color3.fromRGB(69, 255, 75)
 btnSex.Position = UDim2.new(0, 0, 0.798076928, 0)
 btnSex.Size = UDim2.new(0, 140, 0, 42)
 btnSex.Font = Enum.Font.Unknown
+btnSex.Text = "Go fuck!"
 btnSex.TextColor3 = Color3.fromRGB(0, 0, 0)
 btnSex.TextScaled = true
 btnSex.TextSize = 14.000
