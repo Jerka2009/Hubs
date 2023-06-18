@@ -15,7 +15,7 @@
 loadstring(game:HttpGet("https://raw.githubusercontent.com/vova999000333/Hubs/main/intro.lua"))()
 local selectid = false
 local games = {
-    [{9848789324}] = "https://raw.githubusercontent.com/i4mitty/InfernoHub/main/InfernoHub.lua",
+    [{9848789324}] = "https://raw.githubusercontent.com/i4mitty/MysteryHub/main/MysteryHub%20-%20Ragdoll%20Engine.lua",
     [{606849621}] = "https://raw.githubusercontent.com/vova999000333/Hubs/main/OriganeJailbreak.lua",
     [{1224212277}] = "https://raw.githubusercontent.com/vova999000333/Hubs/main/OriganeMadCity.lua",
     [{621129760}] = "https://raw.githubusercontent.com/vova999000333/Hubs/main/KATLoader.lua",
