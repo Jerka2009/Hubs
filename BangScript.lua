@@ -22,6 +22,9 @@ FGUI.Name = "FGUI"
 FGUI.Parent = ScreenGui
 FGUI.BackgroundColor3 = Color3.fromRGB(255, 255, 114)
 FGUI.ClipsDescendants = true
+FGUI.Draggable = true
+FGUI.Active = true
+FGUI.Selectable = true
 FGUI.Position = UDim2.new(0.0611587986, 0, 0.562160313, 0)
 FGUI.Size = UDim2.new(0, 140, 0, 208)
 
