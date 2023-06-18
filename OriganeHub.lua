@@ -220,6 +220,9 @@ ToolsSection:NewButton("Btools", "Btools [Visual]", function()
 	grabTool.Parent = backpack
 end)
 -- More Tab
+MoreSection:NewButton("Bhop [Need R15]", "Click to Execute", function()
+	loadstring(game:HttpGet(""))()
+end)
 MoreSection:NewButton("ReJoin", "Rejoin On the Server", function()
 	TeleportService:Teleport(game.PlaceId, LocalPlayer)
 end)
