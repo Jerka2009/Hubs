@@ -1,127 +1,74 @@
 loadstring(game:HttpGet("https://raw.githubusercontent.com/vova999000333/Hubs/main/intro.lua"))()
 
---Nobody cares about credits. Just go ahead and fuck all of the Robloxians into OBLIVION!!!!!!
- 
- 
- 
---Variables
- 
- 
-local SimpleSexGUI = Instance.new("ScreenGui")
- 
+-- Gui to Lua
+-- Version: 3.2
+
+-- Instances:
+
+local ScreenGui = Instance.new("ScreenGui")
 local FGUI = Instance.new("Frame")
- 
-local btnNaked = Instance.new("TextButton")
- 
+local Tittle = Instance.new("TextLabel")
+local UICorner = Instance.new("UICorner")
 local btnSex = Instance.new("TextButton")
- 
+local UICorner_2 = Instance.new("UICorner")
 local tbxVictim = Instance.new("TextBox")
- 
-local lblFUCKEMALL = Instance.new("TextLabel")
- 
-local ImageLabel = Instance.new("ImageLabel")
- 
-local lbltitle = Instance.new("TextLabel")
- 
-local TextLabel = Instance.new("TextLabel")
- 
- 
- 
- 
- 
- 
- 
- 
---Properties
- 
-SimpleSexGUI.Name = "SimpleSexGUI"
-SimpleSexGUI.Parent = game.CoreGui
- 
- 
+local UICorner_3 = Instance.new("UICorner")
+
+--Properties:
+ScreenGui.Name = "SexGuiOrganic"
+ScreenGui.Parent = game.CoreGui
+
 FGUI.Name = "FGUI"
-FGUI.Parent = SimpleSexGUI
-FGUI.BackgroundColor3 = Color3.new(255,255,255)
-FGUI.BorderSizePixel = 1
-FGUI.Position = UDim2.new(0,0, 0.667, 0)
-FGUI.Size = UDim2.new(0,317, 0,271)
-FGUI.Draggable = true
- 
- 
- 
-lbltitle.Name = "Title"
-lbltitle.Parent = FGUI
-lbltitle.BackgroundColor3 = Color3.new(219,67,0)
-lbltitle.BorderSizePixel = 1
-lbltitle.Position = UDim2.new (0, 0,-0.122, 0)
-lbltitle.Size = UDim2.new (0, 317,0, 33)
-lbltitle.Visible = true
-lbltitle.Active = true
-lbltitle.Draggable = false
-lbltitle.Selectable = true
-lbltitle.Font = Enum.Font.SourceSansBold
-lbltitle.Text = "Sex gui of Organic Hub!!"
-lbltitle.TextColor3 = Color3.new(0, 0, 0)
-lbltitle.TextSize = 20
- 
- 
- 
- 
- 
-btnSex.Name = "Sex"
+FGUI.Parent = ScreenGui
+FGUI.BackgroundColor3 = Color3.fromRGB(255, 255, 114)
+FGUI.ClipsDescendants = true
+FGUI.Position = UDim2.new(0.0611587986, 0, 0.562160313, 0)
+FGUI.Size = UDim2.new(0, 140, 0, 208)
+
+Tittle.Name = "Tittle"
+Tittle.Parent = FGUI
+Tittle.BackgroundColor3 = Color3.fromRGB(255, 170, 34)
+Tittle.BorderSizePixel = 0
+Tittle.Size = UDim2.new(0, 140, 0, 36)
+Tittle.Font = Enum.Font.FredokaOne
+Tittle.Text = "Organic"
+Tittle.TextColor3 = Color3.fromRGB(0, 0, 0)
+Tittle.TextScaled = true
+Tittle.TextSize = 14.000
+Tittle.TextWrapped = true
+
+UICorner.CornerRadius = UDim.new(0.200000003, 0)
+UICorner.Parent = Tittle
+
+btnSex.Name = "NbtJoke"
 btnSex.Parent = FGUI
-btnSex.BackgroundColor3 = Color3.new(174,60,9)
-btnSex.BorderSizePixel = 1
-btnSex.Position = UDim2.new (0.044, 0,0.229, 0)
-btnSex.Size = UDim2.new (0, 99,0, 31)
-btnSex.Visible = true
-btnSex.Active = true
-btnSex.Draggable = false
-btnSex.Selectable = true
-btnSex.Font = Enum.Font.SourceSansBold
-btnSex.Text = "Let's FUCK!!"
-btnSex.TextColor3 = Color3.new(0, 0, 0)
-btnSex.TextSize = 20
- 
- 
- 
- 
+btnSex.BackgroundColor3 = Color3.fromRGB(69, 255, 75)
+btnSex.Position = UDim2.new(0, 0, 0.798076928, 0)
+btnSex.Size = UDim2.new(0, 140, 0, 42)
+btnSex.Font = Enum.Font.Unknown
+btnSex.TextColor3 = Color3.fromRGB(0, 0, 0)
+btnSex.TextScaled = true
+btnSex.TextSize = 14.000
+btnSex.TextWrapped = true
+
+UICorner_2.CornerRadius = UDim.new(0.200000003, 0)
+UICorner_2.Parent = NbtJoke
+
 tbxVictim.Name = "VictimTEXT"
 tbxVictim.Parent = FGUI
-tbxVictim.BackgroundColor3 = Color3.new(255,255,255)
-tbxVictim.BorderSizePixel = 1
-tbxVictim.Position = UDim2.new (0.533, 0,0.229, 0)
-tbxVictim.Size = UDim2.new (0, 133,0, 27)
-tbxVictim.Visible = true
-tbxVictim.Active = true
-tbxVictim.Draggable = false
-tbxVictim.Selectable = true
-tbxVictim.Font = Enum.Font.SourceSansBold
-tbxVictim.Text = "[NAME]"
-tbxVictim.TextColor3 = Color3.new(0, 0, 0)
-tbxVictim.TextSize = 20
- 
-lblFUCKEMALL.Name = "FUCKEMALL"
-lblFUCKEMALL.Parent = FGUI
-lblFUCKEMALL.BackgroundColor3 = Color3.new(255,255,255)
-lblFUCKEMALL.BorderSizePixel = 1
-lblFUCKEMALL.Position = UDim2.new (0.025, 0,0.856, 0)
-lblFUCKEMALL.Size = UDim2.new (0, 301,0, 27)
-lblFUCKEMALL.Visible = true
-lblFUCKEMALL.Font = Enum.Font.SourceSansBold
-lblFUCKEMALL.Text = "FUCK AND FUCK"
-lblFUCKEMALL.TextColor3 = Color3.new(0, 0, 0)
-lblFUCKEMALL.TextSize = 20
- 
-ImageLabel.Name = "ImageLabel"
-ImageLabel.Parent = FGUI
-ImageLabel.Image = "http://www.roblox.com/asset/?id=4283774086"
-ImageLabel.BorderSizePixel = 1
-ImageLabel.Position = UDim2.new (0.274, 0,0.358, 0)
-ImageLabel.Size = UDim2.new (0, 106,0, 121)
- 
- 
- 
- 
+tbxVictim.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+tbxVictim.Position = UDim2.new(0, 0, 0.379807681, 0)
+tbxVictim.Size = UDim2.new(0, 140, 0, 50)
+tbxVictim.Font = Enum.Font.Unknown
+tbxVictim.PlaceholderColor3 = Color3.fromRGB(104, 104, 104)
+tbxVictim.PlaceholderText = "Player name"
+tbxVictim.Text = ""
+tbxVictim.TextColor3 = Color3.fromRGB(0, 0, 0)
+tbxVictim.TextSize = 20.000
+tbxVictim.TextWrapped = true
+
+UICorner_3.CornerRadius = UDim.new(0.200000003, 0)
+UICorner_3.Parent = FGUI
 --Scripts
  
  
