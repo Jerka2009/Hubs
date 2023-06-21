@@ -16,6 +16,13 @@ local h = game:GetService("ReplicatedStorage").Game.GunShop.GunShopUI
 local UserInputService = game:GetService("UserInputService")
 local runservice = game:GetService("RunService")
 local TeleportService = game:GetService("TeleportService")
+--//Setup\\--
+local plr = game:GetService("Players").LocalPlayer
+if plr:FindFirstChild("HasKey") ~= nil then
+	if plr:FindFirstChild("HasKey").Value == false then
+		plr:Kick("Invalid key!")
+	end
+end
 --//Toggle\\--
 getgenv().Toggle = false -- This toggles the esp, turning it to false will turn it off
 getgenv().TC = true -- This toggles team check, turning it on will turn on team check
