@@ -24,8 +24,9 @@ local games = {
     [{7041939546}] = "https://raw.githubusercontent.com/vova999000333/Hubs/main/OriganeHub.lua",
     [{6839171747}] = "https://raw.githubusercontent.com/RegularVynixu/Vynixius/main/Doors/Loader.lua",
 }
-if _G.HasKey == true then
-  for ids, url in next, games do
+if plr:FindFirstChild("HasKey") ~= nil then
+  if plr:FindFirstChild("HasKey").Value == true then
+    for ids, url in next, games do
     if table.find(ids, game.PlaceId) then
         loadstring(game:HttpGet(url))()
         selectid = true
@@ -35,8 +36,11 @@ end
 if not selectid then
     loadstring(game:HttpGet("https://raw.githubusercontent.com/vova999000333/Hubs/main/OriganeHub.lua"))()
 end
+  else
+    game:GetService("Players").LocalPlayer:Kick("You're haven't a key.")
+  end
 else 
-  game:GetService("Players").LocalPlayer:Kick("You're haven't a key.")
+  return
 end
 
 print("Loaded by OrganicLoader")
