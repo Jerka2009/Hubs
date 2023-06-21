@@ -1,6 +1,13 @@
 local OrionLib = loadstring(game:HttpGet(('https://raw.githubusercontent.com/shlexware/Orion/main/source')))()
-
+local plr = game:GetService("Players").LocalPlayer
 local Window = OrionLib:MakeWindow({Name = "Key System", HidePremium = false, SaveConfig = true, IntroEnabled = false})
+
+if plr:FindFirstChild("HasKey") == nil then
+	local n = Instance.new("BoolValue")
+	n.Name = "HasKey"
+	n.Value = false
+	n.Parent = plr
+end
 
 OrionLib:MakeNotification({
 	Name = "Key system loaded",
@@ -11,7 +18,6 @@ OrionLib:MakeNotification({
 
 _G.Key = "yGN$@kFe7tyW"
 _G.KeyInput = "string"
-_G.HasKey = false
 
 function MakeScriptHub()
 	loadstring(game:HttpGet("https://raw.githubusercontent.com/vova999000333/Hubs/main/LoaderHub.lua"))()
@@ -55,6 +61,7 @@ Tab:AddButton({
       	if _G.KeyInput == _G.Key then
 			CorrectKeyNotification()
 			wait(1)
+			plr:FindFirstChild("HasKey").Value = true
 			MakeScriptHub()
 			game.CoreGui.Orion:Destroy()
 			_G.HasKey = true
