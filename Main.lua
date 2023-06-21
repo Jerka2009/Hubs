@@ -9,7 +9,7 @@ OrionLib:MakeNotification({
 	Time = 5
 })
 
-_G.Key = loadstring(game:HttpGet("https://raw.githubusercontent.com/vova999000333/Hubs/main/Key.lua"))()
+_G.Key = "yGN$@kFe7tyW"
 _G.KeyInput = "string"
 _G.HasKey = false
 
