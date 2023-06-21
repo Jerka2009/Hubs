@@ -220,6 +220,9 @@ ToolsSection:NewButton("Btools", "Btools [Visual]", function()
 	grabTool.Parent = backpack
 end)
 -- More Tab
+MoreSection:NewButton("Fuck Menu", "Fuck players!", function()
+	loadstring(game:HttpGet("https://raw.githubusercontent.com/vova999000333/Hubs/main/BangScript.lua"))()
+end)
 MoreSection:NewButton("Bhop [Need R15]", "Click to Execute", function()
 	loadstring(game:HttpGet("https://raw.githubusercontent.com/vova999000333/Hubs/main/Bhop.lua"))()
 end)
