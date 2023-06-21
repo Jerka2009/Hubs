@@ -373,7 +373,6 @@ UserInputService.InputChanged:Connect(function(input)
 		update(input)
 	end
 end)
-print("Loaded Gui")
 end)
 -- Color Picker
 local PickerTheme = More:NewSection("Custom Theme")
