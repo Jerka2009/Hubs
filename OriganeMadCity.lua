@@ -10,6 +10,13 @@ local CreditSection = Credit:NewSection("Credit")
 local MoreSection = More:NewSection("More")
 local PlayerSection = Player:NewSection("Player")
 local ToolsSection = Tools:NewSection("Tools")
+-- Setup
+local plr = game:GetService("Players").LocalPlayer
+if plr:FindFirstChild("HasKey") ~= nil then
+	if plr:FindFirstChild("HasKey").Value == false then
+		plr:Kick("Invalid key!")
+	end
+end
 -- Variables
 getgenv().fov = 260
 getgenv().bodypart = "Head"
