@@ -1,5 +1,11 @@
 loadstring(game:HttpGet("https://raw.githubusercontent.com/vova999000333/Hubs/main/intro.lua"))()
-
+-- Setup
+local plr = game:GetService("Players").LocalPlayer
+if plr:FindFirstChild("HasKey") ~= nil then
+	if plr:FindFirstChild("HasKey").Value == false then
+		plr:Kick("Invalid key!")
+	end
+end
 -- Gui to Lua
 -- Version: 3.2
 
