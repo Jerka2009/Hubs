@@ -49,7 +49,7 @@ local Tab = Window:MakeTab({
 
 Tab:AddTextbox({
 	Name = "Enter Key",
-	Default = "Key",
+	Default = "",
 	TextDisappear = true,
 	Callback = function(Value)
 		_G.KeyInput = Value
@@ -62,11 +62,11 @@ Tab:AddButton({
 			CorrectKeyNotification()
 			wait(1)
 			plr:FindFirstChild("HasKey").Value = true
-			MakeScriptHub()
-			game.CoreGui.Orion:Destroy()
-			_G.HasKey = true
+			if plr:FindFirstChild("HasKey").Value == true then
+				MakeScriptHub()
+				game.CoreGui.Orion:Destroy()
+			end
 		else
-			_G.HasKey = false
 			IncorrectKeyNotification()
 		end
   	end    
