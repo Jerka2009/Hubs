@@ -16,7 +16,8 @@ OrionLib:MakeNotification({
 	Time = 5
 })
 
-_G.Key = "Z9BNMQ*FCbtY"
+_G.Key = nil
+loadstring(game:HttpGet("https://raw.githubusercontent.com/vova999000333/Hubs/main/key.lua"))()
 _G.KeyInput = "string"
 
 function MakeScriptHub()
