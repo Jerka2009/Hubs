@@ -40,6 +40,14 @@ function IncorrectKeyNotification()
 	Time = 3
 })
 end
+function CopiedDS()
+	OrionLib:MakeNotification({
+	Name = "Copied discord link",
+	Content = "join on server for get key!",
+	Image = "rbxassetid://4483345998",
+	Time = 2
+})
+end
 
 local Tab = Window:MakeTab({
 	Name = "Key",
@@ -74,6 +82,7 @@ Tab:AddButton({
 Tab:AddButton({
 	Name = "Get Key!",
 	Callback = function()
-			
+		setclipboard("https://discord.gg/4Kp6QkfNev")
+		CopiedDS()
   	end    
 })
