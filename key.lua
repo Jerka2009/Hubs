@@ -1,1 +1,1 @@
-_G.Key = "Z9BNMQ*FCbtY"
+_G.Key = "RqW40SZP"
