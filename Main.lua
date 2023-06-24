@@ -68,12 +68,12 @@ Tab:AddButton({
 	Name = "Check Key!",
 	Callback = function()
       	if _G.KeyInput == _G.Key then
-			CorrectKeyNotification()
 			wait(1)
 			plr:FindFirstChild("HasKey").Value = true
 			if plr:FindFirstChild("HasKey").Value == true then
+				CorrectKeyNotification()
 				MakeScriptHub()
-				game.CoreGui.Orion:Destroy()
+				OrionLib:Destroy()
 			end
 		else
 			IncorrectKeyNotification()
