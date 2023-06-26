@@ -2,7 +2,7 @@ local Library = loadstring(game:HttpGet("https://raw.githubusercontent.com/xHept
 local Window = Library.CreateLib("Organic - Jailbreak", "Synapse")
 local Player = Window:NewTab("Player")
 local JBTab = Window:NewTab("Jailbreak")
-local ESPtab = Window:NewTab("ESP")
+--local ESPtab = Window:NewTab("ESP")
 local More = Window:NewTab("More")
 local Credit = Window:NewTab("Credit")
 local CreditSection = Credit:NewSection("Credit")
@@ -26,7 +26,7 @@ end
 --//Toggle\\--
 getgenv().Toggle = false -- This toggles the esp, turning it to false will turn it off
 getgenv().TC = true -- This toggles team check, turning it on will turn on team check
-local PlayerName = "DisplayName" -- You can decide if you want the Player's name to be a display name which is "DisplayName", or username which is "Name"
+local PlayerName = "Name" -- You can decide if you want the Player's name to be a display name which is "DisplayName", or username which is "Name"
 
 --//Variables\\--
 local P = game:GetService("Players")
@@ -66,9 +66,11 @@ local function Aim()
 		local nearestDistance, nearestEnemy = 600, nil
      for i,v in pairs(game:GetService("Players"):GetPlayers()) do
       if v.Team ~= game:GetService("Players").LocalPlayer.Team and v.Character and v.Character:FindFirstChild("HumanoidRootPart") then
+	if v.Team ~= game:GetService("Teams").Prisoner then
           if (v.Character.HumanoidRootPart.Position - game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.Position).Magnitude < nearestDistance then
            nearestDistance, nearestEnemy = (v.Character.HumanoidRootPart.Position - game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.Position).Magnitude, v
           end
+	end
       end
      end
      local arg = {old(...)}
@@ -163,7 +165,7 @@ JbSection:NewToggle("No E Wait", "Bypass colldown [Except : AirDrop, Gas Station
 		end
     else
 		for i,a in pairs(moduleui.CircleAction.Specs) do
-			if a.Duration ~= false and BlackListPrompt[a.Name] == false then
+			if a.Duration ~= true and BlackListPrompt[a.Name] == false then
 				a.Timed = true;
 			end
 		end
@@ -201,12 +203,8 @@ JbSection:NewToggle("Anti Taze", "Bypass Taze", function(state)
 	     require(game:GetService("ReplicatedStorage").Resource.Settings).Time.Stunned = 2.5
 	end
 end)
-JbSection:NewButton("Get All weapons [Only Owned]", "Get owned weapons", function()
-    for i,v in pairs(workspace:GetDescendants()) do
-        if v:IsA("ClickDetector") then
-        fireclickdetector(v)
-        end
-    end
+JbSection:NewButton("Get All weapons [Patched]", "Get owned weapons", function()
+    -- None
 end)
 JbSection:NewToggle("GunShop UI [Soon]", "On / Off", function(state)
     if state then
@@ -268,7 +266,7 @@ JbSection:NewButton("Get Casino Code", "Casino Code", function()
 	end)
 end)
 -- Esp Tab
-ESPsection:NewToggle("Esp Enabled", "On / Off", function(state)
+--[[ESPsection:NewToggle("Esp Enabled", "On / Off", function(state)
     if state then 
         getgenv().Toggle = true
     else
@@ -287,7 +285,7 @@ ESPsection:NewSlider("TextSize", "Changes the size text", 30, 14, function(v)
 end)
 ESPsection:NewSlider("TextTransparency", "Changes the Transparency text", 1, 0.1, function(v)
     _G.TextTransparency = v
-end)
+end)]]
 -- More Tab
 MoreSection:NewButton("ReJoin", "Rejoin On the Server", function()
 	TeleportService:Teleport(game.PlaceId, LocalPlayer)
