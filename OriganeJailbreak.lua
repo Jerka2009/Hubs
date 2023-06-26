@@ -32,6 +32,7 @@ local PlayerName = "DisplayName" -- You can decide if you want the Player's name
 local P = game:GetService("Players")
 local LP = P.LocalPlayer
 local BlackListPrompt = {"Rob","Collect","Enter Driver", "Duck", "Enter Passenger", "Open Crate"}
+local Speed = 0
 --//Debounce\\--
 local DB = false
 local infjumpenabled = false
@@ -118,7 +119,7 @@ end
 -- Player Tab
 
 PlayerSection:NewSlider("Walkspeed", "Changes the walkspeed", 250, 16, function(v)
-    game.Players.LocalPlayer.Character.Humanoid.WalkSpeed = v
+    Speed = v
 end)
  
 PlayerSection:NewSlider("Jumppower", "Changes the jumppower", 250, 50, function(v)
@@ -454,3 +455,7 @@ end)
 CreditSection:NewButton("Idea by : Niky#8422", "Click to copy", function()
 	setclipboard("Niky#8422")
 end)
+
+while wait(1) do
+	game.Players.LocalPlayer.Character.Humanoid.WalkSpeed = Speed
+end
