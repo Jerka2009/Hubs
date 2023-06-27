@@ -171,6 +171,13 @@ JbSection:NewToggle("No E Wait", "Bypass colldown [Except : AirDrop, Gas Station
 		end
     end
 end)
+JbSection:NewToggle("Anti Taze", "Bypass Taze", function(state)
+	if state then
+	     require(game:GetService("ReplicatedStorage").Resource.Settings).Time.Stunned = 0
+	else
+	     require(game:GetService("ReplicatedStorage").Resource.Settings).Time.Stunned = 2.5
+	end
+end)
 JbSection:NewToggle("Anti Ragdoll", "Bypass ragdoll", function(state)
     if state then
 			local tagUtils = require(game:GetService("ReplicatedStorage").Tag.TagUtils)
@@ -195,13 +202,6 @@ tagUtils.isPointInTag = function(point, tag)
     return oldIsPointInTag(point, tag)
 end
     end
-end)
-JbSection:NewToggle("Anti Taze", "Bypass Taze", function(state)
-	if state then
-	     require(game:GetService("ReplicatedStorage").Resource.Settings).Time.Stunned = 0
-	else
-	     require(game:GetService("ReplicatedStorage").Resource.Settings).Time.Stunned = 2.5
-	end
 end)
 JbSection:NewButton("Get All weapons [Patched]", "Get owned weapons", function()
     -- None
@@ -437,7 +437,8 @@ print("Loaded Gui")
 end)]]
 require(game:GetService("ReplicatedStorage").Game.Notification).new({
             Text = "Jailbreak Organic is loaded!",
-            Duration = 7
+            Duration = 7,
+	    Color = Color3.fromRGB(231, 255, 0)
 })
 -- Color Picker
 local PickerTheme = More:NewSection("Custom Theme")
