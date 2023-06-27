@@ -461,10 +461,10 @@ UserInputService.InputChanged:Connect(function(input)
 end)
 print("Loaded Gui")
 end)]]
+require(game:GetService("ReplicatedStorage").Game.Notification).setColor(255, 255, 0)
 require(game:GetService("ReplicatedStorage").Game.Notification).new({
             Text = "Jailbreak Organic is loaded!",
             Duration = 7,
-	    Color = Color3.new(255, 255, 0),
 })
 -- Color Picker
 local PickerTheme = More:NewSection("Custom Theme")
