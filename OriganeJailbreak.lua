@@ -294,7 +294,7 @@ end)
 MoreSection:NewKeybind("Toggle Gui", "Show / Hide Gui", Enum.KeyCode.X, function()
 	Library:ToggleUI()
 end)
-MoreSection:NewButton("Radio Gui", "Play your own sounds [Visual]", function()
+--[[MoreSection:NewButton("Radio Gui", "Play your own sounds [Visual]", function()
 -- Instances:
 
 local ScreenGui = Instance.new("ScreenGui")
@@ -433,12 +433,12 @@ UserInputService.InputChanged:Connect(function(input)
 		update(input)
 	end
 end)
-require(game:GetService("ReplicatedStorage").Game.Notification).new({
-            Text = "Organic Jb is loaded!",
-            Duration = 3
-})
 print("Loaded Gui")
-end)
+end)]]
+require(game:GetService("ReplicatedStorage").Game.Notification).new({
+            Text = "Jailbreak Organic is loaded!",
+            Duration = 7
+})
 -- Color Picker
 local PickerTheme = More:NewSection("Custom Theme")
 for theme, color in pairs(themes) do
