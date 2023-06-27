@@ -3,10 +3,12 @@ local Window = Library.CreateLib("Organic - Jailbreak", "Synapse")
 local Player = Window:NewTab("Player")
 local JBTab = Window:NewTab("Jailbreak")
 --local ESPtab = Window:NewTab("ESP")
+local VisTab = Window:NewTab("Visual")
 local More = Window:NewTab("More")
 local Credit = Window:NewTab("Credit")
 local CreditSection = Credit:NewSection("Credit")
 local JbSection = JBTab:NewSection("Jailbreak")
+local VisSection = VisTab:NewSection("Visual [Only for you]")
 --local ESPsection = ESPtab:NewSection("Esp Settings")
 local MoreSection = More:NewSection("More")
 local PlayerSection = Player:NewSection("Player")
@@ -33,6 +35,8 @@ local P = game:GetService("Players")
 local LP = P.LocalPlayer
 local BlackListPrompt = {"Rob","Collect","Enter Driver", "Duck", "Enter Passenger", "Open Crate"}
 local Speed = 0
+local TextFun = ""
+local amountcashGive = 0
 --//Debounce\\--
 local DB = false
 local infjumpenabled = false
@@ -120,12 +124,12 @@ function clip()
 end
 -- Player Tab
 
-PlayerSection:NewSlider("Walkspeed", "Changes the walkspeed", 250, 16, function(v)
+PlayerSection:NewSlider("WalkSpeed", "Changes the walkspeed", 250, 16, function(v)
     Speed = v
 end)
  
-PlayerSection:NewSlider("Jumppower", "Changes the jumppower", 250, 50, function(v)
-    game.Players.LocalPlayer.Character.Humanoid.JumpPower = v
+PlayerSection:NewSlider("JumpPower", "Changes the jumppower", 250, 50, function(v)
+    game:GetService("Players").LocalPlayer.Character.Humanoid.JumpPower = v
 end)
 
 PlayerSection:NewButton("Reset", "RespawnCaracter", function()
@@ -264,6 +268,28 @@ JbSection:NewButton("Get Casino Code", "Casino Code", function()
 	delay(5,function()
 		texXt:UpdateLabel(ctxt)
 	end)
+end)
+-- Visual Tab
+VisSection:NewLabel("Notification")
+VisSection:NewTextBox("Your text", "notification text", function(txt)
+	if txt == "" then
+		TextFun = "Example Text"
+	else
+		TextFun = txt
+	end
+end)
+VisSection:NewButton("Send Notification", "Click to send", function()
+    require(game:GetService("ReplicatedStorage").Game.Notification).new({
+            Text = TextFun,
+            Duration = 3
+    })
+end)
+VisSection:NewLabel("Give Cash [Soon]")
+PlayerSection:NewSlider("Your amount", "submarine", 25000, 1, function(v)
+    amountcashGive = v
+end)
+VisSection:NewButton("Get cash", "Click to give", function()
+	print("Gived Cash: "..amountcashGive.."$")
 end)
 -- Esp Tab
 --[[ESPsection:NewToggle("Esp Enabled", "On / Off", function(state)
@@ -438,7 +464,7 @@ end)]]
 require(game:GetService("ReplicatedStorage").Game.Notification).new({
             Text = "Jailbreak Organic is loaded!",
             Duration = 7,
-	    Color = Color3.fromRGB(231, 255, 0)
+	    Color = Color3.new(255, 255, 0),
 })
 -- Color Picker
 local PickerTheme = More:NewSection("Custom Theme")
@@ -456,5 +482,5 @@ CreditSection:NewButton("Idea by : Niky#8422", "Click to copy", function()
 end)
 
 while wait(1) do
-	game.Players.LocalPlayer.Character.Humanoid.WalkSpeed = Speed
+	game:GetService("Players").LocalPlayer.Character.Humanoid.WalkSpeed = Speed
 end
