@@ -7,7 +7,7 @@ local More = Window:NewTab("More")
 local Credit = Window:NewTab("Credit")
 local CreditSection = Credit:NewSection("Credit")
 local JbSection = JBTab:NewSection("Jailbreak")
-local ESPsection = ESPtab:NewSection("Esp Settings")
+--local ESPsection = ESPtab:NewSection("Esp Settings")
 local MoreSection = More:NewSection("More")
 local PlayerSection = Player:NewSection("Player")
 -- Variables
