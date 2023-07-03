@@ -1,6 +1,6 @@
-local OrionLib = loadstring(game:HttpGet(('https://raw.githubusercontent.com/shlexware/Orion/main/source')))()
+local Library = loadstring(game:HttpGet("https://raw.githubusercontent.com/xHeptc/Kavo-UI-Library/main/source.lua"))()
+local Window = Library.CreateLib("Organic - key system", "Synapse")
 local plr = game:GetService("Players").LocalPlayer
-local Window = OrionLib:MakeWindow({Name = "Key System", HidePremium = false, SaveConfig = true, IntroEnabled = false})
 
 if plr:FindFirstChild("HasKey") == nil then
 	local n = Instance.new("BoolValue")
@@ -8,13 +8,6 @@ if plr:FindFirstChild("HasKey") == nil then
 	n.Value = false
 	n.Parent = plr
 end
-
-OrionLib:MakeNotification({
-	Name = "Key system loaded",
-	Content = "You're logged in as "..game:GetService("Players").LocalPlayer.Name..".",
-	Image = "rbxassetid://4483345998",
-	Time = 5
-})
 
 _G.Key = nil
 loadstring(game:HttpGet("https://raw.githubusercontent.com/vova999000333/Hubs/main/key.lua"))()
@@ -24,37 +17,7 @@ function MakeScriptHub()
 	loadstring(game:HttpGet("https://raw.githubusercontent.com/vova999000333/Hubs/main/LoaderHub.lua"))()
 end
 
-function CorrectKeyNotification()
-	OrionLib:MakeNotification({
-	Name = "Correct key!",
-	Content = "Enjoy the script!",
-	Image = "rbxassetid://4483345998",
-	Time = 3
-})
-end
-
-function IncorrectKeyNotification()
-	OrionLib:MakeNotification({
-	Name = "Invalid key!",
-	Content = "Please retry!",
-	Image = "rbxassetid://4483345998",
-	Time = 3
-})
-end
-function CopiedDS()
-	OrionLib:MakeNotification({
-	Name = "Copied discord link",
-	Content = "join on server for get key!",
-	Image = "rbxassetid://4483345998",
-	Time = 2
-})
-end
-
-local Tab = Window:MakeTab({
-	Name = "Key",
-	Icon = "rbxassetid://4483345998",
-	PremiumOnly = false
-})
+local Tab = Window:NewTab("Key")
 
 Tab:AddTextbox({
 	Name = "Enter Key",
