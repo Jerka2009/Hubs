@@ -64,7 +64,6 @@ Sect:NewButton("Check key", "button", function()
 			wait()
 			MakeScriptHub()
 		end
-	end
   else
 		INcorrect()
   end    
