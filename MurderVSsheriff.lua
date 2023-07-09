@@ -205,7 +205,7 @@ end)
 MurderMSec:NewSlider("HitBox Size", "HitBox Size", 15, 10, function(v)
 	_G.HeadSize = v
 end)
-MurderMSec:NewToggle("HitBox [On/Off]", "info" function(state)
+MurderMSec:NewToggle("HitBox [On/Off]", "info", function(state)
 	if state then
 		_G.Disabled = true
 	else
