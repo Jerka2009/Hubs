@@ -9,7 +9,7 @@ local Window = Library.CreateLib("Organic - Murderers VS Sheriffs Duels", "Synap
 local Other = Window:NewTab("Other")
     local OtherSection = Other:NewSection("Other")
     local Esp = Window:NewTab("Esp")
-    local EspSection = Other:NewSection("Esp")
+    local EspSection = Esp:NewSection("Esp")
 
 
     MainSection:NewButton("Hitbox Expander", "Expanded + Visual hitbox", function()
