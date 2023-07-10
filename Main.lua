@@ -67,7 +67,11 @@ Sect:NewTextBox("Key", "kekekkek", function(txt)
 			COrrect()
 			wait(1)
 			writefile(FName, game:service'HttpService':JSONEncode(_G.Key))
-			game.CoreGui[kavName]:Destroy()
+			for i,v in pairs(game.CoreGui:GetChildren()) do
+        if v:IsA("ScreenGui") and v.Name == kavName then
+            v:Destroy()
+        end
+    end
 			wait()
 			MakeScriptHub()
 		end
