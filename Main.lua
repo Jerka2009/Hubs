@@ -32,7 +32,12 @@ if pcall(function() readfile(FName) end) then
 		plr:FindFirstChild("HasKey").Value = true
 		MakeScriptHub()
 	else
-		plr:Kick("Get new key!")
+		game.StarterGui:SetCore("SendNotification", {
+    Title = "Old key!";
+    Text = "pls get new key, for login";
+    Icon = "11745872952";
+    Duration = "3";
+})
 	end
 end
 
@@ -76,7 +81,7 @@ Sect:NewTextBox("Key", "kekekkek", function(txt)
 		if plr:FindFirstChild("HasKey").Value == true then
 			COrrect()
 			wait(1)
-			writefile(FName, game:service'HttpService':JSONEncode(_G.Key))
+			writefile(FName, _G.Key)
 			wait()
 			MakeScriptHub()
 		end
