@@ -32,6 +32,7 @@ if pcall(function() readfile(FName) end) then
 		plr:FindFirstChild("HasKey").Value = true
 		MakeScriptHub()
 	else
+				delfile(FName)
 		game.StarterGui:SetCore("SendNotification", {
     Title = "Old key!";
     Text = "pls get new key, for login";
@@ -40,8 +41,6 @@ if pcall(function() readfile(FName) end) then
 })
 	end
 end
-
-Settings = game:service'HttpService':JSONEncode(readfile(Name))
 end)
 
 function Login()
