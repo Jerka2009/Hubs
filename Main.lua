@@ -28,8 +28,12 @@ local FName = "Organic.JSON"
 pcall(function()
 
 if pcall(function() readfile(FName) end) then
-	plr:FindFirstChild("HasKey").Value = true
-	MakeScriptHub()
+	if readfile(FName) == _G.Key then
+		plr:FindFirstChild("HasKey").Value = true
+		MakeScriptHub()
+	else
+		plr:Kick("Get new key!")
+	end
 end
 
 Settings = game:service'HttpService':JSONEncode(readfile(Name))
