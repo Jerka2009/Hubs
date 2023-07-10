@@ -211,24 +211,6 @@ function Clear() --Clears all the esps
 	end
 end
 
-function gunspec()
-	if game:GetService("Workspace"):FindFirstChild("GunDrop") ~= nil then
-		if game:GetService("Workspace"):FindFirstChild("GunDrop"):FindFirstChild("GunESP") == nil then
-			local tag = Instance.new("Highlight")
-			tag.Enabled = ESP
-			tag.Parent = game:GetService("Workspace"):FindFirstChild("GunDrop")
-			tag.Name = "GunESP"
-			tag.FillTransparency = 0.55
-			tag.FillColor = Color3.fromRGB(169, 51, 255)
-			tag.DepthMode = Enum.HighlightDepthMode.AlwaysOnTop
-		else
-			return
-		end
-	else
-		return
-	end
-end
-
 function UpdateESP()
 	murderer = "None"
 	sheriff = "None"
@@ -236,7 +218,6 @@ function UpdateESP()
 	--UpdateColor()
 	findmurderer()
 	findsheriff()
-	gunspec()
 	for _,v in pairs(player.PlayerGui:children()) do
 		if v.Name == "tracker" and v:isA("BillboardGui") then
 			if v:FindFirstChild("TextLabel").Text == sheriff then
@@ -288,7 +269,6 @@ function clip()
 	if Noclip then Noclip:Disconnect() end
 	Clip = true
 end
-
 game:GetService("Workspace").ChildAdded:Connect(function(part)
 	if part.Name == "GunDrop" then
 		if _G.ESP == true then
