@@ -414,6 +414,7 @@ MM2Section:NewButton("Tp to map", "Teleporter", function()
 			game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.CFrame = CFM
 		else
 			print("Map is not found..")
+			break
 		end
 	end
 end)
