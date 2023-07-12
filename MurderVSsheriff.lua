@@ -212,9 +212,7 @@ MurderMSec:NewToggle("HitBox [On/Off]", "info", function(state)
 		_G.Disabled = false
 	end
 end)
-MurderMSec:NewToggle("Silent Aim [HARD]", "[HARD function]", function(state)
-	local bool = state
-        Callback = function(bool)
+MurderMSec:NewToggle("Silent Aim [HARD]", "[HARD function]", function(bool)
             local function test(mouseHit)
                 local nearestPlayer, nearestDistance = nil, math.huge
 
@@ -275,8 +273,6 @@ MurderMSec:NewToggle("Silent Aim [HARD]", "[HARD function]", function(state)
                         end
                     end
                 end
-            )
-        end
 end)
 -- Tool Tab
 ToolsSection:NewButton("TpTool", "Teleport Tool", function()
