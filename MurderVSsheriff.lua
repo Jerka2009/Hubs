@@ -212,7 +212,7 @@ MurderMSec:NewToggle("HitBox [On/Off]", "info", function(state)
 		_G.Disabled = false
 	end
 end)
-MurderMSec:NewToggle("Silent Aim [HARD]", "[HARD function]", function(bool)
+MurderMSec:NewToggle("Silent Aim [pached]", "[HARD function]", function(bool)
             local function test(mouseHit)
                 local nearestPlayer, nearestDistance = nil, math.huge
 
