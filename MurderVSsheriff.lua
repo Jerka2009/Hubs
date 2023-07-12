@@ -273,7 +273,7 @@ MurderMSec:NewToggle("Silent Aim [HARD]", "[HARD function]", function(bool)
                             notifLib:Notify("You should equip pistol", {Color = Color3.new(255, 0, 0)})
                         end
                     end
-                end
+                end)
 end)
 -- Tool Tab
 ToolsSection:NewButton("TpTool", "Teleport Tool", function()
