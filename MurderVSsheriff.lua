@@ -212,7 +212,72 @@ MurderMSec:NewToggle("HitBox [On/Off]", "info", function(state)
 		_G.Disabled = false
 	end
 end)
+MurderMSec:NewToggle("Silent Aim [HARD]", "[HARD function]", function(state)
+	local bool = state
+        Callback = function(bool)
+            local function test(mouseHit)
+                local nearestPlayer, nearestDistance = nil, math.huge
 
+                for _, player in ipairs(game.Players:GetPlayers()) do
+                    if
+                        player ~= game.Players.LocalPlayer and player.Character and
+                            player.Character:FindFirstChild("HumanoidRootPart")
+                     then
+                        local playerRootPart = player.Character.HumanoidRootPart
+                        local distance = (playerRootPart.Position - mouseHit).Magnitude
+
+                        if
+                            distance < nearestDistance and player.Team and player.Team ~= game.Players.LocalPlayer.Team and
+                                player.Character.Humanoid and
+                                player.Character.Humanoid.Health > 0
+                         then
+                            nearestPlayer = player
+                            nearestDistance = distance
+                        end
+                    end
+                end
+                if nearestPlayer then
+                    return nearestPlayer
+                end
+            end
+            local UserInputService = game:GetService("UserInputService")
+
+            local function onMouseButton1Click(mouse)
+                local mouseLocation = mouse.X, mouse.Y
+                local worldPosition = mouse.Hit.Position
+                return worldPosition
+            end
+
+            UserInputService.InputBegan:Connect(
+                function(input, isProcessed)
+                    if input.UserInputType == Enum.UserInputType.MouseButton1 then
+                        local mouse = game.Players.LocalPlayer:GetMouse()
+                        local nearestToMouse = test(onMouseButton1Click(mouse))
+                        local pistol = getToolEquipped()
+                        if pistol then
+                            local chance = math.round(math.random())
+                            if chance <= hc / 100 then
+                                local args = {
+                                    [1] = Vector3.new(0, 0, 0),
+                                    [2] = Vector3.new(0, 0, 0),
+                                    [3] = nearestToMouse.Character.HumanoidRootPart.Part,
+                                    [4] = Vector3.new(0, 0, 0)
+                                }
+                                if delay > 0 then
+                                    task.wait(delay)
+                                end
+                                game:GetService("ReplicatedStorage").Remotes.Shoot:FireServer(unpack(args))
+                            else
+                                notifLib:Notify("You missed", {Color = Color3.new(255, 255, 255)})
+                            end
+                        else
+                            notifLib:Notify("You should equip pistol", {Color = Color3.new(255, 0, 0)})
+                        end
+                    end
+                end
+            )
+        end
+end)
 -- Tool Tab
 ToolsSection:NewButton("TpTool", "Teleport Tool", function()
 	mouse = game.Players.LocalPlayer:GetMouse()
@@ -425,8 +490,6 @@ if _G.Disabled then
 				v.Character.HumanoidRootPart.Material = "Neon"
 				v.Character.HumanoidRootPart.CanCollide = false
 			end)
-		else
-			return
 		end
 	end
 else
@@ -439,8 +502,6 @@ else
 				v.Character.HumanoidRootPart.Material = "Smooth Plastic"
 				v.Character.HumanoidRootPart.CanCollide = true
 			end)
-		else
-			return
 		end
 	end
 end
