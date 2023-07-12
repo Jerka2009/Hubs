@@ -241,6 +241,7 @@ MurderMSec:NewToggle("Silent Aim [HARD]", "[HARD function]", function(bool)
             local UserInputService = game:GetService("UserInputService")
 
             local function onMouseButton1Click(mouse)
+		if bool == false then return end
                 local mouseLocation = mouse.X, mouse.Y
                 local worldPosition = mouse.Hit.Position
                 return worldPosition
