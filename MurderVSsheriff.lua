@@ -34,6 +34,14 @@ if plr:FindFirstChild("HasKey") ~= nil then
 	end
 end
 -- Functions
+local function notif(text, subtext, dur)
+    game.StarterGui:SetCore("SendNotification", {
+    	Title = text;
+    	Text = subtext;
+    	Icon = "4625478093";
+    	Duration = dur;
+    })
+end)
 function randomString()
 	local length = math.random(10,20)
 	local array = {}
@@ -268,10 +276,10 @@ MurderMSec:NewToggle("Silent Aim [undetected]", "[HARD function]", function(bool
                                 end
                                 game:GetService("ReplicatedStorage").Remotes.Shoot:FireServer(unpack(args))
                             else
-                                notifLib:Notify("You missed", {Color = Color3.new(255, 255, 255)})
+                                notif("Message", "You missed", 2)
                             end
                         else
-                            notifLib:Notify("You should equip pistol", {Color = Color3.new(255, 0, 0)})
+                            notif("Error", "You should equip pistol", 2)
                         end
                     end
                 end)
