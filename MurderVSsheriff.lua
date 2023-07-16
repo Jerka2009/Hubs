@@ -212,7 +212,7 @@ MurderMSec:NewToggle("HitBox [On/Off]", "info", function(state)
 		_G.Disabled = false
 	end
 end)
-MurderMSec:NewToggle("Silent Aim [pached]", "[HARD function]", function(bool)
+MurderMSec:NewToggle("Silent Aim [undetected]", "[HARD function]", function(bool)
             local function test(mouseHit)
                 local nearestPlayer, nearestDistance = nil, math.huge
 
@@ -245,14 +245,12 @@ MurderMSec:NewToggle("Silent Aim [pached]", "[HARD function]", function(bool)
 			local mouseLocation = mouse.X, mouse.Y
                 	local worldPosition = mouse.Hit.Position
                 	return worldPosition
-		else
-			return
 		end
             end
 
             UserInputService.InputBegan:Connect(
                 function(input, isProcessed)
-                    if input.UserInputType == Enum.UserInputType.MouseButton1 then
+                    if input.UserInputType == Enum.UserInputType.MouseButton1 and bool then
                         local mouse = game.Players.LocalPlayer:GetMouse()
                         local nearestToMouse = test(onMouseButton1Click(mouse))
                         local pistol = getToolEquipped()
