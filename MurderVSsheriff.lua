@@ -41,7 +41,7 @@ local function notif(text, subtext, dur)
     	Icon = "4625478093";
     	Duration = dur;
     })
-end)
+end
 function randomString()
 	local length = math.random(10,20)
 	local array = {}
