@@ -1,18 +1,4 @@
 local Library = loadstring(game:HttpGet("https://raw.githubusercontent.com/xHeptc/Kavo-UI-Library/main/source.lua"))()
-local Window = Library.CreateLib("Organic - key system", "Synapse")
-local plr = game:GetService("Players").LocalPlayer
-local kavName = "Organic - key system"
-if plr:FindFirstChild("HasKey") == nil then
-	local n = Instance.new("BoolValue")
-	n.Name = "HasKey"
-	n.Value = false
-	n.Parent = plr
-end
-
-_G.Key = nil
-loadstring(game:HttpGet("https://raw.githubusercontent.com/vova999000333/Hubs/main/key.lua"))()
-_G.KeyInput = "string"
-
 function MakeScriptHub()
 	loadstring(game:HttpGet("https://raw.githubusercontent.com/vova999000333/Hubs/main/LoaderHub.lua"))()
 	wair(1)
@@ -22,7 +8,6 @@ function MakeScriptHub()
         end
     end
 end
-
 local FName = "Organic.JSON"
 
 pcall(function()
@@ -42,6 +27,19 @@ if pcall(function() readfile(FName) end) then
 	end
 end
 end)
+local Window = Library.CreateLib("Organic - key system", "Synapse")
+local plr = game:GetService("Players").LocalPlayer
+local kavName = "Organic - key system"
+if plr:FindFirstChild("HasKey") == nil then
+	local n = Instance.new("BoolValue")
+	n.Name = "HasKey"
+	n.Value = false
+	n.Parent = plr
+end
+
+_G.Key = nil
+loadstring(game:HttpGet("https://raw.githubusercontent.com/vova999000333/Hubs/main/key.lua"))()
+_G.KeyInput = "string"
 
 function Login()
 	game.StarterGui:SetCore("SendNotification", {
