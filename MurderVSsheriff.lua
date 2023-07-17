@@ -50,6 +50,22 @@ function randomString()
 	end
 	return table.concat(array)
 end
+local function getToolEquipped()
+    for i, v in pairs(game.workspace:GetChildren()) do
+        if v.Name == game.Players.LocalPlayer.Name then
+            local tool = v:FindFirstChildOfClass("Tool")
+            if not tool then
+                return nil
+            end
+            if tool:FindFirstChild("Fire") and tool.Fire:IsA("Sound") then
+                return true --pistol
+            else
+                return false --knife
+            end
+        end
+    end
+    return nil
+end
 function noclip()
 	Clip = false
 	local function Nocl()
