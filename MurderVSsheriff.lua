@@ -236,7 +236,7 @@ MurderMSec:NewToggle("HitBox [On/Off]", "info", function(state)
 		_G.Disabled = false
 	end
 end)
-MurderMSec:NewToggle("Silent Aim [undetected]", "[HARD function]", function(bool)
+--[[MurderMSec:NewToggle("Silent Aim [undetected]", "[HARD function]", function(bool)
             local function test(mouseHit)
                 local nearestPlayer, nearestDistance = nil, math.huge
 
@@ -299,7 +299,7 @@ MurderMSec:NewToggle("Silent Aim [undetected]", "[HARD function]", function(bool
                         end
                     end
                 end)
-end)
+end)]]
 -- Tool Tab
 ToolsSection:NewButton("TpTool", "Teleport Tool", function()
 	mouse = game.Players.LocalPlayer:GetMouse()
