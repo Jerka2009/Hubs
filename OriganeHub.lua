@@ -414,5 +414,5 @@ while DEnabled do
 	X, Y = Mouse.X, Mouse.Y
             VirtualInputManager:SendMouseButtonEvent(X, Y, 0, true, game, 1)
             VirtualInputManager:SendMouseButtonEvent(X, Y, 0, false, game, 1)
-            wait(Library.flags.Interval)
+            wait(1)
 end
