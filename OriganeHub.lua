@@ -9,10 +9,14 @@ local MoreSection = More:NewSection("More")
 local PlayerSection = Player:NewSection("Player")
 local ToolsSection = Tools:NewSection("Tools")
 -- Variables
-local Players = game.Players:GetPlayers()
+local Players = game:GetService("Players"):GetPlayers()
 local UserInputService = game:GetService("UserInputService")
+local VirtualInputManager = game:GetService("VirtualInputManager")
 local TeleportService = game:GetService("TeleportService")
+local Player = game:GetService("Players").LocalPlayer
+local Mouse = Player:GetMouse()
 local infjumpenabled = false
+local DEnabled = false
 local Noclip = nil
 local Clip = nil
 local themes = {
@@ -226,6 +230,13 @@ ToolsSection:NewButton("Btools", "Btools [Visual]", function()
 	grabTool.BinType = 2
 	grabTool.Parent = backpack
 end)
+ToolsSection:NewToggle("AutoClicker", "Interval [1sec]", function(state)
+    if state then
+	DEnabled = true
+    else
+	DEnabled = false
+    end
+end)
 -- More Tab
 MoreSection:NewButton("Fuck Menu", "Fuck players!", function()
 	loadstring(game:HttpGet("https://raw.githubusercontent.com/vova999000333/Hubs/main/BangScript.lua"))()
@@ -395,3 +406,10 @@ end)
 CreditSection:NewButton("Idea by : Niky#8422", "Click to copy", function()
 	setclipboard("Niky#8422")
 end)
+
+while DEnabled do
+	X, Y = Mouse.X, Mouse.Y
+            VirtualInputManager:SendMouseButtonEvent(X, Y, 0, true, game, 1)
+            VirtualInputManager:SendMouseButtonEvent(X, Y, 0, false, game, 1)
+            wait(Library.flags.Interval)
+end
