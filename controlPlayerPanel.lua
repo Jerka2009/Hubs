@@ -52,18 +52,14 @@ ControlSec:NewButton("Joke on player [Message]", "Joke message", function()
 	end
 end)
 -- More Tab
-MoreSection:NewButton("Fuck Menu", "Fuck players!", function()
+--[[MoreSection:NewButton("Fuck Menu", "Fuck players!", function()
 	loadstring(game:HttpGet("https://raw.githubusercontent.com/vova999000333/Hubs/main/BangScript.lua"))()
 end)
 MoreSection:NewButton("Bhop [Need R15]", "Click to Execute", function()
 	loadstring(game:HttpGet("https://raw.githubusercontent.com/vova999000333/Hubs/main/Bhop.lua"))()
-end)
+end)]]
 MoreSection:NewButton("ReJoin", "Rejoin On the Server", function()
 	TeleportService:Teleport(game.PlaceId, LocalPlayer)
-end)
--- KeyBind GUI
-MoreSection:NewKeybind("Toggle Gui", "Show / Hide Gui", Enum.KeyCode.X, function()
-	Library:ToggleUI()
 end)
 MoreSection:NewButton("Radio Gui", "Play your own sounds [Visual]", function()
 -- Instances:
