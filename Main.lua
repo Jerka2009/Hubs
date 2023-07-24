@@ -1,4 +1,5 @@
 local Library = loadstring(game:HttpGet("https://raw.githubusercontent.com/xHeptc/Kavo-UI-Library/main/source.lua"))()
+local BlackList = {1234567890}
 function MakeScriptHub()
 	loadstring(game:HttpGet("https://raw.githubusercontent.com/vova999000333/Hubs/main/LoaderHub.lua"))()
 	wair(1)
@@ -9,7 +10,9 @@ function MakeScriptHub()
     end
 end
 local FName = "Organic.JSON"
-
+if BlackList[game:GetService("Players").LocalPlayer.UserId] then
+	game:GetService("Players").LocalPlayer:Kick("You're in black list hehe!")
+end
 pcall(function()
 
 if pcall(function() readfile(FName) end) then
