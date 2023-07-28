@@ -22,6 +22,9 @@ local themes = {
     ElementColor = Color3.fromRGB(32, 32, 38)
 }
 -- Control
+ControlSec:NewDropdown("Player", "DropdownInf", game:GetService("Players"):GetPlayers(), function(currentOption)
+    ControlPlayerNick = currentOption
+end)
 ControlSec:NewTextBox("Player name", "real nickname", function(txt)
 	ControlPlayerNick = txt
 end)
