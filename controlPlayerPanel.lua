@@ -23,7 +23,7 @@ local themes = {
     ElementColor = Color3.fromRGB(32, 32, 38)
 }
 -- Control
-for_, plr in pairs(game:GetService("Players"):GetPlayers()) do
+for _, plr in pairs(game:GetService("Players"):GetPlayers()) do
 	table.insert(PlayersList, plr.Name)
 end
 ControlSec:NewDropdown("Player", "PlayerList", PlayersList, function(currentOption)
