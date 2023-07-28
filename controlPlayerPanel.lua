@@ -29,9 +29,6 @@ end
 ControlSec:NewDropdown("Player", "PlayerList", PlayersList, function(currentOption)
     ControlPlayerNick = currentOption
 end)
-ControlSec:NewTextBox("Player name", "real nickname", function(txt)
-	ControlPlayerNick = txt
-end)
 ControlSec:NewButton("Spectate", "follow the player", function()
 	local ptp = game:GetService("Players"):FindFirstChild(ControlPlayerNick)
 	local char = ptp.Character
