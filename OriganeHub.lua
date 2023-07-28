@@ -18,6 +18,7 @@ local Mouse = Player:GetMouse()
 local infjumpenabled = false
 local DEnabled = false
 local Noclip = nil
+_G.SpinSpeedy = 100
 local Clip = nil
 local themes = {
     SchemeColor = Color3.fromRGB(74, 99, 135),
@@ -78,11 +79,11 @@ end
 -- Player Tab
 
 PlayerSection:NewSlider("Walkspeed", "Changes the walkspeed", 250, 16, function(v)
-    game.Players.LocalPlayer.Character.Humanoid.WalkSpeed = v
+    game:GetService("Players").LocalPlayer.Character.Humanoid.WalkSpeed = v
 end)
  
 PlayerSection:NewSlider("Jumppower", "Changes the jumppower", 250, 50, function(v)
-    game.Players.LocalPlayer.Character.Humanoid.JumpPower = v
+    game:GetService("Players").LocalPlayer.Character.Humanoid.JumpPower = v
 end)
 
 PlayerSection:NewButton("Reset", "RespawnCaracter", function()
@@ -97,12 +98,28 @@ PlayerSection:NewButton("Reset", "RespawnCaracter", function()
 	newChar:Destroy()
 end)
 
+PlayerSection:NewSlider("Spin Speed", "Changes the speed", 500, 100, function(v)
+    _G.SpinSpeedy = v
+end)
+
+PlayerSection:NewToggle("Spin", "On / Off", function(state)
+    if state then
+	local Spin = Instance.new("BodyAngularVelocity")
+	Spin.Name = "Spinning"
+	Spin.Parent = game:GetService("Players").LocalPlayer.Character.HumanoidRootPart
+	Spin.MaxTorque = Vector3.new(0, math.huge, 0)
+	Spin.AngularVelocity = Vector3.new(0,_G.SpinSpeedy,0)
+    else
+	game:GetService("Players").LocalPlayer.Character:FindFirstChild("Spinning"):Destroy()
+    end
+end)
+
 PlayerSection:NewButton("Fly [E]", "Press 'E' to fly", function()
 	repeat wait() 
-	until game.Players.LocalPlayer and game.Players.LocalPlayer.Character and game.Players.LocalPlayer.Character:findFirstChild("UpperTorso") and game.Players.LocalPlayer.Character:findFirstChild("Humanoid") 
-local mouse = game.Players.LocalPlayer:GetMouse() 
+	until game:GetService("Players").LocalPlayer and game:GetService("Players").LocalPlayer.Character and game:GetService("Players").LocalPlayer.Character:findFirstChild("UpperTorso") and game:GetService("Players").LocalPlayer.Character:findFirstChild("Humanoid") 
+local mouse = game:GetService("Players").LocalPlayer:GetMouse() 
 repeat wait() until mouse
-local plr = game.Players.LocalPlayer 
+local plr = game:GetService("Players").LocalPlayer 
 local torso = plr.Character.UpperTorso 
 local flying = true
 local deb = true 
@@ -133,14 +150,14 @@ speed = 0
 end 
 end 
 if (ctrl.l + ctrl.r) ~= 0 or (ctrl.f + ctrl.b) ~= 0 then 
-bv.velocity = ((game.Workspace.CurrentCamera.CoordinateFrame.lookVector * (ctrl.f+ctrl.b)) + ((game.Workspace.CurrentCamera.CoordinateFrame * CFrame.new(ctrl.l+ctrl.r,(ctrl.f+ctrl.b)*.2,0).p) - game.Workspace.CurrentCamera.CoordinateFrame.p))*speed 
+bv.velocity = ((game:GetService("Workspace").CurrentCamera.CoordinateFrame.lookVector * (ctrl.f+ctrl.b)) + ((game:GetService("Workspace").CurrentCamera.CoordinateFrame * CFrame.new(ctrl.l+ctrl.r,(ctrl.f+ctrl.b)*.2,0).p) - game:GetService("Workspace").CurrentCamera.CoordinateFrame.p))*speed 
 lastctrl = {f = ctrl.f, b = ctrl.b, l = ctrl.l, r = ctrl.r} 
 elseif (ctrl.l + ctrl.r) == 0 and (ctrl.f + ctrl.b) == 0 and speed ~= 0 then 
-bv.velocity = ((game.Workspace.CurrentCamera.CoordinateFrame.lookVector * (lastctrl.f+lastctrl.b)) + ((game.Workspace.CurrentCamera.CoordinateFrame * CFrame.new(lastctrl.l+lastctrl.r,(lastctrl.f+lastctrl.b)*.2,0).p) - game.Workspace.CurrentCamera.CoordinateFrame.p))*speed 
+bv.velocity = ((game:GetService("Workspace").CurrentCamera.CoordinateFrame.lookVector * (lastctrl.f+lastctrl.b)) + ((game:GetService("Workspace").CurrentCamera.CoordinateFrame * CFrame.new(lastctrl.l+lastctrl.r,(lastctrl.f+lastctrl.b)*.2,0).p) - game:GetService("Workspace").CurrentCamera.CoordinateFrame.p))*speed 
 else 
 bv.velocity = Vector3.new(0,0.1,0) 
 end 
-bg.cframe = game.Workspace.CurrentCamera.CoordinateFrame * CFrame.Angles(-math.rad((ctrl.f+ctrl.b)*50*speed/maxspeed),0,0) 
+bg.cframe = game:GetService("Workspace").CurrentCamera.CoordinateFrame * CFrame.Angles(-math.rad((ctrl.f+ctrl.b)*50*speed/maxspeed),0,0) 
 until not flying 
 ctrl = {f = 0, b = 0, l = 0, r = 0} 
 lastctrl = {f = 0, b = 0, l = 0, r = 0} 
