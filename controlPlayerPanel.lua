@@ -33,7 +33,7 @@ game:GetService("Players").PlayerRemoving:Connect(function(plr)
 	local index = table.find(PlayersList, plr.Name) --get the index
 	table.remove(PlayersList, index) --remove the index
 	dropPlayer:Refresh(PlayersList)
-end
+end)
 ControlSec:NewButton("Spectate", "follow the player", function()
 	local ptp = game:GetService("Players"):FindFirstChild(ControlPlayerNick)
 	local char = ptp.Character
