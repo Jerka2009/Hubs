@@ -142,11 +142,27 @@ end
 -- Player Tab
 
 PlayerSection:NewSlider("Walkspeed", "Changes the walkspeed", 250, 16, function(v)
-    game.Players.LocalPlayer.Character.Humanoid.WalkSpeed = v
+    game:GetService("Players").LocalPlayer.Character.Humanoid.WalkSpeed = v
 end)
  
 PlayerSection:NewSlider("Jumppower", "Changes the jumppower", 250, 50, function(v)
-    game.Players.LocalPlayer.Character.Humanoid.JumpPower = v
+    game:GetService("Players").LocalPlayer.Character.Humanoid.JumpPower = v
+end)
+
+PlayerSection:NewSlider("Spin Speed", "Changes the speed", 500, 100, function(v)
+    _G.SpinSpeedy = v
+end)
+
+PlayerSection:NewToggle("Spin", "On / Off", function(state)
+    if state then
+	local Spin = Instance.new("BodyAngularVelocity")
+	Spin.Name = "Spinning"
+	Spin.Parent = game:GetService("Players").LocalPlayer.Character.HumanoidRootPart
+	Spin.MaxTorque = Vector3.new(0, math.huge, 0)
+	Spin.AngularVelocity = Vector3.new(0,_G.SpinSpeedy,0)
+    else
+	game:GetService("Players").LocalPlayer.Character:FindFirstChild("Spinning"):Destroy()
+    end
 end)
 
 PlayerSection:NewButton("Reset", "RespawnCaracter", function()
