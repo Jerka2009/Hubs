@@ -26,9 +26,14 @@ local themes = {
 for _, plr in pairs(game:GetService("Players"):GetPlayers()) do
 	table.insert(PlayersList, plr.Name)
 end
-ControlSec:NewDropdown("Player", "PlayerList", PlayersList, function(currentOption)
+local dropPlayer = ControlSec:NewDropdown("Player", "PlayerList", PlayersList, function(currentOption)
     ControlPlayerNick = currentOption
 end)
+game:GetService("Players").PlayerRemoving:Connect(function(plr)
+	local index = table.find(PlayersList, plr.Name) --get the index
+	table.remove(PlayersList, index) --remove the index
+	dropPlayer:Refresh(PlayersList)
+end
 ControlSec:NewButton("Spectate", "follow the player", function()
 	local ptp = game:GetService("Players"):FindFirstChild(ControlPlayerNick)
 	local char = ptp.Character
