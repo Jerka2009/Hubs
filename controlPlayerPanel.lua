@@ -13,6 +13,7 @@ local UserInputService = game:GetService("UserInputService")
 local Camera = game:GetService("Workspace").CurrentCamera
 local TeleportService = game:GetService("TeleportService")
 local ControlPlayerNick = ""
+local PlayersList = {}
 local Jokes = {"is clown!", "is bad", "pls leave", "goofy man"}
 local themes = {
     SchemeColor = Color3.fromRGB(74, 99, 135),
@@ -22,7 +23,10 @@ local themes = {
     ElementColor = Color3.fromRGB(32, 32, 38)
 }
 -- Control
-ControlSec:NewDropdown("Player", "DropdownInf", game:GetService("Players"):GetPlayers(), function(currentOption)
+for_, plr in pairs(game:GetService("Players"):GetPlayers()) do
+	table.insert(PlayersList, plr.Name)
+end
+ControlSec:NewDropdown("Player", "PlayerList", PlayersList, function(currentOption)
     ControlPlayerNick = currentOption
 end)
 ControlSec:NewTextBox("Player name", "real nickname", function(txt)
