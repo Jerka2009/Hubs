@@ -20,6 +20,7 @@ local games = {
     [{606849621}] = "https://raw.githubusercontent.com/vova999000333/Hubs/main/OriganeJailbreak.lua",
     [{1224212277}] = "https://raw.githubusercontent.com/vova999000333/Hubs/main/OriganeMadCity.lua",
     [{12355337193}] = "https://raw.githubusercontent.com/vova999000333/Hubs/main/MurderVSsheriff.lua",
+    [{6142500718}] = "https://raw.githubusercontent.com/vova999000333/Hubs/main/GetMusicId.lua",
     [{13771457545}] = "https://raw.githubusercontent.com/vova999000333/Hubs/main/MurderVSsheriff.lua",
     [{621129760}] = "https://raw.githubusercontent.com/vova999000333/Hubs/main/KATLoader.lua",
     [{142823291}] = "https://raw.githubusercontent.com/vova999000333/Hubs/main/OrganicMM2.lua",
