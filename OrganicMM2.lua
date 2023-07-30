@@ -11,9 +11,10 @@ local MM2Section = MM2Menu:NewSection("MM2")
 local PlayerSection = Player:NewSection("Player")
 local ToolsSection = Tools:NewSection("Tools")
 -- Variables
-local Players = game.Players:GetPlayers()
+local Players = game:GetService("Players"):GetPlayers()
 local UserInputService = game:GetService("UserInputService")
 local TeleportService = game:GetService("TeleportService")
+local LocalPlayer = game:GetService("Players").LocalPlayer
 local infjumpenabled = false
 local PlayersList = {}
 local printvar = false
@@ -299,6 +300,8 @@ game:GetService("Workspace").ChildAdded:Connect(function(part)
 			tag.FillColor = Color3.fromRGB(169, 51, 255)
 			tag.DepthMode = Enum.HighlightDepthMode.AlwaysOnTop
 		end
+	else
+		return
 	end
 end)
 -- Player Tab
@@ -475,7 +478,7 @@ end)
 MM2Section:NewButton("Tp to map", "Teleporter", function()
 	for i, map in pairs(MapsTable) do
 		if game:GetService("Workspace"):FindFirstChild(map) then
-			local CFM = game:GetService("Workspace"):FindFirstChild(map).Spawns.Spawn.CFrame
+			local CFM = game:GetService("Workspace"):FindFirstChild(map).Spawns:GetChildren()[1].CFrame
 			game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.CFrame = CFM
 		else
 			print("Map is not found..")
@@ -484,7 +487,7 @@ MM2Section:NewButton("Tp to map", "Teleporter", function()
 	end
 end)
 MM2Section:NewButton("Tp to Lobby", "Teleporter", function()
-	local CFM = CFrame.new(game:GetService("Workspace"):FindFirstChild("Lobby").Spawns.Spawn.Position + Vector3.new(0,2,0))
+	local CFM = CFrame.new(game:GetService("Workspace").Lobby.VotePads.Detector2.Position + Vector3.new(0,2,0))
 	game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.CFrame = CFM
 end)
 MM2Section:NewButton("Teleport to gun [G]", "TP to gun", function()
