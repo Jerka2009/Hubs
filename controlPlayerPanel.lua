@@ -29,6 +29,10 @@ end
 local dropPlayer = ControlSec:NewDropdown("Player", "PlayerList", PlayersList, function(currentOption)
     ControlPlayerNick = currentOption
 end)
+game:GetService("Players").PlayerAdded:Connect(function(plr)
+	table.insert(PlayersList, plr.Name)
+	dropPlayer:Refresh(PlayersList)
+end)
 game:GetService("Players").PlayerRemoving:Connect(function(plr)
 	local index = table.find(PlayersList, plr.Name) --get the index
 	table.remove(PlayersList, index) --remove the index
