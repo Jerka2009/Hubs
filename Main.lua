@@ -1,4 +1,6 @@
 local Library = loadstring(game:HttpGet("https://raw.githubusercontent.com/xHeptc/Kavo-UI-Library/main/source.lua"))()
+_G.Key = nil
+loadstring(game:HttpGet("https://raw.githubusercontent.com/vova999000333/Hubs/main/key.lua"))()
 local BlackList = {1234567890}
 function MakeScriptHub()
 	loadstring(game:HttpGet("https://raw.githubusercontent.com/vova999000333/Hubs/main/LoaderHub.lua"))()
@@ -40,8 +42,6 @@ if plr:FindFirstChild("HasKey") == nil then
 	n.Parent = plr
 end
 
-_G.Key = nil
-loadstring(game:HttpGet("https://raw.githubusercontent.com/vova999000333/Hubs/main/key.lua"))()
 _G.KeyInput = "string"
 
 function Login()
