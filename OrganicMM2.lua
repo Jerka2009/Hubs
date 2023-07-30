@@ -15,7 +15,9 @@ local Players = game.Players:GetPlayers()
 local UserInputService = game:GetService("UserInputService")
 local TeleportService = game:GetService("TeleportService")
 local infjumpenabled = false
+local PlayersList = {}
 local printvar = false
+local ControlPlayerNick = ""
 local MapsTable = {"Bank2", "Mansion2", "Hospital3", "Hotel2", "House2", "MilBase", "nStudio", "Office3", "PoliceStation", "ResearchFacility", "Workplace"}
 local player = game:GetService("Players").LocalPlayer
 local Noclip = nil
@@ -229,6 +231,23 @@ function UpdateESP()
 			end
 		end
 	end
+	if murderer ~= "" and sheriff ~= "" then
+		if _G.NotifRole == true then
+			game.StarterGui:SetCore("SendNotification", {
+    Title = "Murder!";
+    Text = "Player "..murderer.." is murder!";
+    Icon = "11745872952";
+    Duration = "3";
+})
+			game.StarterGui:SetCore("SendNotification", {
+    Title = "Sheriff!";
+    Text = "Player "..sheriff.." is sheriff!";
+    Icon = "11745872952";
+    Duration = "3";
+})
+			_G.NotifRole = false
+		end
+	end
 end
 
 function Enabl()
@@ -292,7 +311,7 @@ PlayerSection:NewSlider("Jumppower", "Changes the jumppower", 250, 50, function(
     game:GetService("Players").LocalPlayer.Character.Humanoid.JumpPower = v
 end)
 
-PlayerSection:NewSlider("Spin Speed", "Changes the speed", 500, 100, function(v)
+PlayerSection:NewSlider("Spin Speed", "Changes the speed", 120, 100, function(v)
     _G.SpinSpeedy = v
 end)
 
@@ -304,8 +323,38 @@ PlayerSection:NewToggle("Spin", "On / Off", function(state)
 	Spin.MaxTorque = Vector3.new(0, math.huge, 0)
 	Spin.AngularVelocity = Vector3.new(0,_G.SpinSpeedy,0)
     else
-	game:GetService("Players").LocalPlayer.Character:FindFirstChild("Spinning"):Destroy()
+	game:GetService("Players").LocalPlayer.Character:WaitForChild("Spinning"):Destroy()
     end
+end)
+
+PlayerSection:NewButton("Blurt role", "turn on blurt roles", function()
+	_G.NotifRole = true
+end)
+
+for _, plr in pairs(game:GetService("Players"):GetPlayers()) do
+	table.insert(PlayersList, plr.Name)
+end
+local dropPlayer = PlayerSection:NewDropdown("Player", "PlayerList", PlayersList, function(currentOption)
+    ControlPlayerNick = currentOption
+end)
+game:GetService("Players").PlayerAdded:Connect(function(plr)
+	table.insert(PlayersList, plr.Name)
+	dropPlayer:Refresh(PlayersList)
+end)
+game:GetService("Players").PlayerRemoving:Connect(function(plr)
+	local index = table.find(PlayersList, plr.Name) --get the index
+	table.remove(PlayersList, index) --remove the index
+	dropPlayer:Refresh(PlayersList)
+end)
+
+PlayerSection:NewButton("Teleport to player", "tp to player", function()
+	local ptp = game:GetService("Players"):FindFirstChild(ControlPlayerNick)
+	local char = ptp.Character
+	local humRoot = char:WaitForChild("HumanoidRootPart")
+	local plrw = LocalPlayer
+	local char1 = plrw.Character
+	local humRoot1 = char1:WaitForChild("HumanoidRootPart")
+	humRoot1.CFrame = humRoot.CFrame
 end)
 
 PlayerSection:NewButton("Reset", "RespawnCaracter", function()
