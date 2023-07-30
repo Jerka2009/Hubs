@@ -16,6 +16,10 @@ local Label = ControlSec:NewLabel("{SoundID}")
 local plrs = ControlSec:NewDropdown("Player", "PlayerList", plrsTable, function(currentOption)
     PlayerSelected = currentOption
 end)
+game:GetService("Players").PlayerAdded:Connect(function(plr)
+	table.insert(plrsTable, plr.Name)
+	plrs:Refresh(plrsTable)
+end)
 game:GetService("Players").PlayerRemoving:Connect(function(plr)
 	local index = table.find(plrsTable, plr.Name) --get the index
 	table.remove(plrsTable, index) --remove the index
