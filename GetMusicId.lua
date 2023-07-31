@@ -1,3 +1,12 @@
+if game.PlaceId ~= 6142500718 then
+	game.StarterGui:SetCore("SendNotification", {
+    		Title = "Error!";
+    		Text = "Place is invalid! Please join in the FREE BOOMBOX/RADIO";
+    		Icon = "4625478093";
+    		Duration = 2;
+		})
+	return
+end
 local Library = loadstring(game:HttpGet("https://raw.githubusercontent.com/xHeptc/Kavo-UI-Library/main/source.lua"))()
 local Window = Library.CreateLib("Organic - Get Sound Id!", "Synapse")
 local Control = Window:NewTab("Control")
