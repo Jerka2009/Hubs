@@ -56,6 +56,9 @@ ControlSec:NewButton("GetSound from player", "Get Sound ID", function()
     })
 	end
 end)
+ControlSec:NewButton("Make message with ID", "message to send to chat", function()
+	setclipboard("roblox.com/library/"..PrintText)
+end)
 --More Tab
 MoreSection:NewButton("ReJoin", "Rejoin On the Server", function()
 	TeleportService:Teleport(game.PlaceId, LocalPlayer)
