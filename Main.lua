@@ -34,7 +34,6 @@ if pcall(function() readfile(FName) end) then
 })
 	end
 end
-end)
 
 function Login()
 	game.StarterGui:SetCore("SendNotification", {
