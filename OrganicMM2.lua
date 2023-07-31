@@ -16,6 +16,7 @@ local UserInputService = game:GetService("UserInputService")
 local TeleportService = game:GetService("TeleportService")
 local LocalPlayer = game:GetService("Players").LocalPlayer
 local infjumpenabled = false
+local ESPRepeat = nil
 local PlayersList = {}
 local printvar = false
 local ControlPlayerNick = ""
@@ -252,17 +253,22 @@ function UpdateESP()
 end
 
 function Enabl()
-	while wait(2) do
-		if _G.ESP == true then
-			UpdateESP()
-		else
-			Clear()
-		end
+	if _G.ESP == true then
+		ESPRepeat = game:GetService('RunService').Stepped:Connect(UpdateESP)
+	else
+		ESPRepeat:Disconnect()
+		Clear()
 	end
+	
 end
 
 player.CharacterAdded:Connect(function(char)
-	coroutine.wrap(Enabl)() --// Don't forget to call it!
+	Ena
+end)
+
+game:GetService("ReplicatedStorage").Remotes.Gameplay.RoundStart.OnClientEvent:Connect(function()
+    coroutine.wrap(Enabl)()
+    print("Round started!")
 end)
 
 UserInputService.InputBegan:Connect(function(key, busy)
@@ -696,8 +702,8 @@ for theme, color in pairs(themes) do
     end)
 end
 -- Credits
-CreditSection:NewButton("Created by : YTim_Jerka2009#0067", "Click to copy", function()
-	setclipboard("YTim_Jerka2009#0067")
+CreditSection:NewButton("Created by : HomeWorkUSAFakeReal2022#1572", "Click to copy", function()
+	setclipboard("HomeWorkUSAFakeReal2022#1572")
 end)
 CreditSection:NewButton("Idea by : Niky#8422", "Click to copy", function()
 	setclipboard("Niky#8422")
