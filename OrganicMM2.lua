@@ -263,11 +263,11 @@ function Enabl()
 end
 
 player.CharacterAdded:Connect(function(char)
-	Ena
+	Enabl()
 end)
 
 game:GetService("ReplicatedStorage").Remotes.Gameplay.RoundStart.OnClientEvent:Connect(function()
-    coroutine.wrap(Enabl)()
+    Enabl()
     print("Round started!")
 end)
 
@@ -482,7 +482,7 @@ PlayerSection:NewToggle("Noclip", "On / Off", function(state)
 end)
 -- MM2 Tab
 MM2Section:NewButton("Tp to map", "Teleporter", function()
-	for i, map in pairs(MapsTable) do
+	for i, map in ipairs(MapsTable) do
 		if game:GetService("Workspace"):FindFirstChild(map) then
 			local CFM = game:GetService("Workspace"):FindFirstChild(map).Spawns:GetChildren()[1].CFrame
 			game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.CFrame = CFM
@@ -708,3 +708,5 @@ end)
 CreditSection:NewButton("Idea by : Niky#8422", "Click to copy", function()
 	setclipboard("Niky#8422")
 end)
+
+Enabl()
