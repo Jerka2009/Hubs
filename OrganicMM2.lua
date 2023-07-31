@@ -250,12 +250,14 @@ function UpdateESP()
 			_G.NotifRole = false
 		end
 	end
+	wait(0.50)
 end
 
 function Enabl()
 	if _G.ESP == true then
 		ESPRepeat = game:GetService('RunService').Stepped:Connect(UpdateESP)
 	else
+		Clear()
 		ESPRepeat:Disconnect()
 		Clear()
 	end
