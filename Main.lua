@@ -1,7 +1,18 @@
 local Library = loadstring(game:HttpGet("https://raw.githubusercontent.com/xHeptc/Kavo-UI-Library/main/source.lua"))()
-_G.Key = nil
-loadstring(game:HttpGet("https://raw.githubusercontent.com/vova999000333/Hubs/main/key.lua"))()
 local BlackList = {1234567890}
+local FName = "Organic.JSON"
+if BlackList[game:GetService("Players").LocalPlayer.UserId] then
+	game:GetService("Players").LocalPlayer:Kick("You're in black list hehe!")
+end
+local Window = Library.CreateLib("Organic - key system", "Synapse")
+local plr = game:GetService("Players").LocalPlayer
+local kavName = "Organic - key system"
+if plr:FindFirstChild("HasKey") == nil then
+	local n = Instance.new("BoolValue")
+	n.Name = "HasKey"
+	n.Value = false
+	n.Parent = plr
+end
 function MakeScriptHub()
 	loadstring(game:HttpGet("https://raw.githubusercontent.com/vova999000333/Hubs/main/LoaderHub.lua"))()
 	wair(1)
@@ -11,11 +22,9 @@ function MakeScriptHub()
         end
     end
 end
-local FName = "Organic.JSON"
-if BlackList[game:GetService("Players").LocalPlayer.UserId] then
-	game:GetService("Players").LocalPlayer:Kick("You're in black list hehe!")
-end
-pcall(function()
+_G.Key = nil
+loadstring(game:HttpGet("https://raw.githubusercontent.com/vova999000333/Hubs/main/key.lua"))()
+_G.KeyInput = "string"
 
 if pcall(function() readfile(FName) end) then
 	if readfile(FName) == _G.Key then
@@ -32,17 +41,6 @@ if pcall(function() readfile(FName) end) then
 	end
 end
 end)
-local Window = Library.CreateLib("Organic - key system", "Synapse")
-local plr = game:GetService("Players").LocalPlayer
-local kavName = "Organic - key system"
-if plr:FindFirstChild("HasKey") == nil then
-	local n = Instance.new("BoolValue")
-	n.Name = "HasKey"
-	n.Value = false
-	n.Parent = plr
-end
-
-_G.KeyInput = "string"
 
 function Login()
 	game.StarterGui:SetCore("SendNotification", {
@@ -89,7 +87,7 @@ Sect:NewTextBox("Key", "kekekkek", function(txt)
 		INcorrect()
   end    
 end)
-Sect:NewButton("Get key [discord.gg/93M3eNvQHt]", "button", function()
-	setclipboard("https://discord.gg/93M3eNvQHt")
+Sect:NewButton("Get key [discord.gg/65DUwUVUgS]", "Copy", function()
+	setclipboard("https://discord.gg/65DUwUVUgS")
 end)
 Login()
