@@ -14,7 +14,6 @@ if plr:FindFirstChild("HasKey") == nil then
 end
 function MakeScriptHub()
 	loadstring(game:HttpGet("https://raw.githubusercontent.com/vova999000333/Hubs/main/LoaderHub.lua"))()
-    end
 end
 _G.Key = nil
 loadstring(game:HttpGet("https://raw.githubusercontent.com/vova999000333/Hubs/main/key.lua"))()
