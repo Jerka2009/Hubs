@@ -206,11 +206,15 @@ function Clear() --Clears all the esps
 	for _,g in pairs(game.Players:GetPlayers()) do
 		if g.Character:FindFirstChild("ESPk") then
 			g.Character:FindFirstChild("ESPk"):Destroy()
+		else
+			break
 		end
 	end
 	for _,v in pairs(player.PlayerGui:children()) do
 		if v.Name == "tracker" and v:isA("BillboardGui") then
 			v:Destroy()
+		else
+			return
 		end
 	end
 end
@@ -695,7 +699,7 @@ CreditSection:NewButton("Idea by : Niky#8422", "Click to copy", function()
 	setclipboard("Niky#8422")
 end)
 
-ESPRepeat = game:GetService('RunService').Stepped:Connect(function()
+while wait(1) do
 	wait(0.2)
 	if _G.ESP == true then
 		UpdateESP()
@@ -704,5 +708,4 @@ ESPRepeat = game:GetService('RunService').Stepped:Connect(function()
 		Clear()
 		wait(1)
 	end
-	wait(2)
-end)
+end
