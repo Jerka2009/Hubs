@@ -7,6 +7,7 @@ local MoreSection = More:NewSection("More")
 -- Variables
 local ToolName = "BoomBox"
 local PlayerSelected = ""
+local IdSelected = 0
 local plrsTable = {}
 -- Control Tab
 for i, plr in pairs(game:GetService("Players"):GetPlayers()) do
@@ -36,6 +37,7 @@ ControlSec:NewButton("GetSound from player", "Get Sound ID", function()
 				local id = Sound.SoundId
 				local h = tostring(id)
 				local PrintText = string.sub(h,14,30)
+				IdSelected = PrintText
 				Label:UpdateLabel(PrintText)
         setclipboard(PrintText)
 			else
@@ -57,7 +59,7 @@ ControlSec:NewButton("GetSound from player", "Get Sound ID", function()
 	end
 end)
 ControlSec:NewButton("Make message with ID", "message to send to chat", function()
-	setclipboard("roblox.com/library/"..PrintText)
+	setclipboard("roblox.com/library/"..IdSelected)
 end)
 --More Tab
 MoreSection:NewButton("ReJoin", "Rejoin On the Server", function()
