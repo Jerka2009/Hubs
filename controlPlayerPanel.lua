@@ -60,8 +60,7 @@ ControlSec:NewButton("Teleport to player", "tp to player", function()
 end)
 ControlSec:NewButton("Joke on player [Message]", "Joke message", function()
 	if ControlPlayerNick ~= "" or ControlPlayerNick ~= nil then
-		local radJoke = math.Random(1,#Jokes)
-		game:GetService("ReplicatedStorage").DefaultChatSystemChatEvents.SayMessageRequest:FireServer(ControlPlayerNick.." "..Jokes[radJoke], "All")
+		game:GetService("ReplicatedStorage").DefaultChatSystemChatEvents.SayMessageRequest:FireServer(ControlPlayerNick.." "..Jokes[math.Random(1,#Jokes)], "All")
 	end
 end)
 -- More Tab
