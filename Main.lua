@@ -1,12 +1,12 @@
 local Library = loadstring(game:HttpGet("https://raw.githubusercontent.com/xHeptc/Kavo-UI-Library/main/source.lua"))()
+local Window = Library.CreateLib("Organic - key system", "Synapse")
+local plr = game:GetService("Players").LocalPlayer
+local kavName = "Organic - key system"
 local BlackList = {1234567890}
 local FName = "Organic.JSON"
 if BlackList[game:GetService("Players").LocalPlayer.UserId] then
 	game:GetService("Players").LocalPlayer:Kick("You're in black list hehe!")
 end
-local Window = Library.CreateLib("Organic - key system", "Synapse")
-local plr = game:GetService("Players").LocalPlayer
-local kavName = "Organic - key system"
 if plr:FindFirstChild("HasKey") == nil then
 	local n = Instance.new("BoolValue")
 	n.Name = "HasKey"
