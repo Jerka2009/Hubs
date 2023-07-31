@@ -1,7 +1,6 @@
 local Library = loadstring(game:HttpGet("https://raw.githubusercontent.com/xHeptc/Kavo-UI-Library/main/source.lua"))()
 local Window = Library.CreateLib("Organic - key system", "Synapse")
 local plr = game:GetService("Players").LocalPlayer
-local kavName = "Organic - key system"
 local BlackList = {1234567890}
 local FName = "Organic.JSON"
 if BlackList[game:GetService("Players").LocalPlayer.UserId] then
@@ -15,11 +14,6 @@ if plr:FindFirstChild("HasKey") == nil then
 end
 function MakeScriptHub()
 	loadstring(game:HttpGet("https://raw.githubusercontent.com/vova999000333/Hubs/main/LoaderHub.lua"))()
-	wair(1)
-	for i,v in pairs(game.CoreGui:GetChildren()) do
-        if v:IsA("ScreenGui") and v.Name == kavName then
-            v:Destroy()
-        end
     end
 end
 _G.Key = nil
