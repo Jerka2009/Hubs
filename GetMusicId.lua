@@ -69,6 +69,7 @@ ControlSec:NewButton("GetSound from player", "Get Sound ID", function()
 end)
 ControlSec:NewButton("Make message with ID", "message to send to chat", function()
 	setclipboard("roblox.com/library/"..IdSelected)
+	game:GetService("ReplicatedStorage").DefaultChatSystemChatEvents.SayMessageRequest:FireServer("roblox.com/library/"..IdSelected, "All")
 end)
 --More Tab
 MoreSection:NewButton("ReJoin", "Rejoin On the Server", function()
