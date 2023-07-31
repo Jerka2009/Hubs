@@ -233,6 +233,9 @@ function UpdateESP()
 			end
 		end
 	end
+end
+
+game:GetService("ReplicatedStorage").Remotes.Gameplay.RoundStart.OnClientEvent:Connect(function()
 	if murderer ~= "" and sheriff ~= "" then
 		if _G.NotifRole == true then
 			game.StarterGui:SetCore("SendNotification", {
@@ -250,26 +253,6 @@ function UpdateESP()
 			_G.NotifRole = false
 		end
 	end
-	wait(0.50)
-end
-
-function Enabl()
-	if _G.ESP == true then
-		ESPRepeat = game:GetService('RunService').Stepped:Connect(UpdateESP)
-	else
-		Clear()
-		ESPRepeat:Disconnect()
-		Clear()
-	end
-	
-end
-
-player.CharacterAdded:Connect(function(char)
-	Enabl()
-end)
-
-game:GetService("ReplicatedStorage").Remotes.Gameplay.RoundStart.OnClientEvent:Connect(function()
-    Enabl()
     print("Round started!")
 end)
 
@@ -303,6 +286,7 @@ game:GetService("Workspace").ChildAdded:Connect(function(part)
 			local tag = Instance.new("Highlight")
 			tag.Enabled = _G.ESP
 			tag.Parent = part
+			tag.Adornee = part
 			tag.Name = "GunESP"
 			tag.FillTransparency = 0.55
 			tag.FillColor = Color3.fromRGB(169, 51, 255)
@@ -711,4 +695,14 @@ CreditSection:NewButton("Idea by : Niky#8422", "Click to copy", function()
 	setclipboard("Niky#8422")
 end)
 
-Enabl()
+ESPRepeat = game:GetService('RunService').Stepped:Connect(function()
+	wait(0.2)
+	if _G.ESP == true then
+		UpdateESP()
+		wait(1)
+	else
+		Clear()
+		wait(1)
+	end
+	wait(2)
+end)
