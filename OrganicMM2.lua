@@ -489,6 +489,26 @@ end)
 MM2Section:NewButton("Teleport to gun [G]", "TP to gun", function()
 	GrabGun()
 end)
+MM2Section:NewButton("Blurt Roles", "message roles", function()
+	if murderer ~= "" and sheriff ~= "" then
+		if _G.NotifRole == true then
+			game.StarterGui:SetCore("SendNotification", {
+    Title = "Murder!";
+    Text = "Player "..murderer.." is murder!";
+    Icon = "11745872952";
+    Duration = "3";
+})
+			game.StarterGui:SetCore("SendNotification", {
+    Title = "Sheriff!";
+    Text = "Player "..sheriff.." is sheriff!";
+    Icon = "11745872952";
+    Duration = "3";
+})
+			game:GetService("ReplicatedStorage").DefaultChatSystemChatEvents.SayMessageRequest:FireServer("Murder is: "..murderer, "All")
+			game:GetService("ReplicatedStorage").DefaultChatSystemChatEvents.SayMessageRequest:FireServer("Sheriff is: "..sheriff, "All")
+		end
+	end
+end)
 MM2Section:NewToggle("Esp [On/Off]", "Turn on/off", function(state)
 	if state then
 		_G.ESP = true
