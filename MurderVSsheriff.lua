@@ -280,21 +280,23 @@ PlayerSection:NewToggle("Noclip", "On / Off", function(state)
     end
 end)
 
-MurderMSec:NewSlider("HitBox Size", "HitBox Size", 15, 10, function(v)
+MurderMSec:NewSlider("HitBox Size", "HitBox Size", 12, 8, function(v)
 	_G.HeadSize = v
 end)
-MurderMSec:NewToggle("HitBox [On/Off]", "info", function(state)
+MurderMSec:NewToggle("HitBox [On/Off]", "(Undetected)", function(state)
 	if state then
 		_G.Disabled = true
 	else
 		_G.Disabled = false
 	end
 end)
-MurderMSec:NewToggle("Silent Aim [undetected]", "[HARD function]", function(bool)
+MurderMSec:NewToggle("Silent Aim [Patched]", "[HARD function]", function(bool)
 	if bool then
-		_G.AIMin = true
+		print("Patched function")
+		--_G.AIMin = true
 	else
-		_G.AIMin = false
+		print("Patched function")
+		--_G.AIMin = false
 	end
 end)
 -- Tool Tab
