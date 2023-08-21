@@ -1,4 +1,4 @@
-local Library = loadstring(game:HttpGet("https://raw.githubusercontent.com/xHeptc/Kavo-UI-Library/main/source.lua"))()
+local Library = loadstring(game:HttpGet("https://raw.githubusercontent.com/vova999000333/Hubs/main/UI-LibraryOrganic.lua"))()
 local Window = Library.CreateLib("Organic - Murderers VS Sheriffs Duels", "Synapse")
 local Player = Window:NewTab("Player")
 local MurderM = Window:NewTab("Murd vs Sheriff")
