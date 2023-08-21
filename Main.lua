@@ -74,6 +74,7 @@ Sect:NewTextBox("Key", "kekekkek", function(txt)
 			writefile(FName, _G.Key)
 			wait()
 			MakeScriptHub()
+			Window:Delete()
 		end
   else
 		INcorrect()
