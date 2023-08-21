@@ -1,4 +1,4 @@
-local Library = loadstring(game:HttpGet("https://raw.githubusercontent.com/xHeptc/Kavo-UI-Library/main/source.lua"))()
+local Library = loadstring(game:HttpGet("https://raw.githubusercontent.com/vova999000333/Hubs/main/UI-LibraryOrganic.lua"))()
 local Window = Library.CreateLib("Organic - MM2", "Synapse")
 local Player = Window:NewTab("Player")
 local MM2Menu = Window:NewTab("MM2")
