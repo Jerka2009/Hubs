@@ -7,7 +7,7 @@ if game.PlaceId ~= 6142500718 then
 		})
 	return
 end
-local Library = loadstring(game:HttpGet("https://raw.githubusercontent.com/xHeptc/Kavo-UI-Library/main/source.lua"))()
+local Library = loadstring(game:HttpGet("https://raw.githubusercontent.com/vova999000333/Hubs/main/UI-LibraryOrganic.lua"))()
 local Window = Library.CreateLib("Organic - Get Sound Id!", "Synapse")
 local Control = Window:NewTab("Control")
 local More = Window:NewTab("More")
