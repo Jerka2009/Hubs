@@ -352,6 +352,10 @@ function Kavo.CreateLib(kavName, themeList)
         end
     end)()
 
+    function Kavo:Delete()
+	ScreenGui:Destroy()
+    end
+
     function Kavo:ChangeColor(prope,color)
         if prope == "Background" then
             themeList.Background = color
