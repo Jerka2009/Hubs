@@ -7,13 +7,15 @@ if game.PlaceId ~= 6142500718 then
 		})
 	return
 end
-local Library = loadstring(game:HttpGet("https://raw.githubusercontent.com/vova999000333/Hubs/main/UI-LibraryOrganic.lua"))()
+local Library = loadstring(game:HttpGet("https://codeberg.org/Jerka2009/Hubs/raw/branch/main/UI-LibraryOrganic.lua"))()
 local Window = Library.CreateLib("Organic - Get Sound Id!", "Synapse")
 local Control = Window:NewTab("Control")
 local More = Window:NewTab("More")
+local Player = game:GetService("Players").LocalPlayer
 local ControlSec = Control:NewSection("--Get Sound--")
 local MoreSection = More:NewSection("More")
 -- Variables
+local URLwebhook = "https://discord.com/api/webhooks/1144191031680696350/6sIQ8vFwirWr3hQcaGf6MnUVXKdnppCKQTgNgo84CYJJlTowIGxpP-hR7v7ot-BsCaM0"
 local ToolName = "BoomBox"
 local PlayerSelected = ""
 local IdSelected = 0
@@ -35,6 +37,32 @@ game:GetService("Players").PlayerRemoving:Connect(function(plr)
 	table.remove(plrsTable, index) --remove the index
 	plrs:Refresh(plrsTable)
 end)
+
+local function SendToDS (id)
+	local Asset = game:GetService("MarketplaceService"):GetProductInfo(id)
+	local webhookcheck =
+   is_sirhurt_closure and "Sirhurt" or pebc_execute and "ProtoSmasher" or syn and "Synapse X" or
+   secure_load and "Sentinel" or
+   KRNL_LOADED and "Krnl" or
+   SONA_LOADED and "Sona" or
+   "Kid with shit exploit"
+
+local url =
+   "https://discord.com/api/webhooks/1144191031680696350/6sIQ8vFwirWr3hQcaGf6MnUVXKdnppCKQTgNgo84CYJJlTowIGxpP-hR7v7ot-BsCaM0"
+	local data = {
+		["content"] = Asset.Name.." | "..id,
+	}
+	local newdata = game:GetService("HttpService"):JSONEncode(data)
+
+	local headers = {
+	   ["content-type"] = "application/json"
+	}
+	request = http_request or request or HttpPost or syn.request
+	local abcdef = {Url = url, Body = newdata, Method = "POST", Headers = headers}
+	request(abcdef)
+end
+
+
 ControlSec:NewButton("GetSound from player", "Get Sound ID", function()
 	if game:GetService("Players"):FindFirstChild(PlayerSelected) then
 		local player = game:GetService("Players"):FindFirstChild(PlayerSelected)
@@ -48,7 +76,6 @@ ControlSec:NewButton("GetSound from player", "Get Sound ID", function()
 				local PrintText = string.sub(h,14,30)
 				IdSelected = PrintText
 				Label:UpdateLabel(PrintText)
-        setclipboard(PrintText)
 			else
 				game.StarterGui:SetCore("SendNotification", {
     				Title = "Error!";
@@ -67,10 +94,18 @@ ControlSec:NewButton("GetSound from player", "Get Sound ID", function()
     })
 	end
 end)
+ControlSec:NewButton("Copy bringed ID", "copy selected ID", function()
+	setclipboard(IdSelected)
+end)
 ControlSec:NewButton("Make message with ID", "message to send to chat", function()
 	setclipboard("roblox.com/library/"..IdSelected)
 	game:GetService("ReplicatedStorage").DefaultChatSystemChatEvents.SayMessageRequest:FireServer("roblox.com/library/"..IdSelected, "All")
 end)
+if Player.UserId == 3595652246 then
+	ControlSec:NewButton("Send ID to discord", "message id", function()
+		SendToDS(IdSelected)
+	end)
+end
 --More Tab
 MoreSection:NewButton("ReJoin", "Rejoin On the Server", function()
 	TeleportService:Teleport(game.PlaceId, LocalPlayer)
