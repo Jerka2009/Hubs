@@ -15,7 +15,7 @@ local Player = game:GetService("Players").LocalPlayer
 local ControlSec = Control:NewSection("--Get Sound--")
 local MoreSection = More:NewSection("More")
 -- Variables
-local URLwebhook = "https://discord.com/api/webhooks/1144191031680696350/6sIQ8vFwirWr3hQcaGf6MnUVXKdnppCKQTgNgo84CYJJlTowIGxpP-hR7v7ot-BsCaM0"
+local URLwebhook = "https://discord.com/api/webhooks/1150170047810117753/KxWge7hZvHWlXPrKga5JrLpLKOkPR0mb_ZqVe5828ztv-Umsd96vbcmX6a11KkMOOb-R"
 local ToolName = "BoomBox"
 local PlayerSelected = ""
 local IdSelected = 0
