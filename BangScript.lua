@@ -114,6 +114,6 @@ notfunny:Play()
 notfunny:AdjustSpeed(10)
 while hummy.Parent.Parent ~= nil do
 wait()
-game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = game.Players[tbxVictim.Text].Character.HumanoidRootPart.CFrame
+game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = game.Players[tbxVictim.Text].Character.HumanoidRootPart.CFrame * game.Players[tbxVictim.Text].Character.HumanoidRootPart.CFrame.LookVector * -1
 end
 end)
