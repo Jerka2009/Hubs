@@ -29,11 +29,11 @@ local themes = {
 }
 -- Starting
 local plr = game:GetService("Players").LocalPlayer
-if plr:FindFirstChild("HasKey") ~= nil then
+--[[if plr:FindFirstChild("HasKey") ~= nil then
 	if plr:FindFirstChild("HasKey").Value == false then
 		plr:Kick("Invalid key!")
 	end
-end
+end]]
 -- Functions
 function randomString()
 	local length = math.random(10,20)
