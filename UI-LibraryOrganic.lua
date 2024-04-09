@@ -1365,7 +1365,7 @@ function Kavo.CreateLib(kavName, themeList)
                 UpdateSize()
                 local mouse = game:GetService("Players").LocalPlayer:GetMouse();
 
-                local ms = game.Players.LocalPlayer:GetMouse()
+                local ms = game:GetService("Players").LocalPlayer:GetMouse()
                 local uis = game:GetService("UserInputService")
                 local btn = sliderElement
                 local infBtn = viewInfo
@@ -1628,7 +1628,7 @@ function Kavo.CreateLib(kavName, themeList)
                 updateSectionFrame() 
                 UpdateSize()
 
-                local ms = game.Players.LocalPlayer:GetMouse()
+                local ms = game:GetService("Players").LocalPlayer:GetMouse()
                 local uis = game:GetService("UserInputService")
                 local infBtn = viewInfo
 
@@ -2488,7 +2488,7 @@ function Kavo.CreateLib(kavName, themeList)
                 end)()
                 updateSectionFrame()
                 UpdateSize()
-                local plr = game.Players.LocalPlayer
+                local plr = game:GetService("Players").LocalPlayer
                 local mouse = plr:GetMouse()
                 local uis = game:GetService('UserInputService')
                 local rs = game:GetService("RunService")
