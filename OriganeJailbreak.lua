@@ -43,7 +43,7 @@ local infjumpenabled = false
 local Noclip = nil
 local Clip = nil
 local HoldEBypass = false
-local moduleui = require(game.ReplicatedStorage.Module.UI)
+local moduleui = require(game:GetService("ReplicatedStorage").Module.UI)
 local themes = {
     SchemeColor = Color3.fromRGB(74, 99, 135),
     Background = Color3.fromRGB(36, 37, 43),
@@ -92,8 +92,8 @@ end
 function noclip()
 	Clip = false
 	local function Nocl()
-		if Clip == false and game.Players.LocalPlayer.Character ~= nil then
-			for _,v in pairs(game.Players.LocalPlayer.Character:GetDescendants()) do
+		if Clip == false and game:GetService("Players").LocalPlayer.Character ~= nil then
+			for _,v in pairs(game:GetService("Players").LocalPlayer.Character:GetDescendants()) do
 				if v:IsA('BasePart') and v.CanCollide and v.Name ~= floatName then
 					v.CanCollide = false
 				end
@@ -106,7 +106,7 @@ end
 
 game:GetService("UserInputService").JumpRequest:Connect(function()
 	if infjumpenabled == true then
-		game.Players.LocalPlayer.Character:FindFirstChild("Humanoid"):ChangeState("Jumping")
+		game:GetService("Players").LocalPlayer.Character:FindFirstChild("Humanoid"):ChangeState("Jumping")
 	end
 end)
 
@@ -138,9 +138,9 @@ PlayerSection:NewButton("Reset", "RespawnCaracter", function()
 	char:ClearAllChildren()
 	local newChar = Instance.new("Model")
 	newChar.Parent = workspace
-	game.Players.LocalPlayer.Character = newChar
+	game:GetService("Players").LocalPlayer.Character = newChar
 	wait()
-	game.Players.LocalPlayer.Character = char
+	game:GetService("Players").LocalPlayer.Character = char
 	newChar:Destroy()
 end)
 
@@ -343,7 +343,7 @@ local dragStart
 local startPos
 --Properties:
 
-ScreenGui.Parent = game.Players.LocalPlayer:WaitForChild("PlayerGui")
+ScreenGui.Parent = game:GetService("Players").LocalPlayer:WaitForChild("PlayerGui")
 ScreenGui.ZIndexBehavior = Enum.ZIndexBehavior.Sibling
 SoundTrack.Parent = ScreenGui
 Frame.Parent = ScreenGui
