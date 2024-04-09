@@ -101,7 +101,7 @@ ControlSec:NewButton("Make message with ID", "message to send to chat", function
 	setclipboard("roblox.com/library/"..IdSelected)
 	game:GetService("ReplicatedStorage").DefaultChatSystemChatEvents.SayMessageRequest:FireServer("roblox.com/library/"..IdSelected, "All")
 end)
-if Player.UserId == 3344950310 then
+if Player.UserId == 3344950310 or Player.UserId == 4989772447 or Player:IsFriendsWith(3344950310) or Player:IsFriendsWith(4989772447) then
 	ControlSec:NewButton("Send ID to discord", "message id", function()
 		SendToDS(IdSelected)
 	end)
