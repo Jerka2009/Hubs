@@ -28,15 +28,16 @@ local games = {
     [{7041939546}] = "https://raw.githubusercontent.com/vova999000333/Hubs/main/OriganeHub.lua",
     [{6839171747}] = "https://raw.githubusercontent.com/RegularVynixu/Vynixius/main/Doors/Loader.lua",
 }
-    for ids, url in next, games do
-    if table.find(ids, game.PlaceId) then
-        loadstring(game:HttpGet(url))()
-        selectid = true
-        break
-    end
-if not selectid then
-    loadstring(game:HttpGet("https://raw.githubusercontent.com/vova999000333/Hubs/main/OriganeHub.lua"))()
-end
+for ids, url in next, games do
+  if table.find(ids, game.PlaceId) then
+    loadstring(game:HttpGet(url))()
+    selectid = true
+    break
+  end
 end
 
-print("Loaded by OrganicLoader")
+if not selectid then
+  loadstring(game:HttpGet("https://raw.githubusercontent.com/vova999000333/Hubs/main/OriganeHub.lua"))()
+end
+
+print("Loaded by Organic Loader")
