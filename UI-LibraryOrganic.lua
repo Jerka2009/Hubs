@@ -689,7 +689,7 @@ function Kavo.CreateLib(kavName, themeList)
                 updateSectionFrame()
                                 UpdateSize()
 
-                local ms = game.Players.LocalPlayer:GetMouse()
+                local ms = game:GetService("Players").LocalPlayer:GetMouse()
 
                 local btn = buttonElement
                 local sample = Sample
@@ -1079,7 +1079,7 @@ function Kavo.CreateLib(kavName, themeList)
                     UICorner.CornerRadius = UDim.new(0, 4)
                     UICorner.Parent = moreInfo
 
-                    local ms = game.Players.LocalPlayer:GetMouse()
+                    local ms = game:GetService("Players").LocalPlayer:GetMouse()
 
                     if themeList.SchemeColor == Color3.fromRGB(255,255,255) then
                         Utility:TweenObject(moreInfo, {TextColor3 = Color3.fromRGB(0,0,0)}, 0.2)
@@ -1487,7 +1487,7 @@ function Kavo.CreateLib(kavName, themeList)
                 local UIListLayout = Instance.new("UIListLayout")
                 local Sample = Instance.new("ImageLabel")
 
-                local ms = game.Players.LocalPlayer:GetMouse()
+                local ms = game:GetService("Players").LocalPlayer:GetMouse()
                 Sample.Name = "Sample"
                 Sample.Parent = dropOpen
                 Sample.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
@@ -1715,7 +1715,7 @@ function Kavo.CreateLib(kavName, themeList)
                     local UICorner_2 = Instance.new("UICorner")
                     local Sample1 = Instance.new("ImageLabel")
 
-                    local ms = game.Players.LocalPlayer:GetMouse()
+                    local ms = game:GetService("Players").LocalPlayer:GetMouse()
                     Sample1.Name = "Sample1"
                     Sample1.Parent = optionSelect
                     Sample1.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
@@ -1814,7 +1814,7 @@ function Kavo.CreateLib(kavName, themeList)
                         local optionSelect = Instance.new("TextButton")
                         local UICorner_2 = Instance.new("UICorner")
                         local Sample11 = Instance.new("ImageLabel")
-                        local ms = game.Players.LocalPlayer:GetMouse()
+                        local ms = game:GetService("Players").LocalPlayer:GetMouse()
                         Sample11.Name = "Sample11"
                         Sample11.Parent = optionSelect
                         Sample11.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
@@ -1928,7 +1928,7 @@ function Kavo.CreateLib(kavName, themeList)
                 local Sample = Instance.new("ImageLabel")
                 local togName_2 = Instance.new("TextLabel")
 
-                local ms = game.Players.LocalPlayer:GetMouse()
+                local ms = game:GetService("Players").LocalPlayer:GetMouse()
                 local uis = game:GetService("UserInputService")
                 local infBtn = viewInfo
 
@@ -2133,7 +2133,7 @@ function Kavo.CreateLib(kavName, themeList)
                 callback = callback or function() end
                 defcolor = defcolor or Color3.fromRGB(1,1,1)
                 local h, s, v = Color3.toHSV(defcolor)
-                local ms = game.Players.LocalPlayer:GetMouse()
+                local ms = game:GetService("Players").LocalPlayer:GetMouse()
                 local colorOpened = false
                 local colorElement = Instance.new("TextButton")
                 local UICorner = Instance.new("UICorner")
