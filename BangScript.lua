@@ -16,8 +16,8 @@ local tbxVictim = Instance.new("TextBox")
 local UICorner_3 = Instance.new("UICorner")
 
 --Properties:
-if game.CoreGui:FindFirstChild("SexGuiOrganic") then
- game.CoreGui:FindFirstChild("SexGuiOrganic"):Destroy()
+if game.CoreGui:FindFirstChild("XXXGuiOrganic") then
+ game.CoreGui:FindFirstChild("XXXGuiOrganic"):Destroy()
 end
 
 ScreenGui.Name = "SexGuiOrganic"
