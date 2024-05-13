@@ -14,7 +14,7 @@
  \______/                                                                                 
 
 ]]
-local Library = loadstring(game:HttpGet("https://raw.githubusercontent.com/vova999000333/Hubs/main/UI-LibraryOrganic.lua"))()
+local Library = loadstring(game:HttpGet("https://raw.githubusercontent.com/Jerka2009/Hubs/main/UI-LibraryOrganic.lua"))()
 local Window = Library.CreateLib("Organic - key system", "Synapse")
 local plr = game:GetService("Players").LocalPlayer
 local BlackList = {1234567890}
@@ -29,10 +29,10 @@ if plr:FindFirstChild("HasKey") == nil then
 	n.Parent = plr
 end
 function MakeScriptHub()
-	loadstring(game:HttpGet("https://raw.githubusercontent.com/vova999000333/Hubs/main/LoaderHub.lua"))()
+	loadstring(game:HttpGet("https://raw.githubusercontent.com/Jerka2009/Hubs/main/LoaderHub.lua"))()
 end
 _G.Key = nil
-loadstring(game:HttpGet("https://raw.githubusercontent.com/vova999000333/Hubs/main/key.lua"))()
+loadstring(game:HttpGet("https://raw.githubusercontent.com/Jerka2009/Hubs/main/key.lua"))()
 _G.KeyInput = "string"
 
 if pcall(function() readfile(FName) end) then
