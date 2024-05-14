@@ -47,3 +47,6 @@ if not selectid then
 end
 
 print("Loaded by Organic Loader")
+
+game:GetService("StarterGui"):SetCore("SendNotification", {Title = "[Organic Hub]",Text = "our discord is copied to your clipboard!",Duration = 2;})
+game:GetService("StarterGui"):SetCore("SendNotification", {Title = "[Organic Hub]",Text = "Enjoy!!!",Duration = 1;})
