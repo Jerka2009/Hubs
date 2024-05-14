@@ -14,7 +14,8 @@ local Camera = game:GetService("Workspace").CurrentCamera
 local TeleportService = game:GetService("TeleportService")
 local ControlPlayerNick = ""
 local PlayersList = {}
-local Jokes = {"is clown!", "is bad", "pls leave", "goofy man"}
+local Jokes = {"is clown!", "is bad", "pls leave", "goofy man", "genius", "This is not toxic spam."}
+local Thx = {"is good!", "is cool", "is beautiful", "GG!", "GGWP!"}
 local themes = {
     SchemeColor = Color3.fromRGB(74, 99, 135),
     Background = Color3.fromRGB(36, 37, 43),
@@ -61,7 +62,29 @@ end)
 ControlSec:NewButton("Joke on player [Message]", "Joke message", function()
 	if ControlPlayerNick ~= "" or ControlPlayerNick ~= nil then
 		local g = ControlPlayerNick.." "..Jokes[math.random(1,#Jokes)]
-		game:GetService("TextChatService").TextChannels.RBXGeneral:SendAsync(g)
+		local sucess, err = pcall(function()
+			local args = {[1] = g,[2] = "All"}
+			game:GetService("ReplicatedStorage").DefaultChatSystemChatEvents.SayMessageRequest:FireServer(unpack(args))
+		end)
+		if err then
+			local s, er = pcall(function()
+				game:GetService("TextChatService").TextChannels.RBXGeneral:SendAsync(g)
+			end)
+		end
+	end
+end)
+ControlSec:NewButton("Thanking the player [Message]", "Thank message", function()
+	if ControlPlayerNick ~= "" or ControlPlayerNick ~= nil then
+		local g = ControlPlayerNick.." "..Thx[math.random(1,#Thx)]
+		local sucess, err = pcall(function()
+			local args = {[1] = g,[2] = "All"}
+			game:GetService("ReplicatedStorage").DefaultChatSystemChatEvents.SayMessageRequest:FireServer(unpack(args))
+		end)
+		if err then
+			local s, er = pcall(function()
+				game:GetService("TextChatService").TextChannels.RBXGeneral:SendAsync(g)
+			end)
+		end
 	end
 end)
 -- More Tab
