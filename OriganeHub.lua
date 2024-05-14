@@ -427,7 +427,15 @@ CreditSection:NewButton("Idea by : Niky#8422", "Click to copy", function()
 	setclipboard("Niky#8422")
 end)
 CreditSection:NewButton("ChatMessageIntro", "Click to send in rbx chat", function()
-	game:GetService("TextChatService").TextChannels.RBXGeneral:SendAsync("[Organic hub] UI made by Jere2009")
+	local sucess, err = pcall(function()
+		local args = {[1] = "[Organic hub] UI made by Jere2009",[2] = "All"}
+		game:GetService("ReplicatedStorage").DefaultChatSystemChatEvents.SayMessageRequest:FireServer(unpack(args))
+	end)
+	if err then
+		local s, er = pcall(function()
+			game:GetService("TextChatService").TextChannels.RBXGeneral:SendAsync("[Organic hub] UI made by Jere2009")
+		end)
+	end
 end)
 while DEnabled do
 	X, Y = Mouse.X, Mouse.Y
