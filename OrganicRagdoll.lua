@@ -425,7 +425,7 @@ end)
 RESection:NewButton("Remove LocalRagdoll", "Use every time after spawning", function()
 	local ragdoll1 = game:GetService("Players").LocalPlayer.Character:FindFirstChild("Local Ragdoll")
 	if ragdoll1 then
-		ragdoll:Remove()
+		ragdoll1:Remove()
 	end
 end)
 RESection:NewToggle("TouchFling", "On / Off", function(state)
