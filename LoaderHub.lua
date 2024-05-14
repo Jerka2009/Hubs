@@ -16,7 +16,13 @@ loadstring(game:HttpGet("https://raw.githubusercontent.com/Jerka2009/Hubs/main/i
 local selectid = false
 local plr = game:GetService("Players").LocalPlayer
 local games = {
-    [{9848789324}] = "https://raw.githubusercontent.com/i4mitty/MysteryHub/main/MysteryHub%20-%20Ragdoll%20Engine.lua",
+  --- Ragdolls
+    [{9848789324}] = "https://raw.githubusercontent.com/Jerka2009/Hubs/main/OrganicRagdoll.lua",
+    [{5683833663}] = "https://raw.githubusercontent.com/Jerka2009/Hubs/main/OrganicRagdoll.lua",
+    [{5950733731}] = "https://raw.githubusercontent.com/Jerka2009/Hubs/main/OrganicRagdoll.lua",
+    [{6584731191}] = "https://raw.githubusercontent.com/Jerka2009/Hubs/main/OrganicRagdoll.lua",
+    [{15162407879}] = "https://raw.githubusercontent.com/Jerka2009/Hubs/main/OrganicRagdoll.lua",
+  --- Other games
     [{606849621}] = "https://raw.githubusercontent.com/Jerka2009/Hubs/main/OriganeJailbreak.lua",
     [{1224212277}] = "https://raw.githubusercontent.com/Jerka2009/Hubs/main/OriganeMadCity.lua",
     [{12355337193}] = "https://raw.githubusercontent.com/Jerka2009/Hubs/main/MurderVSsheriff.lua",
