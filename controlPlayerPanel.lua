@@ -22,16 +22,20 @@ local themes = {
     Header = Color3.fromRGB(28, 29, 34),
     TextColor = Color3.fromRGB(255,255,255),
     ElementColor = Color3.fromRGB(32, 32, 38)
-}
+}	
 -- Control
 for _, plr in pairs(game:GetService("Players"):GetPlayers()) do
-	table.insert(PlayersList, plr.Name)
+	if plr.UserId ~= LocalPlayer.UserId then
+		table.insert(PlayersList, plr.Name)
+	end
 end
 local dropPlayer = ControlSec:NewDropdown("Player", "PlayerList", PlayersList, function(currentOption)
     ControlPlayerNick = currentOption
 end)
 game:GetService("Players").PlayerAdded:Connect(function(plr)
-	table.insert(PlayersList, plr.Name)
+	if plr.UserId ~= LocalPlayer.UserId then
+		table.insert(PlayersList, plr.Name)
+	end
 	dropPlayer:Refresh(PlayersList)
 end)
 game:GetService("Players").PlayerRemoving:Connect(function(plr)
