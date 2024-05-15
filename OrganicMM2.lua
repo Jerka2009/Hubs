@@ -445,3 +445,7 @@ end)
 CreditSection:NewButton("Idea by : Niky#8422", "Click to copy", function()
 	setclipboard("Niky#8422")
 end)
+CreditSection:NewButton("ChatMessageIntro", "Click to send in rbx chat", function()
+	local args = {[1] = "[Organic hub] Functional made by Jere2009",[2] = "All"}
+	game:GetService("ReplicatedStorage").DefaultChatSystemChatEvents.SayMessageRequest:FireServer(unpack(args))
+end)
