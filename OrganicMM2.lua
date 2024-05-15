@@ -196,7 +196,7 @@ PlayerSection:NewToggle("Spin", "On / Off", function(state)
 		Spin.MaxTorque = Vector3.new(0, math.huge, 0)
 		Spin.AngularVelocity = Vector3.new(0,_G.SpinSpeedy,0)
     else
-		game:GetService("Players").LocalPlayer.Character.HumanoidRootPartx:WaitForChild("Spinning"):Destroy()
+		game:GetService("Players").LocalPlayer.Character.HumanoidRootPart:WaitForChild("Spinning"):Destroy()
     end
 end)
 
