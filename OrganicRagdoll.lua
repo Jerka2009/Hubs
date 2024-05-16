@@ -5,7 +5,7 @@ local HttpService = game:GetService("HttpService")
 local httprequest = (syn and syn.request) or (http and http.request) or http_request or request
 
 local Library = loadstring(game:HttpGet("https://raw.githubusercontent.com/vova999000333/Hubs/main/UI-LibraryOrganic.lua"))()
-local Window = Library.CreateLib("Organic - Ragdoll Engine", "LightTheme")
+local Window = Library.CreateLib("Organic - Ragdoll Engine", "Sentinel")
 -- Tabs --
 local Player = Window:NewTab("Player")
 local REMenu = Window:NewTab("Ragdoll")
@@ -355,7 +355,11 @@ PlayerSection:NewSlider("Walkspeed", "Changes the walkspeed", 250, 16, function(
 	game:GetService("Players").LocalPlayer.Character.Humanoid.WalkSpeed = v
 end)
 PlayerSection:NewSlider("Jumppower", "Changes the jumppower", 250, 50, function(v)
-	game:GetService("Players").LocalPlayer.Character.Humanoid.JumpPower = v
+	if game:GetService("Players").LocalPlayer.Character.Humanoid.UseJumpPower then
+		game:GetService("Players").LocalPlayer.Character.Humanoid.JumpPower = v
+	else
+		game:GetService("Players").LocalPlayer.Character.Humanoid.JumpHeight = v
+	end
 end)
 PlayerSection:NewSlider("Spin Speed", "Changes the speed", 500, 100, function(v)
 	_G.SpinSpeedy = v
@@ -1058,6 +1062,19 @@ end)
 CreditSection:NewKeybind("Toggle Gui", "Show / Hide Gui", Enum.KeyCode.X, function()
 	Library:ToggleUI()
 end)
+CreditSection:NewButton("Chat alert", "Broking a chat fliter", function()
+	for i = 1,3 do
+		local sucess, err = pcall(function()
+			local args = {[1] = "\u{205F}",[2] = "All"}
+			game:GetService("ReplicatedStorage").DefaultChatSystemChatEvents.SayMessageRequest:FireServer(unpack(args))
+		end)
+		if err then
+			local s, er = pcall(function()
+				game:GetService("TextChatService").TextChannels.RBXGeneral:SendAsync("\u{205F}")
+			end)
+		end
+	end
+end)
 CreditSection:NewButton("Created by : @Jerkaa2009", "Click to copy", function()
 	setclipboard("anti__furry")
 end)
@@ -1065,5 +1082,13 @@ CreditSection:NewButton("Idea by : Niky#8422", "Click to copy", function()
 	setclipboard("Niky#8422")
 end)
 CreditSection:NewButton("ChatMessageIntro", "Click to send in rbx chat", function()
-	game:GetService("TextChatService").TextChannels.RBXGeneral:SendAsync("[Organic hub] functions made by Jere2009")
+	local sucess, err = pcall(function()
+		local args = {[1] = "[Organic hub] functions made by Jere2009",[2] = "All"}
+		game:GetService("ReplicatedStorage").DefaultChatSystemChatEvents.SayMessageRequest:FireServer(unpack(args))
+	end)
+	if err then
+		local s, er = pcall(function()
+			game:GetService("TextChatService").TextChannels.RBXGeneral:SendAsync("[Organic hub] functions made by Jere2009")
+		end)
+	end
 end)
