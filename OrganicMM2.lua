@@ -19,6 +19,8 @@ local infjumpenabled = false
 local ESP = false
 local PlayersList = {}
 local printvar = false
+local murderer = "None"
+local sheriff = "None"
 local ControlPlayerNick = ""
 local MapsTable = {"Bank2", "Mansion2", "Hospital3", "Hotel2", "House2", "MilBase", "nStudio", "Office3", "PoliceStation", "ResearchFacility", "Workplace"}
 local player = game:GetService("Players").LocalPlayer
@@ -93,8 +95,9 @@ function getRoleColor(plr)
  end
 
 function Clear() --Clears all the esps
-	for _,g in pairs(game:GetService("Players"):GetPlayers()) do
-		if g.Character:FindFirstChild("Highlight") then
+	for _,g in pairs(game:GetService("Players"):GetChildren()) do
+		if g.Character:FindFirstChild("TadachiisESPTags") and g.Character:FindFirstChild("Highlight") then
+			g.Character:FindFirstChild("TadachiisESPTags"):Destroy()
 			g.Character:FindFirstChild("Highlight"):Destroy()
 		end
 	end
@@ -102,36 +105,58 @@ end
 
 function UpdateESP()
 	for _, v in pairs(game:GetService("Players"):GetChildren()) do
-		if v ~= game:GetService("Players").LocalPlayer and v.Character and not v.Character:FindFirstChild("Highlight") then
+		if v ~= game:GetService("Players").LocalPlayer and v.Character and not v.Character:FindFirstChild("TadachiisESPTags") and not v.Character:FindFirstChild("Highlight") then
+            local billboardGui = Instance.new("BillboardGui")
+            billboardGui.Name = "TadachiisESPTags" -- Use the correct name for the BillboardGui
+            billboardGui.Adornee = v.Character.Head
+            billboardGui.Size = UDim2.new(0, 100, 0, 50) -- fixed size for the BillboardGui
+            billboardGui.StudsOffset = Vector3.new(0, 2, 0) -- adjust the vertical offset as needed
+            billboardGui.AlwaysOnTop = true
+            billboardGui.LightInfluence = 1
+            billboardGui.ZIndexBehavior = Enum.ZIndexBehavior.Sibling
+            billboardGui.Parent = v.Character
+	
+            local textLabel = Instance.new("TextLabel")
+            textLabel.Name = "NameLabel" -- Use the correct name for the label
+            textLabel.Text = "@"..v.Name.." ( "..v.DisplayName.." )"
+            textLabel.Size = UDim2.new(1, 0, 1, 0)
+            textLabel.BackgroundTransparency = 1 -- transparent background
+            textLabel.TextColor3 = getRoleColor(v)
+            textLabel.TextScaled = true
+            textLabel.TextStrokeColor3 = Color3.new(0, 0, 0) -- black text stroke
+            textLabel.TextStrokeTransparency = 0 -- fully opaque text stroke (visible through walls)
+            textLabel.Visible = true -- ESP is always visible without a GUI
+            textLabel.Parent = billboardGui
+
 			Instance.new("Highlight", v.Character)
-			v.Character.Highlight.FillTransparency = 0.5
-			v.Character.Highlight.OutlineTransparency = 0.5
+           	v.Character.Highlight.FillTransparency = 0.9
+           	v.Character.Highlight.OutlineTransparency = 0.9
+           	v.Character.Highlight.FillColor = getRoleColor(v)
+
+        elseif (v ~= game:GetService("Players").LocalPlayer and v.Character and v.Character:FindFirstChild("TadachiisESPTags")) and v.Character:FindFirstChild("Highlight") then
+			v.Character:FindFirstChild("TadachiisESPTags").NameLabel.TextColor3 = getRoleColor(v)
 			v.Character.Highlight.FillColor = getRoleColor(v)
-		elseif (v ~= game:GetService("Players").LocalPlayer and v.Character and v.Character:FindFirstChild("Highlight")) then
-			v.Character.Highlight.FillColor = getRoleColor(v)
-		end
+        end
 	end
 end
+game:GetService("ReplicatedStorage").Remotes.Gameplay.RoundEndFade.OnClientEvent:Connect(function()
+	murderer = "None"
+	sheriff = "None"
+end)
 
 game:GetService("ReplicatedStorage").Remotes.Gameplay.RoundStart.OnClientEvent:Connect(function()
-	if murderer ~= "" and sheriff ~= "" then
-		if _G.NotifRole == true then
-			game.StarterGui:SetCore("SendNotification", {
-    Title = "Murder!";
-    Text = "Player "..murderer.." is murder!";
-    Icon = "11745872952";
-    Duration = "3";
-})
-			game.StarterGui:SetCore("SendNotification", {
-    Title = "Sheriff!";
-    Text = "Player "..sheriff.." is sheriff!";
-    Icon = "11745872952";
-    Duration = "3";
-})
-			_G.NotifRole = false
+	print("Round started!")
+	print("Finding a murder with sheriff...")
+	for _, v in pairs(game:GetService("Players"):GetPlayers()) do
+		if (v.Backpack:FindFirstChild("Knife") or v.Character:FindFirstChild("Knife")) then
+			murderer = v.Name
+		elseif (v.Backpack:FindFirstChild("Gun") or v.Character:FindFirstChild("Gun")) then
+			sheriff = v.Name
 		end
 	end
-    print("Round started!")
+	if murderer ~= "None" and sheriff ~= "None" then
+		print("All founded!")
+	end
 end)
 
 UserInputService.InputBegan:Connect(function(key, busy)
@@ -158,22 +183,6 @@ function clip()
 	if Noclip then Noclip:Disconnect() end
 	Clip = true
 end
-game:GetService("Workspace").ChildAdded:Connect(function(part)
-	if part.Name == "GunDrop" then
-		if ESP == true then
-			local tag = Instance.new("Highlight")
-			tag.Enabled = _G.ESP
-			tag.Parent = part
-			tag.Adornee = part
-			tag.Name = "GunESP"
-			tag.FillTransparency = 0.55
-			tag.FillColor = Color3.fromRGB(169, 51, 255)
-			tag.DepthMode = Enum.HighlightDepthMode.AlwaysOnTop
-		end
-	else
-		return
-	end
-end)
 -- Player Tab
 
 PlayerSection:NewSlider("Walkspeed", "Changes the walkspeed", 250, 16, function(v)
@@ -198,10 +207,6 @@ PlayerSection:NewToggle("Spin", "On / Off", function(state)
     else
 		game:GetService("Players").LocalPlayer.Character.HumanoidRootPart:WaitForChild("Spinning"):Destroy()
     end
-end)
-
-PlayerSection:NewButton("Blurt role", "turn on blurt roles", function()
-	_G.NotifRole = true
 end)
 
 for _, plr in pairs(game:GetService("Players"):GetPlayers()) do
@@ -232,10 +237,10 @@ end)
 
 PlayerSection:NewButton("Fly [E]", "Press 'E' to fly", function()
 	repeat wait() 
-	until game.Players.LocalPlayer and game.Players.LocalPlayer.Character and game.Players.LocalPlayer.Character:findFirstChild("UpperTorso") and game.Players.LocalPlayer.Character:findFirstChild("Humanoid") 
-	local mouse = game.Players.LocalPlayer:GetMouse() 
+	until game:GetService("Players").LocalPlayer and game:GetService("Players").LocalPlayer.Character and game:GetService("Players").LocalPlayer.Character:findFirstChild("UpperTorso") and game:GetService("Players").LocalPlayer.Character:findFirstChild("Humanoid") 
+	local mouse = game:GetService("Players").LocalPlayer:GetMouse() 
 	repeat wait() until mouse
-	local plr = game.Players.LocalPlayer 
+	local plr = game:GetService("Players").LocalPlayer 
 	local torso = plr.Character.UpperTorso 
 	local flying = true
 	local deb = true 
@@ -353,22 +358,18 @@ MM2Section:NewButton("Teleport to gun [G]", "TP to gun", function()
 end)
 MM2Section:NewButton("Blurt Roles", "message roles", function()
 	if murderer ~= "" and sheriff ~= "" then
-		if _G.NotifRole == true then
-			game.StarterGui:SetCore("SendNotification", {
-    Title = "Murder!";
-    Text = "Player "..murderer.." is murder!";
-    Icon = "11745872952";
-    Duration = "3";
-})
-			game.StarterGui:SetCore("SendNotification", {
-    Title = "Sheriff!";
-    Text = "Player "..sheriff.." is sheriff!";
-    Icon = "11745872952";
-    Duration = "3";
-})
-			game:GetService("ReplicatedStorage").DefaultChatSystemChatEvents.SayMessageRequest:FireServer("Murder is: "..murderer, "All")
-			game:GetService("ReplicatedStorage").DefaultChatSystemChatEvents.SayMessageRequest:FireServer("Sheriff is: "..sheriff, "All")
-		end
+		game.StarterGui:SetCore("SendNotification", {
+			Title = "Murder!";
+			Text = "Player "..murderer.." is murder!";
+			Icon = "11745872952";
+			Duration = "3";
+		})
+		game.StarterGui:SetCore("SendNotification", {
+			Title = "Sheriff!";
+			Text = "Player "..sheriff.." is sheriff!";
+			Icon = "11745872952";
+			Duration = "3";
+		})
 	end
 end)
 MM2Section:NewToggle("Esp [On/Off]", "Turn on/off", function(state)
