@@ -22,7 +22,6 @@ local printvar = false
 local murderer = "None"
 local sheriff = "None"
 local ControlPlayerNick = ""
-local MapsTable = {"Bank2", "Mansion2", "Hospital3", "Hotel2", "House2", "MilBase", "nStudio", "Office3", "PoliceStation", "ResearchFacility", "Workplace"}
 local player = game:GetService("Players").LocalPlayer
 local Noclip = nil
 local Clip = nil
@@ -95,7 +94,7 @@ function getRoleColor(plr)
  end
 
 function Clear() --Clears all the esps
-	for _,g in pairs(game:GetService("Players"):GetChildren()) do
+	for _, g in pairs(game:GetService("Players"):GetChildren()) do
 		if g.Character:FindFirstChild("TadachiisESPTags") and g.Character:FindFirstChild("Highlight") then
 			g.Character:FindFirstChild("TadachiisESPTags"):Destroy()
 			g.Character:FindFirstChild("Highlight"):Destroy()
@@ -133,7 +132,7 @@ function UpdateESP()
            	v.Character.Highlight.OutlineTransparency = 0.9
            	v.Character.Highlight.FillColor = getRoleColor(v)
 
-        elseif (v ~= game:GetService("Players").LocalPlayer and v.Character and v.Character:FindFirstChild("TadachiisESPTags")) and v.Character:FindFirstChild("Highlight") then
+        elseif (v ~= game:GetService("Players").LocalPlayer and v.Character and v.Character:FindFirstChild("TadachiisESPTags") and v.Character:FindFirstChild("Highlight")) then
 			v.Character:FindFirstChild("TadachiisESPTags").NameLabel.TextColor3 = getRoleColor(v)
 			v.Character.Highlight.FillColor = getRoleColor(v)
         end
@@ -375,10 +374,6 @@ end)
 MM2Section:NewToggle("Esp [On/Off]", "Turn on/off", function(state)
 	if state then
 		ESP = true
-		while ESP == true do
-			UpdateESP()
-			wait(0.1)
-		end
 	else
 		ESP = false
 		Clear()
@@ -450,3 +445,11 @@ CreditSection:NewButton("ChatMessageIntro", "Click to send in rbx chat", functio
 	local args = {[1] = "[Organic hub] Functional made by Jere2009",[2] = "All"}
 	game:GetService("ReplicatedStorage").DefaultChatSystemChatEvents.SayMessageRequest:FireServer(unpack(args))
 end)
+
+game:GetService("RunService").Heartbeat:Connect(function()
+	if ESP == true then
+		UpdateESP()
+		wait(0.1)
+	end
+	wait(0.1)
+end
