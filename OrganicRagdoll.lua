@@ -5,7 +5,7 @@ local HttpService = game:GetService("HttpService")
 local httprequest = (syn and syn.request) or (http and http.request) or http_request or request
 
 local Library = loadstring(game:HttpGet("https://raw.githubusercontent.com/vova999000333/Hubs/main/UI-LibraryOrganic.lua"))()
-local Window = Library.CreateLib("Organic - Ragdoll Engine", "Serpent")
+local Window = Library.CreateLib("Organic - Ragdoll Engine", "LightTheme")
 -- Tabs --
 local Player = Window:NewTab("Player")
 local REMenu = Window:NewTab("Ragdoll")
@@ -29,6 +29,7 @@ local plr = game:GetService("Players").LocalPlayer
 local Players = game:GetService("Players")
 
 local Chatmsg = ""
+local AnimId = ""
 
 local Tfling = false
 local Tview = false
@@ -395,8 +396,8 @@ PlayerSection:NewButton("Send message", "Textbox should not be empty", function(
 			local args = {[1] = Chatmsg,[2] = "All"}
 			game:GetService("ReplicatedStorage").DefaultChatSystemChatEvents.SayMessageRequest:FireServer(unpack(args))
 		end)
-			if err then
-				local s, er = pcall(function()
+		if err then
+			local s, er = pcall(function()
 				game:GetService("TextChatService").TextChannels.RBXGeneral:SendAsync(Chatmsg)
 			end)
 		end
@@ -425,7 +426,7 @@ end)
 RESection:NewButton("Remove LocalRagdoll", "Use every time after spawning", function()
 	local ragdoll1 = game:GetService("Players").LocalPlayer.Character:FindFirstChild("Local Ragdoll")
 	if ragdoll1 then
-		ragdoll1:Remove()
+		ragdoll:Remove()
 	end
 end)
 RESection:NewToggle("TouchFling", "On / Off", function(state)
@@ -495,6 +496,36 @@ RESection:NewButton("Push all", "Teleporting to all and pushing", function()
 		end)
 	end
 	TeleportTO(oldpos.X,oldpos.Y,oldpos.Z,"pos","safe")
+end)
+RESection:NewButton("PlayAnim", "", function()
+	if AnimId ~= "" or AnimId ~= nil then
+		local hum = plr.Character.Humanoid
+		local animtrack = hum:GetPlayingAnimationTracks()
+		for i,track in pairs(animtrack) do
+			track:Stop()
+		end
+		plr.Character.Animate.Disabled = true
+		local Anim = Instance.new("Animation")
+		Anim.AnimationId = "rbxassetid://"..tonumber(AnimId)
+		local loadanim = hum:LoadAnimation(Anim)
+		loadanim:Play()
+		loadanim.TimePosition = 0
+		loadanim:AdjustSpeed(1)
+		loadanim.Stopped:Connect(function()
+			plr.Character.Animate.Disabled = false
+			for i, track in pairs (animtrack) do
+				track:Stop()
+			end
+		end)
+	end
+end)
+RESection:NewButton("StopAnim", "", function()
+	StopAnim()
+end)
+RESection:NewTextBox("Animation ID", "Only R15", function(txt)
+	if tonumber(txt) then
+		AnimId = txt
+	end
 end)
 local flying = true
 local deb = true
@@ -1026,15 +1057,6 @@ end)
 -- Credits
 CreditSection:NewKeybind("Toggle Gui", "Show / Hide Gui", Enum.KeyCode.X, function()
 	Library:ToggleUI()
-end)
-CreditSection:NewButton("Chat alert","breaking chat filter",function()
-for i = 1,3 do
-		local args = {[1] = "\u{205F}",[2] = "All"}
-		game:GetService("ReplicatedStorage").DefaultChatSystemChatEvents.SayMessageRequest:FireServer(unpack(args))
-	end
-end)
-CreditSection:NewButton("Radio Gui", "Play your own sounds [Visual]", function()
-	loadstring(game:HttpGet("https://raw.githubusercontent.com/Jerka2009/Hubs/main/MusicGui.lua"))()
 end)
 CreditSection:NewButton("Created by : @Jerkaa2009", "Click to copy", function()
 	setclipboard("anti__furry")
