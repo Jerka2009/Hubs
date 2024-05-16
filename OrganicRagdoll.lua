@@ -1027,6 +1027,12 @@ end)
 CreditSection:NewKeybind("Toggle Gui", "Show / Hide Gui", Enum.KeyCode.X, function()
 	Library:ToggleUI()
 end)
+CreditSection:NewButton("Chat alert","breaking chat filter",function()
+for i = 1,3 do
+		local args = {[1] = "\u{205F}",[2] = "All"}
+		game:GetService("ReplicatedStorage").DefaultChatSystemChatEvents.SayMessageRequest:FireServer(unpack(args))
+	end
+end)
 CreditSection:NewButton("Radio Gui", "Play your own sounds [Visual]", function()
 	loadstring(game:HttpGet("https://raw.githubusercontent.com/Jerka2009/Hubs/main/MusicGui.lua"))()
 end)
