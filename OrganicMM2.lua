@@ -35,6 +35,10 @@ local themes = {
 -- Starting
 local plr = game:GetService("Players").LocalPlayer
 
+local function SendNotify(title, message, duration)
+	game:GetService("StarterGui"):SetCore("SendNotification", {Title = title,Text = message,Duration = duration;})
+end
+
 function randomString()
 	local length = math.random(10,20)
 	local array = {}
@@ -72,7 +76,7 @@ function GrabGun()
 	if workspace.GunDrop.CFrame ~= nil then
 		local lastCF = game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.CFrame
 		wait(0.1)
-		game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.CFrame = game.Workspace.GunDrop.CFrame
+		game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.CFrame = game:GetService("Workspace").GunDrop.CFrame
 		wait(0.5)
 		game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.CFrame = lastCF
 	else
@@ -81,6 +85,23 @@ function GrabGun()
 			print("Gun not currently dropped")
 		end
 	end 
+end
+
+function KillAll()
+	local Players = game:GetService("Players")	
+	if plr.Character:FindFirstChild("Knife") then
+		for i, Victim in pairs(Players:GetPlayers()) do
+			if Victim.Name ~= Players.LocalPlayer.Name then
+				repeat wait(0.1)
+					Players.LocalPlayer.Character.HumanoidRootPart.CFrame = Victim.Character.HumanoidRootPart.CFrame * CFrame.new(0, 0, 1)
+					plr.Character:FindFirstChild("Knife"):Activate()
+				until
+					Victim.Character.Humanoid.Health == 0
+			end
+		end
+	else
+		SendNotify("Organic MM2","You're not a murderer",3)
+	end
 end
 
 function getRoleColor(plr)
@@ -356,6 +377,9 @@ MM2Section:NewButton("Tp to Lobby", "Teleporter", function()
 end)
 MM2Section:NewButton("Teleport to gun [G]", "TP to gun", function()
 	GrabGun()
+end)
+MM2Section:NewButton("Kill all", "Only for murderer", function()
+	KillAll()
 end)
 MM2Section:NewButton("Blurt Roles", "message roles", function()
 	if murderer ~= "" and sheriff ~= "" then
