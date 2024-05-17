@@ -452,4 +452,4 @@ game:GetService("RunService").Heartbeat:Connect(function()
 		wait(0.1)
 	end
 	wait(0.1)
-end
+end)
