@@ -3,10 +3,10 @@ local Library = loadstring(game:HttpGet("https://raw.githubusercontent.com/Jerka
 local Window = Library.CreateLib("Organic - Musics/Memes texts (For textchat)", "Synapse")
 
 local Texts = Window:NewTab("Texts")
-local MSection = Texts:NewSection("Napoleon (Amour plastique)")
 
+local MSection = Texts:NewSection("Musics")
 local Music = {
-	["Napoleon"] = {
+	["Napoleon (Amour plastique)"] = {
 		[1] = "Dans mon esprit tout divague\nJe me perds dans tes yeux",
 		[2] = "Je me noie dans la vague de ton regard amoureux\nJe ne veux que ton âme divaguant sur ma peau",
 		[3] = "Une fleur, une femme dans ton cœur Roméo\nJe ne suis que ton nom, le souffle lancinant",
