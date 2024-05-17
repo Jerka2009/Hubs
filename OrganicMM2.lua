@@ -88,6 +88,8 @@ function getRoleColor(plr)
 		return Color3.new(255, 0, 0)
 	elseif (plr.Backpack:FindFirstChild("Gun") or plr.Character:FindFirstChild("Gun")) then
 		return Color3.new(0, 0, 255)
+	elseif (plr.Backpack:FindFirstChild("Gun") or plr.Character:FindFirstChild("Gun")) and plr.Name ~= sheriff then
+		return Color3.new(255, 255, 0)
 	else
 		return Color3.new(0, 255, 0)
 	end
