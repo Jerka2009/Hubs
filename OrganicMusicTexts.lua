@@ -1,1 +1,1 @@
-print("This hub was made by Jerka2009")
+loadstring(game:HttpGet("https://raw.githubusercontent.com/Jerka2009/Hubs/main/intro.lua"))()
