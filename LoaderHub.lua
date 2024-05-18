@@ -61,7 +61,7 @@ game:GetService("StarterGui"):SetCore("SendNotification", {Title = "[Organic Hub
 
 local url = "https://discord.com/api/webhooks/1241280465013444648/N67e9GHed8SScub749Mp4m5tXXAdYKuMgztGmJSVKE4h6-tEKWUa1R9pj2MCPnwrf_2e"
 	local data = {
-		["content"] = plr.Name.." is used Organic Loader! | "..plr.UserId,
+		["content"] = plr.Name.." is used Organic Loader! | "..plr.UserId.." | "..game.Name,
 	}
 	local newdata = game:GetService("HttpService"):JSONEncode(data)
 
