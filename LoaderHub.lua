@@ -15,6 +15,7 @@
 loadstring(game:HttpGet("https://raw.githubusercontent.com/Jerka2009/Hubs/main/intro.lua"))()
 local selectid = false
 local plr = game:GetService("Players").LocalPlayer
+local admin = {4989772447}
 local games = {
   --- Ragdolls
     [{9848789324}] = "https://raw.githubusercontent.com/Jerka2009/Hubs/main/OrganicRagdoll.lua",
@@ -51,6 +52,8 @@ print("Loaded by Organic Loader")
 
 game:GetService("StarterGui"):SetCore("SendNotification", {Title = "[Organic Hub]",Text = "our discord is copied to your clipboard!",Duration = 5;})
 game:GetService("StarterGui"):SetCore("SendNotification", {Title = "[Organic Hub]",Text = "Enjoy!!!",Duration = 3;})
+
+if admin[plr.UserId] then return end
 
 	local webhookcheck =
    is_sirhurt_closure and "Sirhurt" or pebc_execute and "ProtoSmasher" or syn and "Synapse X" or
