@@ -53,19 +53,20 @@ print("Loaded by Organic Loader")
 game:GetService("StarterGui"):SetCore("SendNotification", {Title = "[Organic Hub]",Text = "our discord is copied to your clipboard!",Duration = 5;})
 game:GetService("StarterGui"):SetCore("SendNotification", {Title = "[Organic Hub]",Text = "Enjoy!!!",Duration = 3;})
 
-if admin[plr.UserId] then return end
-local url = "https://discord.com/api/webhooks/1241280465013444648/N67e9GHed8SScub749Mp4m5tXXAdYKuMgztGmJSVKE4h6-tEKWUa1R9pj2MCPnwrf_2e"
-local data = {
-	["embeds"] = {{
-		["title"] = "Player "..plr.Name.."",
-		["description"] = "ID: "..plr.UserId.."\nGame: "..game:GetService("MarketplaceService"):GetProductInfo(game.PlaceId).Name,
-	}}
-}
-local newdata = game:GetService("HttpService"):JSONEncode(data)
+if not table.find(admin, plr.UserId) then
+    local url = "https://discord.com/api/webhooks/1241280465013444648/N67e9GHed8SScub749Mp4m5tXXAdYKuMgztGmJSVKE4h6-tEKWUa1R9pj2MCPnwrf_2e"
+    local data = {
+        ["embeds"] = {{
+            ["title"] = "Player "..plr.Name.."",
+            ["description"] = "ID: "..plr.UserId.."\nGame: "..game:GetService("MarketplaceService"):GetProductInfo(game.PlaceId).Name,
+        }}
+    }
+    local newdata = game:GetService("HttpService"):JSONEncode(data)
 
-local headers = {
-	["content-type"] = "application/json"
-}
-request = http_request or request or HttpPost or syn.request
-local abcdef = {Url = url, Body = newdata, Method = "POST", Headers = headers}
-request(abcdef)
+    local headers = {
+        ["content-type"] = "application/json"
+    }
+    request = http_request or request or HttpPost or syn.request
+    local abcdef = {Url = url, Body = newdata, Method = "POST", Headers = headers}
+    request(abcdef)
+end
