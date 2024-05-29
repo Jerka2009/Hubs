@@ -12,7 +12,7 @@
  \______/                                                                                 
 
 ]]
-if _G.OrganicLoaded ~= nil and _G.OrganicLoaded then
+if _G.OrganicLoaded then
   game:GetService("StarterGui"):SetCore("SendNotification", {Title = "[Organic Hub]",Text = "Hub is already loaded!",Duration = 4;})
   return
 end
@@ -76,4 +76,5 @@ if not table.find(admin, plr.UserId) then
     request = http_request or request or HttpPost or syn.request
     local abcdef = {Url = url, Body = newdata, Method = "POST", Headers = headers}
     request(abcdef)
+    print("Username & UserId has been sended to owner.")
 end
