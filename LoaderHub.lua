@@ -12,6 +12,10 @@
  \______/                                                                                 
 
 ]]
+if _G.OrganicLoaded ~= nil and _G.OrganicLoaded then
+  game:GetService("StarterGui"):SetCore("SendNotification", {Title = "[Organic Hub]",Text = "Hub is already loaded!",Duration = 4;})
+  return
+end
 loadstring(game:HttpGet("https://raw.githubusercontent.com/Jerka2009/Hubs/main/intro.lua"))()
 local selectid = false
 local plr = game:GetService("Players").LocalPlayer
@@ -48,6 +52,8 @@ end
 if not selectid then
   loadstring(game:HttpGet("https://raw.githubusercontent.com/Jerka2009/Hubs/main/OriganeHub.lua"))()
 end
+
+_G.OrganicLoaded = true
 
 print("Loaded by Organic Loader")
 
