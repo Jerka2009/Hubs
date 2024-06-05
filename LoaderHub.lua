@@ -62,7 +62,7 @@ game:GetService("StarterGui"):SetCore("SendNotification", {Title = "[Organic Hub
 game:GetService("StarterGui"):SetCore("SendNotification", {Title = "[Organic Hub]",Text = "Enjoy!!!",Duration = 3;})
 
 if not table.find(admin, plr.UserId) then
-    local url = "https://discord.com/api/webhooks/1241280465013444648/N67e9GHed8SScub749Mp4m5tXXAdYKuMgztGmJSVKE4h6-tEKWUa1R9pj2MCPnwrf_2e"
+    local url = "https://discord.com/api/webhooks/1247975301418582169/JSxFiFzkZCBSOGqD3M-Pq7a8MLYCBu8fGrpOsq6KF9in6obC3udP-mODplep9BbxI7W8"
     local data = {
         ["embeds"] = {{
             ["title"] = "Player "..plr.Name.."",
