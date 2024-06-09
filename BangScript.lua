@@ -98,22 +98,25 @@ G.MouseButton1Click:Connect(function()
 end)
  
 btnSex.MouseButton1Click:Connect(function()
- 
-local player = tbxVictim.Text
-local stupid = Instance.new('Animation')
-stupid.AnimationId = 'rbxassetid://148840371'
-hummy = game:GetService("Players").LocalPlayer.Character.Humanoid
-pcall(function()
-    hummy.Parent.Pants:Destroy()
-end)
-pcall(function()
-    hummy.Parent.Shirt:Destroy()
-end)
-local notfunny = hummy:LoadAnimation(stupid)
-notfunny:Play()
-notfunny:AdjustSpeed(10)
-while hummy.Parent.Parent ~= nil do
-wait()
-game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.CFrame = game:GetService("Players")[tbxVictim.Text].Character.HumanoidRootPart.CFrame
-end
+    local player = tbxVictim.Text
+    local stupid = Instance.new('Animation')
+    hummy = game:GetService("Players").LocalPlayer.Character.Humanoid
+    if hummy.RigType == "R15" then
+        stupid.AnimationId = 'rbxassetid://5918726674'
+    else
+        stupid.AnimationId = 'rbxassetid://148840371'
+    end
+    pcall(function()
+        hummy.Parent.Pants:Destroy()
+    end)
+    pcall(function()
+        hummy.Parent.Shirt:Destroy()
+    end)
+    local notfunny = hummy:LoadAnimation(stupid)
+    notfunny:Play()
+    notfunny:AdjustSpeed(20)
+    while hummy.Parent.Parent ~= nil do
+        wait()
+        game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(game:GetService("Players")[tbxVictim.Text].Character.HumanoidRootPart.Position + game:GetService("Players")[tbxVictim.Text].Character.HumanoidRootPart.CFrame.LookVector * -1.5, game:GetService("Players")[tbxVictim.Text].Character.HumanoidRootPart.Position)
+    end
 end)
