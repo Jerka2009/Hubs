@@ -29,7 +29,7 @@ end
 if not plr:FindFirstChild("HasKey") then
 	local n = Instance.new("BoolValue")
 	n.Name = "HasKey"
-	n.Value = true
+	n.Value = false
 	n.Parent = plr
 end
 function MakeScriptHub()
