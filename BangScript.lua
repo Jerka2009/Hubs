@@ -15,6 +15,8 @@ local UICorner_2 = Instance.new("UICorner")
 local tbxVictim = Instance.new("TextBox")
 local UICorner_3 = Instance.new("UICorner")
 
+local notfunny
+
 --Properties:
 if game.CoreGui:FindFirstChild("XXXGuiOrganic") then
  game.CoreGui:FindFirstChild("XXXGuiOrganic"):Destroy()
@@ -88,6 +90,14 @@ tbxVictim.Text = ""
 tbxVictim.TextColor3 = Color3.fromRGB(0, 0, 0)
 tbxVictim.TextSize = 20.000
 tbxVictim.TextWrapped = true
+tbxVictim.Changed:Connect(function()
+  if tbxVictim.Text == "" then
+   if notfunny then
+    notfunny:Stop()
+    notfunny = nil
+   end
+  end
+end)
 
 UICorner_3.CornerRadius = UDim.new(0.200000003, 0)
 UICorner_3.Parent = FGUI
@@ -106,13 +116,7 @@ btnSex.MouseButton1Click:Connect(function()
     else
         stupid.AnimationId = 'rbxassetid://148840371'
     end
-    pcall(function()
-        hummy.Parent.Pants:Destroy()
-    end)
-    pcall(function()
-        hummy.Parent.Shirt:Destroy()
-    end)
-    local notfunny = hummy:LoadAnimation(stupid)
+    notfunny = hummy:LoadAnimation(stupid)
     notfunny:Play()
     notfunny:AdjustSpeed(20)
     while hummy.Parent.Parent ~= nil do
