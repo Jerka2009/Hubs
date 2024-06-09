@@ -14,6 +14,10 @@
  \______/                                                                                 
 
 ]]
+if _G.OrganicLoaded then
+  game:GetService("StarterGui"):SetCore("SendNotification", {Title = "[Organic Hub]",Text = "Hub is already loaded! Please rejoin!",Duration = 4;})
+  return
+end
 local Library = loadstring(game:HttpGet("https://raw.githubusercontent.com/Jerka2009/Hubs/main/UI-LibraryOrganic.lua"))()
 local Window = Library.CreateLib("Organic - key system", "Synapse")
 local plr = game:GetService("Players").LocalPlayer
