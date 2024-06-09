@@ -22,7 +22,7 @@ local FName = "Organic.JSON"
 if BlackList[game:GetService("Players").LocalPlayer.UserId] then
 	game:GetService("Players").LocalPlayer:Kick("You're in black list hehe!")
 end
-if plr:FindFirstChild("HasKey") == nil then
+if not plr:FindFirstChild("HasKey") then
 	local n = Instance.new("BoolValue")
 	n.Name = "HasKey"
 	n.Value = true
@@ -79,7 +79,7 @@ end
 local Tab = Window:NewTab("Key")
 local Sect = Tab:NewSection("Key system")
 
-Sect:NewTextBox("Key", "kekekkek", function(txt)
+Sect:NewTextBox("Key", "empty", function(txt)
 	_G.KeyInput = txt
 	if _G.KeyInput == _G.Key then
 		wait(1)
