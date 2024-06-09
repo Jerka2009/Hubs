@@ -94,7 +94,11 @@ Sect:NewTextBox("Key", "empty", function(txt)
 			writefile(FName, _G.Key)
 			wait()
 			MakeScriptHub()
-			Window:Delete()
+			if _G.OrganicUI ~= nil then
+				_G.OrganicUI:Destroy()
+			else
+				Window:Delete()
+			end
 		end
   else
 		INcorrect()
