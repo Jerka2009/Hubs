@@ -15,7 +15,7 @@
 local plr = game:GetService("Players").LocalPlayer
 
 if _G.OrganicLoaded then
-  game:GetService("StarterGui"):SetCore("SendNotification", {Title = "[Organic Hub]",Text = "Hub is already loaded!",Duration = 4;})
+  game:GetService("StarterGui"):SetCore("SendNotification", {Title = "[Organic Hub]",Text = "Hub is already loaded! Please rejoin!",Duration = 4;})
   return
 end
 loadstring(game:HttpGet("https://raw.githubusercontent.com/Jerka2009/Hubs/main/intro.lua"))()
