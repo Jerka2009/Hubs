@@ -38,12 +38,12 @@ local selectid = false
 local admin = {4989772447}
 local games = {
   --- Ragdolls
-    [{9848789324}] = "https://raw.githubusercontent.com/Jerka2009/Hubs/main/OrganicRagdoll.lua",
-    [{5683833663}] = "https://raw.githubusercontent.com/Jerka2009/Hubs/main/OrganicRagdoll.lua",
+    [{7957302362}] = "https://raw.githubusercontent.com/Jerka2009/Hubs/main/OrganicRagdoll.lua",
     [{5950733731}] = "https://raw.githubusercontent.com/Jerka2009/Hubs/main/OrganicRagdoll.lua",
-    [{11998821664}] = "https://raw.githubusercontent.com/Jerka2009/Hubs/main/OrganicRagdoll.lua",
-    [{6584731191}] = "https://raw.githubusercontent.com/Jerka2009/Hubs/main/OrganicRagdoll.lua",
-    [{15162407879}] = "https://raw.githubusercontent.com/Jerka2009/Hubs/main/OrganicRagdoll.lua",
+    [{5683833663}] = "https://raw.githubusercontent.com/Jerka2009/Hubs/main/OrganicRagdoll.lua",
+    [{8356158688}] = "https://raw.githubusercontent.com/Jerka2009/Hubs/main/OrganicRagdoll.lua",
+    [{8650375847}] = "https://raw.githubusercontent.com/Jerka2009/Hubs/main/OrganicRagdoll.lua",
+    [{5937858639}] = "https://raw.githubusercontent.com/Jerka2009/Hubs/main/OrganicRagdoll.lua",
   --- Other games
     [{606849621}] = "https://raw.githubusercontent.com/Jerka2009/Hubs/main/OriganeJailbreak.lua",
     [{1224212277}] = "https://raw.githubusercontent.com/Jerka2009/Hubs/main/OriganeMadCity.lua",
@@ -55,8 +55,6 @@ local games = {
     [{621129760}] = "https://raw.githubusercontent.com/Jerka2009/Hubs/main/KATLoader.lua",
     [{142823291}] = "https://raw.githubusercontent.com/Jerka2009/Hubs/main/OrganicMM2.lua",
     [{155615604}] = "https://raw.githubusercontent.com/RegularVynixu/Vynixius/main/Prison%20Life/Script.lua",
-    [{7041939546}] = "https://raw.githubusercontent.com/Jerka2009/Hubs/main/OriganeHub.lua",
-    [{6839171747}] = "https://raw.githubusercontent.com/RegularVynixu/Vynixius/main/Doors/Loader.lua",
 }
 for ids, url in next, games do
   if table.find(ids, game.PlaceId) then
