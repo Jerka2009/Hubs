@@ -23,11 +23,15 @@ loadstring(game:HttpGet("https://raw.githubusercontent.com/Jerka2009/Hubs/main/i
 if plr:FindFirstChild("HasKey") then
   if plr:FindFirstChild("HasKey").Value == true then
     game:GetService("StarterGui"):SetCore("SendNotification", {Title = "[Organic Hub]",Text = "Key is founded!",Duration = 4;})
-  return
   else
     loadstring(game:HttpGet("https://raw.githubusercontent.com/Jerka2009/Hubs/main/Main.lua"))()
     game:GetService("StarterGui"):SetCore("SendNotification", {Title = "[Organic Hub]",Text = "You dont have key!",Duration = 4;})
+    return
   end
+else
+  loadstring(game:HttpGet("https://raw.githubusercontent.com/Jerka2009/Hubs/main/Main.lua"))()
+  game:GetService("StarterGui"):SetCore("SendNotification", {Title = "[Organic Hub]",Text = "You dont have key!",Duration = 4;})
+  return
 end
 
 local selectid = false
