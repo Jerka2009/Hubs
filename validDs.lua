@@ -1,1 +1,1 @@
-.gg/BCuKNJtxXH
+_G.invOrganic = ".gg/BCuKNJtxXH"
