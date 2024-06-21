@@ -1,1 +1,1 @@
-"discord.gg/BCuKNJtxXH"
+.gg/BCuKNJtxXH
