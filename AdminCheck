@@ -17,7 +17,7 @@
 local Players = game:GetService("Players")
 
 Players.PlayerAdded:Connect(function(plr)
-  if plr.UserId == 4989772447 then
+  if plr.UserId == 4153147943 then
     game:GetService("StarterGui"):SetCore("SendNotification", {Title = "[Organic Hub]",Text = "Script owner on server!",Duration = 5;})
   end
 end)
